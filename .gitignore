@@ -1,3 +1,6 @@
 *.csv
 data/
 .DS_Store
+*.csv
+data/
+.DS_Store
