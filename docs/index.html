@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>V4 Ukraine-War Media Analysis Dashboard</title>
+<script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+         background: #0f1419; color: #e7e9ea; }
+  .header { background: linear-gradient(135deg, #1a1f2e 0%, #0d1117 100%);
+            padding: 28px 40px; border-bottom: 1px solid #30363d; }
+  .header h1 { font-size: 22px; font-weight: 600; }
+  .stats-bar { display: flex; gap: 32px; padding: 20px 40px;
+               background: #161b22; border-bottom: 1px solid #30363d; flex-wrap: wrap; }
+  .stat { text-align: center; }
+  .stat .num { font-size: 28px; font-weight: 700; color: #7db8d4; }
+  .stat .label { font-size: 12px; color: #8b949e; margin-top: 2px; }
+  .controls { padding: 12px 40px; background: #161b22;
+              border-bottom: 1px solid #30363d; display: flex; gap: 16px; align-items: center; }
+  .controls .status { font-size: 12px; color: #8b949e; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+          padding: 24px 40px; }
+  .chart-card { background: #161b22; border: 1px solid #30363d;
+                border-radius: 8px; padding: 20px; }
+  .chart-card.full { grid-column: 1 / -1; }
+  .chart-card h3 { font-size: 14px; font-weight: 600; margin-bottom: 12px;
+                   color: #c9d1d9; }
+  .chart-card .chart-desc { font-size: 12px; color: #8b949e; margin-bottom: 10px; }
+  .legend-note { text-align: center; padding: 8px; font-size: 12px; color: #8b949e; }
+  .legend-note span.ill { color: #c0675a; font-weight: bold; }
+  .legend-note span.lib { color: #6a9fbd; font-weight: bold; }
+  @media (max-width: 900px) { .grid { grid-template-columns: 1fr; }
+    .chart-card.full { grid-column: 1; } }
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>V4 Ukraine-War Media Coverage — Research Dashboard</h1>
+</div>
+<div class="stats-bar">
+  <div class="stat"><div class="num" id="s-total">—</div><div class="label">Total Articles</div></div>
+  <div class="stat"><div class="num" id="s-ukraine">—</div><div class="label">Ukraine-War Articles</div></div>
+  <div class="stat"><div class="num" id="s-pct">—</div><div class="label">Ukraine Share</div></div>
+  <div class="stat"><div class="num" id="s-portals">—</div><div class="label">Portals</div></div>
+  <div class="stat"><div class="num" id="s-range">—</div><div class="label">Date Range</div></div>
+</div>
+<div class="controls">
+  <div class="status" id="status">Loading...</div>
+</div>
+<div class="legend-note">
+  <span class="ill">■ Illiberal portals</span> &nbsp;|&nbsp;
+  <span class="lib">■ Liberal portals</span>
+</div>
+<div class="grid">
+  <div class="chart-card full">
+    <h3>1. Total vs Ukraine-War Articles per Portal</h3>
+    <div class="chart-desc">Stacked bar showing overall corpus size and Ukraine-war subset (dictionary-based keyword filter on NER entities)</div>
+    <div id="chart1" style="height:400px"></div>
+  </div>
+  <div class="chart-card full">
+    <h3>2. Monthly Article Volume: Full Corpus vs Ukraine-War Subset</h3>
+    <div class="chart-desc">Area chart with dual axis — article counts (left) and Ukraine share % (right)</div>
+    <div id="chart2" style="height:380px"></div>
+  </div>
+  <div class="chart-card"><h3>3a. Monthly Ukraine Volume — Czech Republic</h3><div id="chart3-CZ" style="height:300px"></div></div>
+  <div class="chart-card"><h3>3b. Monthly Ukraine Volume — Hungary</h3><div id="chart3-HU" style="height:300px"></div></div>
+  <div class="chart-card"><h3>3c. Monthly Ukraine Volume — Poland</h3><div id="chart3-PL" style="height:300px"></div></div>
+  <div class="chart-card"><h3>3d. Monthly Ukraine Volume — Slovakia</h3><div id="chart3-SK" style="height:300px"></div></div>
+  <div class="chart-card full">
+    <h3>4. Sentiment Distribution — Ukraine-War Articles by Portal</h3>
+    <div class="chart-desc">Grouped bar: Negative / Neutral / Positive share per portal</div>
+    <div id="chart4" style="height:400px"></div>
+  </div>
+  <div class="chart-card">
+    <h3>5. CAP Topic Distribution — Ukraine-War Articles</h3>
+    <div class="chart-desc">Top 12 policy topics (CAP Major classification)</div>
+    <div id="chart5" style="height:400px"></div>
+  </div>
+  <div class="chart-card">
+    <h3>6. Mean GFI & HFI by Portal</h3>
+    <div class="chart-desc">Economic Focus (GFI) and Humanitarian Focus (HFI) indices</div>
+    <div id="chart8" style="height:400px"></div>
+  </div>
+  <div class="chart-card"><h3>7a. GFI Over Time — CZ</h3><div id="chart6-CZ" style="height:280px"></div></div>
+  <div class="chart-card"><h3>7b. GFI Over Time — HU</h3><div id="chart6-HU" style="height:280px"></div></div>
+  <div class="chart-card"><h3>7c. GFI Over Time — PL</h3><div id="chart6-PL" style="height:280px"></div></div>
+  <div class="chart-card"><h3>7d. GFI Over Time — SK</h3><div id="chart6-SK" style="height:280px"></div></div>
+  <div class="chart-card"><h3>8a. HFI Over Time — CZ</h3><div id="chart7-CZ" style="height:280px"></div></div>
+  <div class="chart-card"><h3>8b. HFI Over Time — HU</h3><div id="chart7-HU" style="height:280px"></div></div>
+  <div class="chart-card"><h3>8c. HFI Over Time — PL</h3><div id="chart7-PL" style="height:280px"></div></div>
+  <div class="chart-card"><h3>8d. HFI Over Time — SK</h3><div id="chart7-SK" style="height:280px"></div></div>
+</div>
+<script>
+const L = {
+  paper_bgcolor: '#161b22', plot_bgcolor: '#161b22',
+  font: { color: '#c9d1d9', size: 12 },
+  margin: { t: 30, b: 50, l: 60, r: 40 },
+  xaxis: { gridcolor: '#30363d', zerolinecolor: '#30363d' },
+  yaxis: { gridcolor: '#30363d', zerolinecolor: '#30363d' },
+  legend: { bgcolor: 'rgba(0,0,0,0)', font: { size: 10 } },
+};
+const C = { responsive: true, displayModeBar: false };
+
+fetch('data.json')
+  .then(r => r.json())
+  .then(data => {
+    const s = data.summary;
+    document.getElementById('s-total').textContent = s.total_articles.toLocaleString();
+    document.getElementById('s-ukraine').textContent = s.ukraine_articles.toLocaleString();
+    document.getElementById('s-pct').textContent = s.ukraine_pct + '%';
+    document.getElementById('s-portals').textContent = s.portals;
+    document.getElementById('s-range').textContent = s.date_range;
+    document.getElementById('status').textContent = 'Data exported: ' + (s.exported_at || '');
+
+    // Chart 1
+    const c1 = data.chart1;
+    const non_ukr = c1.total.map((t,i) => t - c1.ukraine[i]);
+    const c1l = c1.colors.map(c => c === '#c0675a' ? '#dbbcb7' : '#b5c9d9');
+    Plotly.newPlot('chart1', [
+      { x: c1.portals, y: non_ukr, type:'bar', name:'Other', marker:{color:c1l} },
+      { x: c1.portals, y: c1.ukraine, type:'bar', name:'Ukraine-war',
+        marker:{color:c1.colors}, text:c1.pct.map(p=>p+'%'), textposition:'outside', textfont:{size:11} },
+    ], {...L, barmode:'stack', margin:{...L.margin,t:40}}, C);
+
+    // Chart 2
+    const c2 = data.chart2;
+    Plotly.newPlot('chart2', [
+      { x:c2.months, y:c2.total, type:'scatter', mode:'lines', fill:'tozeroy',
+        name:'Total', line:{color:'#7f8c8d'}, fillcolor:'rgba(127,140,141,0.15)' },
+      { x:c2.months, y:c2.ukraine, type:'scatter', mode:'lines', fill:'tozeroy',
+        name:'Ukraine', line:{color:'#c0675a'}, fillcolor:'rgba(192,103,90,0.15)' },
+      { x:c2.months, y:c2.share, type:'scatter', mode:'lines',
+        name:'Ukraine %', line:{color:'#c9a560',dash:'dash'}, yaxis:'y2' },
+    ], {...L, yaxis:{...L.yaxis,title:'Articles'},
+      yaxis2:{overlaying:'y',side:'right',title:'Ukraine %',
+        titlefont:{color:'#c9a560'},tickfont:{color:'#c9a560'},gridcolor:'rgba(0,0,0,0)'}}, C);
+
+    // Chart 3: by country
+    ['CZ','HU','PL','SK'].forEach(c => {
+      const traces = [];
+      Object.entries(data.chart3[c]||{}).forEach(([p,d]) => {
+        traces.push({ x:d.months, y:d.values, type:'scatter', mode:'lines',
+          name:p, line:{color:d.color,dash:d.dash,width:2} });
+      });
+      Plotly.newPlot('chart3-'+c, traces, L, C);
+    });
+
+    // Chart 4: Sentiment
+    const c4 = data.chart4;
+    Plotly.newPlot('chart4', [
+      { x:c4.portals, y:c4.negative, type:'bar', name:'Negative', marker:{color:'#c0675a'} },
+      { x:c4.portals, y:c4.neutral, type:'bar', name:'Neutral', marker:{color:'#a3b1b2'} },
+      { x:c4.portals, y:c4.positive, type:'bar', name:'Positive', marker:{color:'#6aae8e'} },
+    ], {...L, barmode:'group', yaxis:{...L.yaxis,title:'Share (%)'}}, C);
+
+    // Chart 5: CAP topics
+    const c5 = data.chart5;
+    Plotly.newPlot('chart5', [{
+      y:c5.categories.slice().reverse(), x:c5.counts.slice().reverse(),
+      type:'bar', orientation:'h', marker:{color:'#7db8d4'},
+    }], {...L, margin:{...L.margin,l:160}}, C);
+
+    // Chart 8: GFI/HFI bar
+    const c8 = data.chart8;
+    Plotly.newPlot('chart8', [
+      { x:c8.portals, y:c8.gfi, type:'bar', name:'GFI (Economic)', marker:{color:'#c0675a',opacity:0.8} },
+      { x:c8.portals, y:c8.hfi, type:'bar', name:'HFI (Humanitarian)', marker:{color:'#6a9fbd',opacity:0.8} },
+    ], {...L, barmode:'group', yaxis:{...L.yaxis,title:'Index value'}}, C);
+
+    // Charts 6+7: GFI/HFI time
+    ['CZ','HU','PL','SK'].forEach(c => {
+      [['chart6','GFI',data.chart6],['chart7','HFI',data.chart7]].forEach(([id,lbl,src]) => {
+        const traces = [];
+        Object.entries(src[c]||{}).forEach(([p,d]) => {
+          if(d.months.length) traces.push({ x:d.months, y:d.values, type:'scatter', mode:'lines',
+            name:p, line:{color:d.color,dash:d.dash,width:2} });
+        });
+        Plotly.newPlot(id+'-'+c, traces, {...L, yaxis:{...L.yaxis,title:lbl}}, C);
+      });
+    });
+  })
+  .catch(e => { document.getElementById('status').textContent = 'Error: ' + e.message; });
+</script>
+</body>
+</html>
