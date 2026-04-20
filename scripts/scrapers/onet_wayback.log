@@ -1,0 +1,11 @@
+09:26:39  INFO       Onet scraper — 2022-02-01 → 2026-02-23
+09:26:39  INFO       host: wiadomosci.onet.pl
+09:26:39  INFO       output: data/onet_supplement.csv
+09:26:39  INFO       include paywalled: False
+09:26:39  INFO       CDX cache: data/onet_cdx_urls.jsonl
+09:26:39  WARNING    could not load robots.txt: HTTPSConnectionPool(host='wiadomosci.onet.pl', port=443): Max retries exceeded with url: /robots.txt (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 403 Forbidden')))
+09:26:39  INFO       loaded CDX cache: 125688 URLs from data/onet_cdx_urls.jsonl
+09:26:39  INFO       candidate article URLs after filtering: 108512  (CDX timestamp pre-skipped: 0)
+09:26:39  INFO       loaded checkpoint: 10462 URLs already scraped
+09:26:40  INFO       done.  scraped=0  skipped=10462  paywalled=0  rejected=98050  wayback_hits=0
+09:26:40  INFO       CSV written to: data/onet_supplement.csv

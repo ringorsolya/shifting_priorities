@@ -1,0 +1,561 @@
+17:00:45  INFO       Pravda CDX scraper — 2024-03-23 → 2026-02-23
+17:00:45  INFO       host: spravy.pravda.sk
+17:00:45  INFO       output: ../../data/pravda_supplement.csv
+17:00:45  INFO       include paywalled: False
+17:00:45  INFO       CDX cache: ../../data/pravda_cdx_urls.jsonl
+17:00:45  INFO       loaded robots.txt from https://spravy.pravda.sk/robots.txt
+17:00:45  INFO       loaded CDX cache: 7320 URLs from ../../data/pravda_cdx_urls.jsonl
+17:00:45  INFO       starting CDX URL discovery...
+17:00:45  INFO       querying 4 CDX pattern(s), chunk_days=14
+17:00:45  INFO       pattern: spravy.pravda.sk/svet/*
+17:00:45  INFO       CDX query spravy.pravda.sk/svet/*  2024-03-23 → 2024-04-05
+17:01:46  WARNING      CDX 504 — retrying
+17:02:20  INFO         got 1260 rows, kept 1141 (after statuscode filter)
+17:02:22  INFO       CDX query spravy.pravda.sk/svet/*  2024-04-06 → 2024-04-19
+17:03:14  INFO         got 4041 rows, kept 3968 (after statuscode filter)
+17:03:16  INFO       CDX query spravy.pravda.sk/svet/*  2024-04-20 → 2024-05-03
+117:03:58  INFO         got 2457 rows, kept 2392 (after statuscode filter)
+17:04:00  INFO       CDX query spravy.pravda.sk/svet/*  2024-05-04 → 2024-05-17117:05:00  WARNING      CDX 504 — retrying117:06:02  INFO         got 1204 rows, kept 17:06:45  INFO         got 1204 rows, kept 1154 (after statuscode filter)
+17:06:47  INFO       CDX query spravy.p17:07:12  INFO         got 5486 rows, kept 17:08:11  INFO         got 5486 rows, kept 5425 (after statuscode filter)
+17:08:13  INFO       CDX query spravy.p17:08:16  INFO         got 1591 rows, kept 17:09:31  INFO         got 1591 rows, kept 1547 (after statuscode filter)
+17:09:33  INFO       CDX query spravy.pravda.sk/svet/*  2024-06-15 → 2024-06-28
+17:09:59  INFO         got 4302 rows, kept 4234 (after statuscode filter)
+17:10:01  INFO       CDX query spravy.p17:10:27  INFO         got 1131 rows, kept 17:11:01  WARNING      CDX 504 — retrying
+17:12:06  WARNING      CDX 504 — retrying
+17:12:45  INFO         got 1131 rows, kept 1051 (after statuscode filter)
+17:12:47  INFO       CDX query spravy.pravda.sk/svet/*  2024-07-13 → 2024-07-26
+17:13:47  WARNING      CDX 504 — retrying
+17:14:22  INFO         got 6068 rows, kept 5995 (after statuscode filter)
+17:14:24  INFO       CDX query spravy.pravda.sk/svet/*  2024-07-27 → 2024-08-09
+17:15:24  WARNING      CDX 504 — retrying
+17:16:09  INFO         got 4299 rows, kept 4248 (after statuscode filter)
+17:16:11  INFO       CDX query spravy.pravda.sk/svet/*  2024-08-10 → 2024-08-23
+17:17:12  WARNING      CDX 504 — retrying
+17:18:20  INFO         got 3482 rows, kept 3460 (after statuscode filter)
+17:18:22  INFO       CDX query spravy.pravda.sk/svet/*  2024-08-24 → 2024-09-06
+17:19:22  WARNING      CDX 504 — retrying
+17:19:56  INFO         got 1132 rows, kept 1112 (after statuscode filter)
+17:19:58  INFO       CDX query spravy.pravda.sk/svet/*  2024-09-07 → 2024-09-20
+17:21:06  INFO         got 7387 rows, kept 7342 (after statuscode filter)
+17:21:08  INFO       CDX query spravy.pravda.sk/svet/*  2024-09-21 → 2024-10-04
+17:22:41  INFO         got 2321 rows, kept 2262 (after statuscode filter)
+17:22:43  INFO       CDX query spravy.pravda.sk/svet/*  2024-10-05 → 2024-10-18
+17:23:22  INFO         got 5341 rows, kept 5326 (after statuscode filter)
+17:23:24  INFO       CDX query spravy.pravda.sk/svet/*  2024-10-19 → 2024-11-01
+17:23:59  INFO         got 716 rows, kept 676 (after statuscode filter)
+17:24:01  INFO       CDX query spravy.pravda.sk/svet/*  2024-11-02 → 2024-11-15
+17:26:36  INFO         got 7512 rows, kept 7473 (after statuscode filter)
+17:26:38  INFO       CDX query spravy.pravda.sk/svet/*  2024-11-16 → 2024-11-29
+17:27:38  WARNING      CDX 504 — retrying
+17:28:02  INFO         got 1018 rows, kept 949 (after statuscode filter)
+17:28:04  INFO       CDX query spravy.pravda.sk/svet/*  2024-11-30 → 2024-12-13
+17:28:35  INFO         got 7753 rows, kept 7667 (after statuscode filter)
+17:28:37  INFO       CDX query spravy.pravda.sk/svet/*  2024-12-14 → 2024-12-27
+17:28:57  INFO         got 1468 rows, kept 1390 (after statuscode filter)
+17:28:59  INFO       CDX query spravy.pravda.sk/svet/*  2024-12-28 → 2025-01-10
+17:29:12  INFO         got 1276 rows, kept 1227 (after statuscode filter)
+17:29:14  INFO       CDX query spravy.pravda.sk/svet/*  2025-01-11 → 2025-01-24
+17:29:46  INFO         got 6414 rows, kept 6291 (after statuscode filter)
+17:29:48  INFO       CDX query spravy.pravda.sk/svet/*  2025-01-25 → 2025-02-07
+17:30:11  INFO         got 2480 rows, kept 2279 (after statuscode filter)
+17:30:13  INFO       CDX query spravy.pravda.sk/svet/*  2025-02-08 → 2025-02-21
+17:31:07  INFO         got 6322 rows, kept 6154 (after statuscode filter)
+17:31:09  INFO       CDX query spravy.pravda.sk/svet/*  2025-02-22 → 2025-03-07
+17:31:45  INFO         got 906 rows, kept 840 (after statuscode filter)
+17:31:47  INFO       CDX query spravy.pravda.sk/svet/*  2025-03-08 → 2025-03-21
+17:32:13  INFO         got 3852 rows, kept 3787 (after statuscode filter)
+17:32:15  INFO       CDX query spravy.pravda.sk/svet/*  2025-03-22 → 2025-04-04
+17:33:02  INFO         got 4831 rows, kept 4781 (after statuscode filter)
+17:33:04  INFO       CDX query spravy.pravda.sk/svet/*  2025-04-05 → 2025-04-18
+17:33:34  INFO         got 2854 rows, kept 2720 (after statuscode filter)
+17:33:36  INFO       CDX query spravy.pravda.sk/svet/*  2025-04-19 → 2025-05-02
+17:34:48  INFO         got 6672 rows, kept 6627 (after statuscode filter)
+17:34:50  INFO       CDX query spravy.pravda.sk/svet/*  2025-05-03 → 2025-05-16
+17:35:43  INFO         got 4447 rows, kept 4382 (after statuscode filter)
+17:35:45  INFO       CDX query spravy.pravda.sk/svet/*  2025-05-17 → 2025-05-30
+17:36:15  INFO         got 5510 rows, kept 5398 (after statuscode filter)
+17:36:17  INFO       CDX query spravy.pravda.sk/svet/*  2025-05-31 → 2025-06-13
+17:36:55  INFO         got 2389 rows, kept 2318 (after statuscode filter)
+17:36:57  INFO       CDX query spravy.pravda.sk/svet/*  2025-06-14 → 2025-06-27
+17:37:38  INFO         got 8004 rows, kept 7968 (after statuscode filter)
+17:37:40  INFO       CDX query spravy.pravda.sk/svet/*  2025-06-28 → 2025-07-11
+17:37:52  INFO         got 4111 rows, kept 4050 (after statuscode filter)
+17:37:54  INFO       CDX query spravy.pravda.sk/svet/*  2025-07-12 → 2025-07-25
+17:38:44  INFO         got 8483 rows, kept 8395 (after statuscode filter)
+17:38:46  INFO       CDX query spravy.pravda.sk/svet/*  2025-07-26 → 2025-08-08
+17:40:06  INFO         got 4889 rows, kept 4836 (after statuscode filter)
+17:40:08  INFO       CDX query spravy.pravda.sk/svet/*  2025-08-09 → 2025-08-22
+17:40:17  INFO         got 6602 rows, kept 6574 (after statuscode filter)
+17:40:19  INFO       CDX query spravy.pravda.sk/svet/*  2025-08-23 → 2025-09-05
+17:40:28  INFO         got 964 rows, kept 945 (after statuscode filter)
+17:40:30  INFO       CDX query spravy.pravda.sk/svet/*  2025-09-06 → 2025-09-19
+17:41:19  INFO         got 8782 rows, kept 8766 (after statuscode filter)
+17:41:21  INFO       CDX query spravy.pravda.sk/svet/*  2025-09-20 → 2025-10-03
+17:41:49  INFO         got 829 rows, kept 792 (after statuscode filter)
+17:41:51  INFO       CDX query spravy.pravda.sk/svet/*  2025-10-04 → 2025-10-17
+17:42:17  INFO         got 9979 rows, kept 9945 (after statuscode filter)
+17:42:19  INFO       CDX query spravy.pravda.sk/svet/*  2025-10-18 → 2025-10-31
+17:42:26  INFO         got 1583 rows, kept 1535 (after statuscode filter)
+17:42:28  INFO       CDX query spravy.pravda.sk/svet/*  2025-11-01 → 2025-11-14
+117:42:46  WARNING      CDX 504 — retrying
+17:43:12  INFO         got 829 rows, kept 792 (after statuscode filter)
+17:43:14  INFO       CDX query spravy.pravda.sk/svet/*  2025-10-04 → 2025-10-17
+17:43:46  INFO         got 9979 rows, kept 9945 (after statuscode filter)
+17:43:48  INFO       CDX query spravy.pravda.sk/svet/*  2025-10-18 → 2025-10-31
+17:44:48  WARNING      CDX 504 — retrying
+17:45:48  INFO         got 1583 rows, kept 1535 (after statuscode filter)
+17:45:50  INFO       CDX query spravy.pravda.sk/svet/*  2025-11-01 → 2025-11-14
+17:46:10  INFO         got 6996 rows, kept 6964 (after statuscode filter)
+17:46:12  INFO       CDX query spravy.pravda.sk/svet/*  2025-11-15 → 2025-11-28
+17:46:27  INFO         got 3745 rows, kept 3732 (after statuscode filter)
+17:46:29  INFO       CDX query spravy.pravda.sk/svet/*  2025-11-29 → 2025-12-12
+17:47:12  INFO         got 5986 rows, kept 5969 (after statuscode filter)
+17:47:14  INFO       CDX query spravy.pravda.sk/svet/*  2025-12-13 → 2025-12-26
+17:48:06  INFO         got 5368 rows, kept 5319 (after statuscode filter)
+17:48:08  INFO       CDX query spravy.pravda.sk/svet/*  2025-12-27 → 2026-01-09
+17:48:35  INFO         got 1734 rows, kept 1663 (after statuscode filter)
+17:48:37  INFO       CDX query spravy.pravda.sk/svet/*  2026-01-10 → 2026-01-23
+17:49:23  WARNING      CDX gave non-JSON response
+17:50:22  INFO         got 8755 rows, kept 8728 (after statuscode filter)
+17:50:24  INFO       CDX query spravy.pravda.sk/svet/*  2026-01-24 → 2026-02-06
+17:50:58  INFO         got 1942 rows, kept 1936 (after statuscode filter)
+17:51:00  INFO       CDX query spravy.pravda.sk/svet/*  2026-02-07 → 2026-02-20
+2  INFO       CDX query spravy.pravda.sk/domace/*  2024-04-20 → 2024-05-03
+17:47:53  INFO         got 2359 rows, kept 2250 (after statuscode filter)
+17:47:55  INFO       CDX query spravy.pravda.sk/domace/*  2024-05-04 → 2024-05-17
+17:48:37  INFO         got 1359 rows, kept 1233 (after statuscode filter)
+17:48:39  INFO       CDX query spravy.pravda.sk/domace/*  2024-05-18 → 2024-05-31
+17:50:01  INFO         got 5947 rows, kept 5804 (after statuscode filter)
+17:50:03  INFO       CDX query spravy.pravda.sk/domace/*  2024-06-01 → 2024-06-14
+17:50:19  INFO         got 1689 rows, kept 1437 (after statuscode filter)
+17:50:21  INFO       CDX query spravy.pravda.sk/domace/*  2024-06-15 → 2024-06-28
+17:51:00  INFO         got 4549 rows, kept 4351 (after statuscode filter)
+17:51:02  INFO       CDX query spravy.pravda.sk/domace/*  2024-06-29 → 2024-07-12
+17:51:28  INFO         got 1225 rows, kept 1030 (after statuscode filter)
+17:51:30  INFO       CDX query spravy.pravda.sk/domace/*  2024-07-13 → 2024-07-26
+17:51:53  INFO         got 5923 rows, kept 5805 (after statuscode filter)
+17:51:55  INFO       CDX query spravy.pravda.sk/domace/*  2024-07-27 → 2024-08-09
+17:52:07  INFO         got 3823 rows, kept 3747 (after statuscode filter)
+17:52:09  INFO       CDX query spravy.pravda.sk/domace/*  2024-08-10 → 2024-08-23
+17:53:10  INFO         got 2979 rows, kept 2919 (after statuscode filter)
+17:53:12  INFO       CDX query spravy.pravda.sk/domace/*  2024-08-24 → 2024-09-06
+17:53:26  INFO         got 1003 rows, kept 973 (after statuscode filter)
+17:53:28  INFO       CDX query spravy.pravda.sk/domace/*  2024-09-07 → 2024-09-20
+17:53:45  INFO         got 6914 rows, kept 6855 (after statuscode filter)
+17:53:47  INFO       CDX query spravy.pravda.sk/domace/*  2024-09-21 → 2024-10-04
+17:54:00  INFO         got 2227 rows, kept 2165 (after statuscode filter)
+17:54:02  INFO       CDX query spravy.pravda.sk/domace/*  2024-10-05 → 2024-10-18
+17:54:13  INFO         got 5084 rows, kept 5072 (after statuscode filter)
+17:54:15  INFO       CDX query spravy.pravda.sk/domace/*  2024-10-19 → 2024-11-01
+17:54:48  INFO         got 629 rows, kept 600 (after statuscode filter)
+17:54:50  INFO       CDX query spravy.pravda.sk/domace/*  2024-11-02 → 2024-11-15
+17:55:02  INFO         got 6941 rows, kept 6903 (after statuscode filter)
+17:55:04  INFO       CDX query spravy.pravda.sk/domace/*  2024-11-16 → 2024-11-29
+17:56:01  INFO         got 955 rows, kept 857 (after statuscode filter)
+17:56:03  INFO       CDX query spravy.pravda.sk/domace/*  2024-11-30 → 2024-12-13
+17:56:54  INFO         got 7069 rows, kept 6943 (after statuscode filter)
+17:56:56  INFO       CDX query spravy.pravda.sk/domace/*  2024-12-14 → 2024-12-27
+17:57:43  INFO         got 1321 rows, kept 1249 (after statuscode filter)
+17:57:45  INFO       CDX query spravy.pravda.sk/domace/*  2024-12-28 → 2025-01-10
+17:58:27  WARNING      CDX gave non-JSON response
+17:58:51  INFO         got 725 rows, kept 686 (after statuscode filter)
+17:58:53  INFO       CDX query spravy.pravda.sk/domace/*  2025-01-11 → 2025-01-24
+17:59:02  INFO         got 5972 rows, kept 5870 (after statuscode filter)
+17:59:04  INFO       CDX query spravy.pravda.sk/domace/*  2025-01-25 → 2025-02-07
+17:59:16  INFO         got 2290 rows, kept 2081 (after statuscode filter)
+17:59:18  INFO       CDX query spravy.pravda.sk/domace/*  2025-02-08 → 2025-02-21
+18:00:30  INFO         got 5758 rows, kept 5641 (after statuscode filter)
+18:00:32  INFO       CDX query spravy.pravda.sk/domace/*  2025-02-22 → 2025-03-07
+18:00:40  INFO         got 745 rows, kept 688 (after statuscode filter)
+18:00:42  INFO       CDX query spravy.pravda.sk/domace/*  2025-03-08 → 2025-03-21
+18:00:49  INFO         got 3401 rows, kept 3328 (after statuscode filter)
+18:00:51  INFO       CDX query spravy.pravda.sk/domace/*  2025-03-22 → 2025-04-04
+18:01:55  INFO         got 4436 rows, kept 4372 (after statuscode filter)
+18:01:57  INFO       CDX query spravy.pravda.sk/domace/*  2025-04-05 → 2025-04-18
+18:02:54  INFO         got 2260 rows, kept 2127 (after statuscode filter)
+18:02:56  INFO       CDX query spravy.pravda.sk/domace/*  2025-04-19 → 2025-05-02
+18:04:44  INFO         got 6563 rows, kept 6514 (after statuscode filter)
+18:04:46  INFO       CDX query spravy.pravda.sk/domace/*  2025-05-03 → 2025-05-16
+18:06:33  WARNING      CDX error: Response ended prematurely — retrying
+18:07:25  INFO         got 4008 rows, kept 3867 (after statuscode filter)
+18:07:27  INFO       CDX query spravy.pravda.sk/domace/*  2025-05-17 → 2025-05-30
+18:08:19  INFO         got 5099 rows, kept 4992 (after statuscode filter)
+18:08:21  INFO       CDX query spravy.pravda.sk/domace/*  2025-05-31 → 2025-06-13
+18:08:50  INFO         got 1958 rows, kept 1901 (after statuscode filter)
+18:08:52  INFO       CDX query spravy.pravda.sk/domace/*  2025-06-14 → 2025-06-27
+18:09:31  INFO         got 6889 rows, kept 6857 (after statuscode filter)
+18:09:33  INFO       CDX query spravy.pravda.sk/domace/*  2025-06-28 → 2025-07-11
+18:10:25  INFO         got 3637 rows, kept 3584 (after statuscode filter)
+18:10:27  INFO       CDX query spravy.pravda.sk/domace/*  2025-07-12 → 2025-07-25
+18:11:26  INFO         got 7528 rows, kept 7467 (after statuscode filter)
+18:11:28  INFO       CDX query spravy.pravda.sk/domace/*  2025-07-26 → 2025-08-08
+18:11:52  INFO         got 4215 rows, kept 4146 (after statuscode filter)
+18:11:54  INFO       CDX query spravy.pravda.sk/domace/*  2025-08-09 → 2025-08-22
+18:12:54  INFO         got 5994 rows, kept 5959 (after statuscode filter)
+18:12:56  INFO       CDX query spravy.pravda.sk/domace/*  2025-08-23 → 2025-09-05
+18:13:32  INFO         got 931 rows, kept 907 (after statuscode filter)
+18:13:34  INFO       CDX query spravy.pravda.sk/domace/*  2025-09-06 → 2025-09-19
+18:13:56  INFO         got 7516 rows, kept 7503 (after statuscode filter)
+18:13:58  INFO       CDX query spravy.pravda.sk/domace/*  2025-09-20 → 2025-10-03
+18:14:18  INFO         got 509 rows, kept 481 (after statuscode filter)
+18:14:20  INFO       CDX query spravy.pravda.sk/domace/*  2025-10-04 → 2025-10-17
+18:14:53  INFO         got 8300 rows, kept 8275 (after statuscode filter)
+18:14:55  INFO       CDX query spravy.pravda.sk/domace/*  2025-10-18 → 2025-10-31
+18:15:32  INFO         got 1356 rows, kept 1291 (after statuscode filter)
+18:15:34  INFO       CDX query spravy.pravda.sk/domace/*  2025-11-01 → 2025-11-14
+18:16:04  INFO         got 6247 rows, kept 6180 (after statuscode filter)
+18:16:06  INFO       CDX query spravy.pravda.sk/domace/*  2025-11-15 → 2025-11-28
+18:16:59  INFO         got 3340 rows, kept 3302 (after statuscode filter)
+18:17:01  INFO       CDX query spravy.pravda.sk/domace/*  2025-11-29 → 2025-12-12
+18:17:39  INFO         got 5606 rows, kept 5570 (after statuscode filter)
+18:17:41  INFO       CDX query spravy.pravda.sk/domace/*  2025-12-13 → 2025-12-26
+18:18:41  WARNING      CDX 504 — retrying
+18:19:46  WARNING      CDX 504 — retrying
+18:20:31  INFO         got 4507 rows, kept 4426 (after statuscode filter)
+18:20:33  INFO       CDX query spravy.pravda.sk/domace/*  2025-12-27 → 2026-01-09
+18:20:50  INFO         got 1050 rows, kept 970 (after statuscode filter)
+18:20:52  INFO       CDX query spravy.pravda.sk/domace/*  2026-01-10 → 2026-01-23
+18:21:18  INFO         got 7147 rows, kept 7121 (after statuscode filter)
+18:21:20  INFO       CDX query spravy.pravda.sk/domace/*  2026-01-24 → 2026-02-06
+18:22:20  WARNING      CDX 504 — retrying
+18:23:05  INFO         got 1549 rows, kept 1519 (after statuscode filter)
+18:23:07  INFO       CDX query spravy.pravda.sk/domace/*  2026-02-07 → 2026-02-20
+18:24:07  WARNING      CDX 504 — retrying
+18:25:12  WARNING      CDX 504 — retrying
+18:25:58  INFO         got 6288 rows, kept 6271 (after statuscode filter)
+18:26:00  INFO       CDX query spravy.pravda.sk/domace/*  2026-02-21 → 2026-02-23
+18:27:00  WARNING      CDX 504 — retrying
+18:27:16  INFO         got 125 rows, kept 122 (after statuscode filter)
+18:27:18  INFO       pattern: spravy.pravda.sk/ekonomika/*
+18:27:18  INFO       CDX query spravy.pravda.sk/ekonomika/*  2024-03-23 → 2024-04-05
+18:27:35  INFO         got 30 rows, kept 0 (after statuscode filter)
+18:27:37  INFO       CDX query spravy.pravda.sk/ekonomika/*  2024-04-06 → 2024-04-19
+18:28:09  INFO         got 31 rows, kept 0 (after statuscode filter)
+18:28:11  INFO       CDX query spravy.pravda.sk/ekonomika/*  2024-04-20 → 2024-05-03
+18:28:32  INFO         got 22 rows, kept 0 (after statuscode filter)
+18:28:34  INFO       CDX query spravy.pravda.sk/ekonomika/*  2024-05-04 → 2024-05-17
+18:28:39  INFO         got 52 rows, kept 0 (after statuscode filter)
+18:28:41  INFO       CDX query spravy.pravda.sk/ekonomika/*  2024-05-18 → 2024-05-31
+18:28:44  INFO         got 35 rows, kept 0 (after statuscode filter)
+18:28:46  INFO       CDX query spravy.pravda.sk/ekonomika/*  2024-06-01 → 2024-06-14
+18:28:56  INFO         got 51 rows, kept 0 (after statuscode filter)
+18:28:58  INFO       CDX query spravy.pravda.sk/ekonomika/*  2024-06-15 → 2024-06-28
+18:29:37  INFO         got 172 rows, kept 1 (after statuscode filter)
+18:29:39  INFO       CDX query spravy.pravda.sk/ekonomika/*  2024-06-29 → 2024-07-12
+18:29:42  INFO         got 75 rows, kept 0 (after statuscode filter)
+18:29:44  INFO       CDX query spravy.pravda.sk/ekonomika/*  2024-07-13 → 2024-07-26
+18:30:00  INFO         got 21 rows, kept 1 (after statuscode filter)
+18:30:02  INFO       CDX query spravy.pravda.sk/ekonomika/*  2024-07-27 → 2024-08-09
+18:30:31  INFO         got 33 rows, kept 0 (after statuscode filter)
+18:30:33  INFO       CDX query spravy.pravda.sk/ekonomika/*  2024-08-10 → 2024-08-23
+18:31:00  INFO         got 7 rows, kept 0 (after statuscode filter)
+18:31:02  INFO       CDX query spravy.pravda.sk/ekonomika/*  2024-08-24 → 2024-09-06
+18:31:06  INFO         got 3 rows, kept 0 (after statuscode filter)
+18:31:08  INFO       CDX query spravy.pravda.sk/ekonomika/*  2024-09-07 → 2024-09-20
+18:31:22  INFO         got 13 rows, kept 0 (after statuscode filter)
+18:31:24  INFO       CDX query spravy.pravda.sk/ekonomika/*  2024-09-21 → 2024-10-04
+18:31:29  INFO         got 9 rows, kept 0 (after statuscode filter)
+18:31:31  INFO       CDX query spravy.pravda.sk/ekonomika/*  2024-10-05 → 2024-10-18
+18:31:46  INFO         got 5 rows, kept 0 (after statuscode filter)
+18:31:48  INFO       CDX query spravy.pravda.sk/ekonomika/*  2024-10-19 → 2024-11-01
+18:32:00  INFO         got 3 rows, kept 0 (after statuscode filter)
+18:32:02  INFO       CDX query spravy.pravda.sk/ekonomika/*  2024-11-02 → 2024-11-15
+18:32:16  INFO         got 2 rows, kept 0 (after statuscode filter)
+18:32:18  INFO       CDX query spravy.pravda.sk/ekonomika/*  2024-11-16 → 2024-11-29
+18:32:57  INFO         got 5 rows, kept 0 (after statuscode filter)
+18:32:59  INFO       CDX query spravy.pravda.sk/ekonomika/*  2024-11-30 → 2024-12-13
+18:33:09  INFO         got 33 rows, kept 0 (after statuscode filter)
+18:33:11  INFO       CDX query spravy.pravda.sk/ekonomika/*  2024-12-14 → 2024-12-27
+18:33:32  INFO         got 22 rows, kept 0 (after statuscode filter)
+18:33:34  INFO       CDX query spravy.pravda.sk/ekonomika/*  2024-12-28 → 2025-01-10
+18:34:15  INFO         got 10 rows, kept 0 (after statuscode filter)
+18:34:17  INFO       CDX query spravy.pravda.sk/ekonomika/*  2025-01-11 → 2025-01-24
+18:34:27  INFO         got 15 rows, kept 0 (after statuscode filter)
+18:34:29  INFO       CDX query spravy.pravda.sk/ekonomika/*  2025-01-25 → 2025-02-07
+18:34:45  INFO         got 11 rows, kept 0 (after statuscode filter)
+18:34:47  INFO       CDX query spravy.pravda.sk/ekonomika/*  2025-02-08 → 2025-02-21
+18:34:52  INFO         got 5 rows, kept 0 (after statuscode filter)
+18:34:54  INFO       CDX query spravy.pravda.sk/ekonomika/*  2025-02-22 → 2025-03-07
+18:34:59  INFO         got 9 rows, kept 0 (after statuscode filter)
+18:35:01  INFO       CDX query spravy.pravda.sk/ekonomika/*  2025-03-08 → 2025-03-21
+18:35:09  INFO         got 7 rows, kept 0 (after statuscode filter)
+18:35:11  INFO       CDX query spravy.pravda.sk/ekonomika/*  2025-03-22 → 2025-04-04
+18:35:22  INFO         got 8 rows, kept 1 (after statuscode filter)
+18:35:24  INFO       CDX query spravy.pravda.sk/ekonomika/*  2025-04-05 → 2025-04-18
+18:35:40  INFO         got 21 rows, kept 0 (after statuscode filter)
+18:35:42  INFO       CDX query spravy.pravda.sk/ekonomika/*  2025-04-19 → 2025-05-02
+18:36:02  INFO         got 21 rows, kept 0 (after statuscode filter)
+18:36:04  INFO       CDX query spravy.pravda.sk/ekonomika/*  2025-05-03 → 2025-05-16
+18:36:16  INFO         got 51 rows, kept 0 (after statuscode filter)
+18:36:18  INFO       CDX query spravy.pravda.sk/ekonomika/*  2025-05-17 → 2025-05-30
+18:36:36  INFO         got 7 rows, kept 0 (after statuscode filter)
+18:36:38  INFO       CDX query spravy.pravda.sk/ekonomika/*  2025-05-31 → 2025-06-13
+18:36:41  INFO         got 19 rows, kept 0 (after statuscode filter)
+18:36:43  INFO       CDX query spravy.pravda.sk/ekonomika/*  2025-06-14 → 2025-06-27
+18:37:22  INFO         got 6 rows, kept 1 (after statuscode filter)
+18:37:24  INFO       CDX query spravy.pravda.sk/ekonomika/*  2025-06-28 → 2025-07-11
+18:37:37  INFO         got 4 rows, kept 0 (after statuscode filter)
+18:37:39  INFO       CDX query spravy.pravda.sk/ekonomika/*  2025-07-12 → 2025-07-25
+18:37:42  INFO         got 42 rows, kept 0 (after statuscode filter)
+18:37:44  INFO       CDX query spravy.pravda.sk/ekonomika/*  2025-07-26 → 2025-08-08
+18:37:50  INFO         got 56 rows, kept 0 (after statuscode filter)
+18:37:52  INFO       CDX query spravy.pravda.sk/ekonomika/*  2025-08-09 → 2025-08-22
+18:38:31  INFO         got 91 rows, kept 0 (after statuscode filter)
+18:38:33  INFO       CDX query spravy.pravda.sk/ekonomika/*  2025-08-23 → 2025-09-05
+18:38:35  INFO         got 79 rows, kept 0 (after statuscode filter)
+18:38:37  INFO       CDX query spravy.pravda.sk/ekonomika/*  2025-09-06 → 2025-09-19
+18:38:51  INFO         got 0 rows (empty response)
+18:38:53  INFO       CDX query spravy.pravda.sk/ekonomika/*  2025-09-20 → 2025-10-03
+18:38:57  INFO         got 1 rows, kept 0 (after statuscode filter)
+18:38:59  INFO       CDX query spravy.pravda.sk/ekonomika/*  2025-10-04 → 2025-10-17
+18:39:28  INFO         got 6 rows, kept 0 (after statuscode filter)
+18:39:30  INFO       CDX query spravy.pravda.sk/ekonomika/*  2025-10-18 → 2025-10-31
+18:39:38  INFO         got 20 rows, kept 0 (after statuscode filter)
+18:39:40  INFO       CDX query spravy.pravda.sk/ekonomika/*  2025-11-01 → 2025-11-14
+18:39:44  INFO         got 24 rows, kept 0 (after statuscode filter)
+18:39:46  INFO       CDX query spravy.pravda.sk/ekonomika/*  2025-11-15 → 2025-11-28
+18:39:54  INFO         got 11 rows, kept 0 (after statuscode filter)
+18:39:56  INFO       CDX query spravy.pravda.sk/ekonomika/*  2025-11-29 → 2025-12-12
+18:39:59  INFO         got 7 rows, kept 0 (after statuscode filter)
+18:40:01  INFO       CDX query spravy.pravda.sk/ekonomika/*  2025-12-13 → 2025-12-26
+18:40:04  INFO         got 9 rows, kept 0 (after statuscode filter)
+18:40:06  INFO       CDX query spravy.pravda.sk/ekonomika/*  2025-12-27 → 2026-01-09
+18:40:16  INFO         got 2 rows, kept 0 (after statuscode filter)
+18:40:18  INFO       CDX query spravy.pravda.sk/ekonomika/*  2026-01-10 → 2026-01-23
+18:40:26  INFO         got 2 rows, kept 1 (after statuscode filter)
+18:40:29  INFO       CDX query spravy.pravda.sk/ekonomika/*  2026-01-24 → 2026-02-06
+18:40:33  INFO         got 3 rows, kept 0 (after statuscode filter)
+18:40:35  INFO       CDX query spravy.pravda.sk/ekonomika/*  2026-02-07 → 2026-02-20
+18:40:49  INFO         got 3 rows, kept 0 (after statuscode filter)
+18:40:51  INFO       CDX query spravy.pravda.sk/ekonomika/*  2026-02-21 → 2026-02-23
+18:41:08  INFO         got 0 rows (empty response)
+18:41:10  INFO       pattern: spravy.pravda.sk/regiony/*
+18:41:10  INFO       CDX query spravy.pravda.sk/regiony/*  2024-03-23 → 2024-04-05
+18:41:34  INFO         got 234 rows, kept 212 (after statuscode filter)
+18:41:36  INFO       CDX query spravy.pravda.sk/regiony/*  2024-04-06 → 2024-04-19
+18:41:43  INFO         got 810 rows, kept 790 (after statuscode filter)
+18:41:45  INFO       CDX query spravy.pravda.sk/regiony/*  2024-04-20 → 2024-05-03
+18:41:52  INFO         got 454 rows, kept 433 (after statuscode filter)
+18:41:54  INFO       CDX query spravy.pravda.sk/regiony/*  2024-05-04 → 2024-05-17
+18:41:58  INFO         got 252 rows, kept 239 (after statuscode filter)
+18:42:00  INFO       CDX query spravy.pravda.sk/regiony/*  2024-05-18 → 2024-05-31
+18:42:18  INFO         got 1148 rows, kept 1130 (after statuscode filter)
+18:42:20  INFO       CDX query spravy.pravda.sk/regiony/*  2024-06-01 → 2024-06-14
+18:42:27  INFO         got 350 rows, kept 323 (after statuscode filter)
+18:42:29  INFO       CDX query spravy.pravda.sk/regiony/*  2024-06-15 → 2024-06-28
+18:42:35  INFO         got 940 rows, kept 892 (after statuscode filter)
+18:42:37  INFO       CDX query spravy.pravda.sk/regiony/*  2024-06-29 → 2024-07-12
+18:42:49  INFO         got 229 rows, kept 202 (after statuscode filter)
+18:42:51  INFO       CDX query spravy.pravda.sk/regiony/*  2024-07-13 → 2024-07-26
+18:43:27  INFO         got 1323 rows, kept 1306 (after statuscode filter)
+18:43:29  INFO       CDX query spravy.pravda.sk/regiony/*  2024-07-27 → 2024-08-09
+18:43:32  INFO         got 908 rows, kept 894 (after statuscode filter)
+18:43:34  INFO       CDX query spravy.pravda.sk/regiony/*  2024-08-10 → 2024-08-23
+18:43:45  INFO         got 657 rows, kept 642 (after statuscode filter)
+18:43:47  INFO       CDX query spravy.pravda.sk/regiony/*  2024-08-24 → 2024-09-06
+18:44:13  INFO         got 223 rows, kept 218 (after statuscode filter)
+18:44:15  INFO       CDX query spravy.pravda.sk/regiony/*  2024-09-07 → 2024-09-20
+18:44:34  INFO         got 1324 rows, kept 1315 (after statuscode filter)
+18:44:36  INFO       CDX query spravy.pravda.sk/regiony/*  2024-09-21 → 2024-10-04
+18:45:34  INFO         got 410 rows, kept 394 (after statuscode filter)
+18:45:36  INFO       CDX query spravy.pravda.sk/regiony/*  2024-10-05 → 2024-10-18
+18:45:46  INFO         got 983 rows, kept 982 (after statuscode filter)
+18:45:48  INFO       CDX query spravy.pravda.sk/regiony/*  2024-10-19 → 2024-11-01
+18:46:10  INFO         got 92 rows, kept 85 (after statuscode filter)
+18:46:12  INFO       CDX query spravy.pravda.sk/regiony/*  2024-11-02 → 2024-11-15
+18:46:30  INFO         got 1306 rows, kept 1293 (after statuscode filter)
+18:46:32  INFO       CDX query spravy.pravda.sk/regiony/*  2024-11-16 → 2024-11-29
+18:46:49  INFO         got 183 rows, kept 162 (after statuscode filter)
+18:46:51  INFO       CDX query spravy.pravda.sk/regiony/*  2024-11-30 → 2024-12-13
+18:47:16  INFO         got 1436 rows, kept 1401 (after statuscode filter)
+18:47:18  INFO       CDX query spravy.pravda.sk/regiony/*  2024-12-14 → 2024-12-27
+18:47:23  INFO         got 269 rows, kept 250 (after statuscode filter)
+18:47:25  INFO       CDX query spravy.pravda.sk/regiony/*  2024-12-28 → 2025-01-10
+18:47:35  INFO         got 193 rows, kept 183 (after statuscode filter)
+18:47:37  INFO       CDX query spravy.pravda.sk/regiony/*  2025-01-11 → 2025-01-24
+18:47:39  INFO         got 1312 rows, kept 1301 (after statuscode filter)
+18:47:41  INFO       CDX query spravy.pravda.sk/regiony/*  2025-01-25 → 2025-02-07
+18:47:48  INFO         got 448 rows, kept 423 (after statuscode filter)
+18:47:50  INFO       CDX query spravy.pravda.sk/regiony/*  2025-02-08 → 2025-02-21
+18:49:04  INFO         got 1208 rows, kept 1181 (after statuscode filter)
+18:49:06  INFO       CDX query spravy.pravda.sk/regiony/*  2025-02-22 → 2025-03-07
+18:49:28  INFO         got 122 rows, kept 110 (after statuscode filter)
+18:49:30  INFO       CDX query spravy.pravda.sk/regiony/*  2025-03-08 → 2025-03-21
+18:49:37  INFO         got 685 rows, kept 666 (after statuscode filter)
+18:49:39  INFO       CDX query spravy.pravda.sk/regiony/*  2025-03-22 → 2025-04-04
+18:49:56  INFO         got 829 rows, kept 818 (after statuscode filter)
+18:49:58  INFO       CDX query spravy.pravda.sk/regiony/*  2025-04-05 → 2025-04-18
+18:50:21  INFO         got 558 rows, kept 532 (after statuscode filter)
+18:50:23  INFO       CDX query spravy.pravda.sk/regiony/*  2025-04-19 → 2025-05-02
+18:50:43  INFO         got 1358 rows, kept 1353 (after statuscode filter)
+18:50:45  INFO       CDX query spravy.pravda.sk/regiony/*  2025-05-03 → 2025-05-16
+18:50:51  INFO         got 759 rows, kept 739 (after statuscode filter)
+18:50:53  INFO       CDX query spravy.pravda.sk/regiony/*  2025-05-17 → 2025-05-30
+18:51:15  INFO         got 1002 rows, kept 996 (after statuscode filter)
+18:51:17  INFO       CDX query spravy.pravda.sk/regiony/*  2025-05-31 → 2025-06-13
+18:51:52  INFO         got 471 rows, kept 455 (after statuscode filter)
+18:51:54  INFO       CDX query spravy.pravda.sk/regiony/*  2025-06-14 → 2025-06-27
+18:52:01  INFO         got 1476 rows, kept 1463 (after statuscode filter)
+18:52:03  INFO       CDX query spravy.pravda.sk/regiony/*  2025-06-28 → 2025-07-11
+18:52:20  INFO         got 708 rows, kept 697 (after statuscode filter)
+18:52:22  INFO       CDX query spravy.pravda.sk/regiony/*  2025-07-12 → 2025-07-25
+18:52:32  INFO         got 1524 rows, kept 1517 (after statuscode filter)
+18:52:34  INFO       CDX query spravy.pravda.sk/regiony/*  2025-07-26 → 2025-08-08
+18:52:45  INFO         got 917 rows, kept 895 (after statuscode filter)
+18:52:47  INFO       CDX query spravy.pravda.sk/regiony/*  2025-08-09 → 2025-08-22
+18:52:52  INFO         got 1275 rows, kept 1257 (after statuscode filter)
+18:52:54  INFO       CDX query spravy.pravda.sk/regiony/*  2025-08-23 → 2025-09-05
+18:53:36  INFO         got 245 rows, kept 236 (after statuscode filter)
+18:53:38  INFO       CDX query spravy.pravda.sk/regiony/*  2025-09-06 → 2025-09-19
+18:53:48  INFO         got 1619 rows, kept 1615 (after statuscode filter)
+18:53:50  INFO       CDX query spravy.pravda.sk/regiony/*  2025-09-20 → 2025-10-03
+18:53:52  INFO         got 135 rows, kept 130 (after statuscode filter)
+18:53:54  INFO       CDX query spravy.pravda.sk/regiony/*  2025-10-04 → 2025-10-17
+18:53:57  INFO         got 1674 rows, kept 1667 (after statuscode filter)
+18:53:59  INFO       CDX query spravy.pravda.sk/regiony/*  2025-10-18 → 2025-10-31
+18:54:03  INFO         got 286 rows, kept 281 (after statuscode filter)
+18:54:05  INFO       CDX query spravy.pravda.sk/regiony/*  2025-11-01 → 2025-11-14
+18:54:19  INFO         got 1230 rows, kept 1220 (after statuscode filter)
+18:54:21  INFO       CDX query spravy.pravda.sk/regiony/*  2025-11-15 → 2025-11-28
+18:54:52  INFO         got 669 rows, kept 667 (after statuscode filter)
+18:54:54  INFO       CDX query spravy.pravda.sk/regiony/*  2025-11-29 → 2025-12-12
+18:55:05  INFO         got 1066 rows, kept 1062 (after statuscode filter)
+18:55:07  INFO       CDX query spravy.pravda.sk/regiony/*  2025-12-13 → 2025-12-26
+18:55:10  INFO         got 878 rows, kept 867 (after statuscode filter)
+18:55:12  INFO       CDX query spravy.pravda.sk/regiony/*  2025-12-27 → 2026-01-09
+18:55:16  INFO         got 287 rows, kept 269 (after statuscode filter)
+18:55:18  INFO       CDX query spravy.pravda.sk/regiony/*  2026-01-10 → 2026-01-23
+18:55:23  INFO         got 1530 rows, kept 1526 (after statuscode filter)
+18:55:25  INFO       CDX query spravy.pravda.sk/regiony/*  2026-01-24 → 2026-02-06
+18:55:53  INFO         got 336 rows, kept 333 (after statuscode filter)
+18:55:55  INFO       CDX query spravy.pravda.sk/regiony/*  2026-02-07 → 2026-02-20
+18:56:02  INFO         got 1286 rows, kept 1284 (after statuscode filter)
+18:56:04  INFO       CDX query spravy.pravda.sk/regiony/*  2026-02-21 → 2026-02-23
+18:56:09  INFO         got 47 rows, kept 43 (after statuscode filter)
+18:56:11  INFO       CDX discovery finished: 119390 new URLs, 123050 total
+18:56:12  INFO       candidate article URLs after filtering: 122911
+18:56:12  INFO       loaded checkpoint: 0 URLs already scraped
+19:12:07  INFO       scraped=25  skipped=317  paywalled=0  rejected=0
+19:13:17  INFO       scraped=50  skipped=317  paywalled=0  rejected=0
+19:14:30  INFO       scraped=75  skipped=317  paywalled=0  rejected=0
+19:15:43  INFO       scraped=100  skipped=317  paywalled=0  rejected=0
+19:16:55  INFO       scraped=125  skipped=317  paywalled=0  rejected=0
+19:18:05  INFO       scraped=150  skipped=317  paywalled=0  rejected=0
+19:19:14  INFO       scraped=175  skipped=317  paywalled=0  rejected=0
+19:20:23  INFO       scraped=200  skipped=317  paywalled=0  rejected=0
+19:21:32  INFO       scraped=225  skipped=317  paywalled=0  rejected=0
+19:41:48  WARNING    network error attempt 1: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+19:41:51  WARNING    network error attempt 2: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+19:58:02  WARNING    network error attempt 1: HTTPSConnectionPool(host='spravy.pravda.sk', port=443): Read timed out. (read timeout=30)
+20:10:42  WARNING    network error attempt 1: HTTPSConnectionPool(host='spravy.pravda.sk', port=443): Read timed out. (read timeout=30)
+20:10:44  WARNING    network error attempt 2: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+21:00:48  WARNING    network error attempt 1: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+22:25:34  WARNING    network error attempt 1: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+22:25:36  WARNING    network error attempt 2: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+22:41:43  WARNING    network error attempt 1: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+22:41:45  WARNING    network error attempt 2: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+22:59:09  WARNING    network error attempt 1: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+23:15:59  WARNING    network error attempt 1: HTTPSConnectionPool(host='spravy.pravda.sk', port=443): Read timed out. (read timeout=30)
+23:16:01  WARNING    network error attempt 2: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+23:50:17  INFO       scraped=250  skipped=3157  paywalled=0  rejected=1
+23:51:31  INFO       scraped=275  skipped=3157  paywalled=0  rejected=1
+23:52:38  INFO       scraped=300  skipped=3157  paywalled=0  rejected=1
+23:53:52  INFO       scraped=325  skipped=3157  paywalled=0  rejected=1
+23:55:01  INFO       scraped=350  skipped=3157  paywalled=0  rejected=1
+23:56:09  INFO       scraped=375  skipped=3157  paywalled=0  rejected=1
+23:57:19  INFO       scraped=400  skipped=3157  paywalled=0  rejected=1
+23:58:24  INFO       scraped=425  skipped=3157  paywalled=0  rejected=1
+23:59:32  INFO       scraped=450  skipped=3157  paywalled=0  rejected=1
+00:00:42  INFO       scraped=475  skipped=3157  paywalled=0  rejected=1
+00:54:06  WARNING    network error attempt 1: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+01:09:47  WARNING    network error attempt 1: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+01:09:49  WARNING    network error attempt 2: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+01:34:03  INFO       scraped=500  skipped=4462  paywalled=0  rejected=1
+01:35:15  INFO       scraped=525  skipped=4462  paywalled=0  rejected=1
+01:36:24  INFO       scraped=550  skipped=4462  paywalled=0  rejected=1
+01:37:39  INFO       scraped=575  skipped=4462  paywalled=0  rejected=1
+01:38:46  INFO       scraped=600  skipped=4462  paywalled=0  rejected=1
+01:39:54  INFO       scraped=625  skipped=4462  paywalled=0  rejected=1
+01:41:00  INFO       scraped=650  skipped=4462  paywalled=0  rejected=1
+01:42:09  INFO       scraped=675  skipped=4462  paywalled=0  rejected=1
+01:43:19  INFO       scraped=700  skipped=4462  paywalled=0  rejected=1
+01:46:24  INFO       scraped=725  skipped=4503  paywalled=0  rejected=1
+01:47:32  INFO       scraped=750  skipped=4503  paywalled=0  rejected=1
+01:48:42  INFO       scraped=775  skipped=4503  paywalled=0  rejected=1
+01:49:54  INFO       scraped=800  skipped=4503  paywalled=0  rejected=1
+01:51:08  INFO       scraped=825  skipped=4503  paywalled=0  rejected=2
+01:52:17  INFO       scraped=850  skipped=4503  paywalled=0  rejected=2
+01:53:28  INFO       scraped=875  skipped=4503  paywalled=0  rejected=2
+01:54:37  INFO       scraped=900  skipped=4503  paywalled=0  rejected=2
+01:55:47  INFO       scraped=925  skipped=4503  paywalled=0  rejected=2
+02:31:14  WARNING    network error attempt 1: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+04:02:28  WARNING    network error attempt 1: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+05:00:43  INFO       scraped=950  skipped=8147  paywalled=0  rejected=3
+05:01:47  INFO       scraped=975  skipped=8147  paywalled=0  rejected=4
+05:02:51  INFO       scraped=1000  skipped=8147  paywalled=0  rejected=4
+05:03:53  INFO       scraped=1025  skipped=8147  paywalled=0  rejected=4
+05:05:00  INFO       scraped=1050  skipped=8147  paywalled=0  rejected=4
+05:06:02  INFO       scraped=1075  skipped=8147  paywalled=0  rejected=4
+05:07:07  INFO       scraped=1100  skipped=8147  paywalled=0  rejected=5
+05:08:11  INFO       scraped=1125  skipped=8147  paywalled=0  rejected=5
+05:47:22  WARNING    network error attempt 1: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+05:51:00  INFO       scraped=1150  skipped=8726  paywalled=0  rejected=5
+05:52:01  INFO       scraped=1175  skipped=8726  paywalled=0  rejected=5
+05:53:08  INFO       scraped=1200  skipped=8726  paywalled=0  rejected=5
+05:54:11  INFO       scraped=1225  skipped=8726  paywalled=0  rejected=5
+05:55:19  INFO       scraped=1250  skipped=8726  paywalled=0  rejected=5
+05:56:22  INFO       scraped=1275  skipped=8726  paywalled=0  rejected=5
+05:57:28  INFO       scraped=1300  skipped=8726  paywalled=0  rejected=5
+05:58:33  INFO       scraped=1325  skipped=8726  paywalled=0  rejected=5
+05:59:35  INFO       scraped=1350  skipped=8726  paywalled=0  rejected=5
+07:50:25  WARNING    network error attempt 1: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+07:50:27  WARNING    network error attempt 2: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+08:27:30  INFO       scraped=1375  skipped=11545  paywalled=0  rejected=5
+08:28:37  INFO       scraped=1400  skipped=11545  paywalled=0  rejected=5
+08:29:40  INFO       scraped=1425  skipped=11545  paywalled=0  rejected=5
+08:30:47  INFO       scraped=1450  skipped=11545  paywalled=0  rejected=5
+08:32:01  INFO       scraped=1475  skipped=11545  paywalled=0  rejected=5
+08:33:03  INFO       scraped=1500  skipped=11545  paywalled=0  rejected=5
+08:34:10  INFO       scraped=1525  skipped=11545  paywalled=0  rejected=5
+08:35:20  INFO       scraped=1550  skipped=11545  paywalled=0  rejected=5
+08:36:23  INFO       scraped=1575  skipped=11545  paywalled=0  rejected=5
+08:37:38  INFO       scraped=1600  skipped=11545  paywalled=0  rejected=5
+08:47:11  INFO       scraped=1625  skipped=11738  paywalled=0  rejected=5
+08:48:17  INFO       scraped=1650  skipped=11738  paywalled=0  rejected=5
+08:49:22  INFO       scraped=1675  skipped=11738  paywalled=0  rejected=5
+08:50:28  INFO       scraped=1700  skipped=11738  paywalled=0  rejected=5
+08:51:34  INFO       scraped=1725  skipped=11738  paywalled=0  rejected=5
+08:52:39  INFO       scraped=1750  skipped=11738  paywalled=0  rejected=5
+08:53:45  INFO       scraped=1775  skipped=11738  paywalled=0  rejected=5
+08:54:47  INFO       scraped=1800  skipped=11738  paywalled=0  rejected=5
+09:11:36  WARNING    network error attempt 1: HTTPSConnectionPool(host='spravy.pravda.sk', port=443): Read timed out. (read timeout=30)
+09:36:59  WARNING    network error attempt 1: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+09:37:01  WARNING    network error attempt 2: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+09:52:44  WARNING    network error attempt 1: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+09:52:46  WARNING    network error attempt 2: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+10:52:10  WARNING    network error attempt 1: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+10:52:12  WARNING    network error attempt 2: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+11:08:38  WARNING    network error attempt 1: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+11:24:32  WARNING    network error attempt 1: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+11:24:34  WARNING    network error attempt 2: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+11:44:26  WARNING    network error attempt 1: HTTPSConnectionPool(host='spravy.pravda.sk', port=443): Read timed out. (read timeout=30)
+11:44:28  WARNING    network error attempt 2: HTTPSConnectionPool(host='spravy.pravda.sk', port=443): Max retries exceeded with url: /svet/clanok/495733-sudca-odlozil-odsudzujuci-verdikt-nad-trumpovym-byvalym-poradcom (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x10e8aae90>: Failed to resolve 'spravy.pravda.sk' ([Errno 8] nodename nor servname provided, or not known)"))
+11:44:32  WARNING    network error attempt 3: HTTPSConnectionPool(host='spravy.pravda.sk', port=443): Max retries exceeded with url: /svet/clanok/495733-sudca-odlozil-odsudzujuci-verdikt-nad-trumpovym-byvalym-poradcom (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x10e8aa210>: Failed to resolve 'spravy.pravda.sk' ([Errno 8] nodename nor servname provided, or not known)"))
+11:44:40  ERROR      giving up on https://spravy.pravda.sk/svet/clanok/495733-sudca-odlozil-odsudzujuci-verdikt-nad-trumpovym-byvalym-poradcom
+11:44:42  WARNING    network error attempt 1: HTTPSConnectionPool(host='spravy.pravda.sk', port=443): Max retries exceeded with url: /svet/clanok/496031-velke-krupy-nicili-v-sydney-domy-i-auta (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x10e8abb10>: Failed to resolve 'spravy.pravda.sk' ([Errno 8] nodename nor servname provided, or not known)"))
+11:44:44  WARNING    network error attempt 2: HTTPSConnectionPool(host='spravy.pravda.sk', port=443): Max retries exceeded with url: /svet/clanok/496031-velke-krupy-nicili-v-sydney-domy-i-auta (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x10e8abed0>: Failed to resolve 'spravy.pravda.sk' ([Errno 8] nodename nor servname provided, or not known)"))
+11:44:48  WARNING    network error attempt 3: HTTPSConnectionPool(host='spravy.pravda.sk', port=443): Max retries exceeded with url: /svet/clanok/496031-velke-krupy-nicili-v-sydney-domy-i-auta (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x10e8a8cd0>: Failed to resolve 'spravy.pravda.sk' ([Errno 8] nodename nor servname provided, or not known)"))
+12:01:01  ERROR      giving up on https://spravy.pravda.sk/svet/clanok/496031-velke-krupy-nicili-v-sydney-domy-i-auta
+12:17:14  WARNING    network error attempt 1: HTTPSConnectionPool(host='spravy.pravda.sk', port=443): Max retries exceeded with url: /svet/clanok/496078-vladne-trump-uz-len-s-detmi (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x10e8a9590>: Failed to resolve 'spravy.pravda.sk' ([Errno 8] nodename nor servname provided, or not known)"))
+12:17:16  WARNING    network error attempt 2: HTTPSConnectionPool(host='spravy.pravda.sk', port=443): Max retries exceeded with url: /svet/clanok/496078-vladne-trump-uz-len-s-detmi (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x10e8ab890>: Failed to resolve 'spravy.pravda.sk' ([Errno 8] nodename nor servname provided, or not known)"))
+12:34:37  WARNING    network error attempt 3: HTTPSConnectionPool(host='spravy.pravda.sk', port=443): Max retries exceeded with url: /svet/clanok/496078-vladne-trump-uz-len-s-detmi (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x10e8ab4d0>: Failed to resolve 'spravy.pravda.sk' ([Errno 8] nodename nor servname provided, or not known)"))
+12:51:35  ERROR      giving up on https://spravy.pravda.sk/svet/clanok/496078-vladne-trump-uz-len-s-detmi
+13:04:07  WARNING    network error attempt 1: HTTPSConnectionPool(host='spravy.pravda.sk', port=443): Max retries exceeded with url: /svet/clanok/496144-v-uralskej-bani-prepukol-poziar-ohrozenych-je-devat-banikov (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x10e650190>: Failed to resolve 'spravy.pravda.sk' ([Errno 8] nodename nor servname provided, or not known)"))
+13:04:09  WARNING    network error attempt 2: HTTPSConnectionPool(host='spravy.pravda.sk', port=443): Max retries exceeded with url: /svet/clanok/496144-v-uralskej-bani-prepukol-poziar-ohrozenych-je-devat-banikov (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x10e6507d0>: Failed to resolve 'spravy.pravda.sk' ([Errno 8] nodename nor servname provided, or not known)"))
+13:04:44  WARNING    network error attempt 3: HTTPConnectionPool(host='spravy.pravda.sk', port=80): Read timed out. (read timeout=30)
+13:04:52  ERROR      giving up on https://spravy.pravda.sk/svet/clanok/496144-v-uralskej-bani-prepukol-poziar-ohrozenych-je-devat-banikov
+13:22:17  WARNING    network error attempt 1: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+13:34:37  WARNING    network error attempt 1: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+13:34:40  WARNING    network error attempt 2: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer'))
+13:42:06  WARNING    network error attempt 1: HTTPSConnectionPool(host='spravy.pravda.sk', port=443): Read timed out. (read timeout=30)
+13:42:38  WARNING    network error attempt 2: HTTPConnectionPool(host='spravy.pravda.sk', port=80): Read timed out. (read timeout=30)

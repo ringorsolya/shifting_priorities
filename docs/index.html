@@ -79,14 +79,14 @@
     <div id="chart5" style="height:400px"></div>
   </div>
   <div class="chart-card">
-    <h3>6. Mean GFI & HFI by Portal</h3>
-    <div class="chart-desc">Economic Focus (GFI) and Humanitarian Focus (HFI) indices</div>
+    <h3>6. Mean EFI & HFI by Portal</h3>
+    <div class="chart-desc">Economic Focus (EFI) and Humanitarian Focus (HFI) indices</div>
     <div id="chart8" style="height:400px"></div>
   </div>
-  <div class="chart-card"><h3>7a. GFI Over Time — CZ</h3><div id="chart6-CZ" style="height:280px"></div></div>
-  <div class="chart-card"><h3>7b. GFI Over Time — HU</h3><div id="chart6-HU" style="height:280px"></div></div>
-  <div class="chart-card"><h3>7c. GFI Over Time — PL</h3><div id="chart6-PL" style="height:280px"></div></div>
-  <div class="chart-card"><h3>7d. GFI Over Time — SK</h3><div id="chart6-SK" style="height:280px"></div></div>
+  <div class="chart-card"><h3>7a. EFI Over Time — CZ</h3><div id="chart6-CZ" style="height:280px"></div></div>
+  <div class="chart-card"><h3>7b. EFI Over Time — HU</h3><div id="chart6-HU" style="height:280px"></div></div>
+  <div class="chart-card"><h3>7c. EFI Over Time — PL</h3><div id="chart6-PL" style="height:280px"></div></div>
+  <div class="chart-card"><h3>7d. EFI Over Time — SK</h3><div id="chart6-SK" style="height:280px"></div></div>
   <div class="chart-card"><h3>8a. HFI Over Time — CZ</h3><div id="chart7-CZ" style="height:280px"></div></div>
   <div class="chart-card"><h3>8b. HFI Over Time — HU</h3><div id="chart7-HU" style="height:280px"></div></div>
   <div class="chart-card"><h3>8c. HFI Over Time — PL</h3><div id="chart7-PL" style="height:280px"></div></div>
@@ -164,18 +164,18 @@ fetch('data.json')
     Plotly.newPlot('chart5', [{
       y:c5.categories.slice().reverse(), x:c5.counts.slice().reverse(),
       type:'bar', orientation:'h', marker:{color:'#7db8d4'},
-    }], {...L, margin:{...L.margin,l:160}}, C);
+    }], {...L, margin:{...L.margin,l:220}, yaxis:{...L.yaxis, type:'category'}}, C);
 
     // Chart 8: GFI/HFI bar
     const c8 = data.chart8;
     Plotly.newPlot('chart8', [
-      { x:c8.portals, y:c8.gfi, type:'bar', name:'GFI (Economic)', marker:{color:'#c0675a',opacity:0.8} },
+      { x:c8.portals, y:c8.gfi, type:'bar', name:'EFI (Economic)', marker:{color:'#c0675a',opacity:0.8} },
       { x:c8.portals, y:c8.hfi, type:'bar', name:'HFI (Humanitarian)', marker:{color:'#6a9fbd',opacity:0.8} },
     ], {...L, barmode:'group', yaxis:{...L.yaxis,title:'Index value'}}, C);
 
     // Charts 6+7: GFI/HFI time
     ['CZ','HU','PL','SK'].forEach(c => {
-      [['chart6','GFI',data.chart6],['chart7','HFI',data.chart7]].forEach(([id,lbl,src]) => {
+      [['chart6','EFI',data.chart6],['chart7','HFI',data.chart7]].forEach(([id,lbl,src]) => {
         const traces = [];
         Object.entries(src[c]||{}).forEach(([p,d]) => {
           if(d.months.length) traces.push({ x:d.months, y:d.values, type:'scatter', mode:'lines',

@@ -1,0 +1,556 @@
+17:32:27  INFO       iDnes CDX+Wayback scraper — 2024-04-04 → 2026-02-23
+17:32:27  INFO       host: www.idnes.cz
+17:32:27  INFO       output: ../../data/idnes_supplement.csv
+17:32:27  INFO       CDX cache: ../../data/idnes_cdx_urls.jsonl
+17:32:27  INFO       starting CDX URL discovery...
+17:32:27  INFO       querying 3 CDX pattern(s), chunk_days=14
+17:32:27  INFO       pattern: www.idnes.cz/zpravy/domaci/*
+17:32:27  INFO       CDX query www.idnes.cz/zpravy/domaci/*  2024-04-04 → 2024-04-17
+17:33:37  INFO         got 4588 rows, kept 417:34:18  INFO         got 4588 rows, kept 4437 (after statuscode filter)
+17:34:20  INFO       CDX query www.idnes.cz17:34:39  WARNING      CDX 504 — retrying
+17:35:59  INFO         got 4221 rows, kept 417:36:16  INFO         got 4221 rows, kept 4140 (after statuscode filter)
+17:36:18  INFO       CDX query www.idnes.cz17:36:29  INFO         got 3377 rows, kept 317:36:55  INFO         got 3377 rows, kept 3226 (after statuscode filter)
+17:36:57  INFO       CDX query www.idnes.cz17:40:38  INFO         got 5451 rows, kept 5220 (after statuscode filter)
+17:40:40  INFO       CDX query www.idnes.cz/zpravy/domaci/*  2024-05-30 → 2024-06-12
+17:42:36  INFO         got 3039 rows, kept 2829 (after statuscode filter)
+17:42:38  INFO       CDX query www.idnes.cz/zpravy/domaci/*  2024-06-13 → 2024-06-26
+17:43:34  WARNING      CDX gave non-JSON response
+17:44:06  INFO         got 5366 rows, kept 4848 (after statuscode filter)
+17:44:08  INFO       CDX query www.idnes.cz/zpravy/domaci/*  2024-06-27 → 2024-07-10
+17:45:57  INFO         got 2958 rows, kept 2556 (after statuscode filter)
+17:45:59  INFO       CDX query www.idnes.cz/zpravy/domaci/*  2024-07-11 → 2024-07-24
+17:47:04  INFO         got 4373 rows, kept 4165 (after statuscode filter)
+17:47:06  INFO       CDX query www.idnes.cz/zpravy/domaci/*  2024-07-25 → 2024-08-07
+17:47:32  INFO         got 3309 rows, kept 3154 (after statuscode filter)
+17:47:34  INFO       CDX query www.idnes.cz/zpravy/domaci/*  2024-08-08 → 2024-08-21
+17:49:37  INFO         got 3692 rows, kept 3479 (after statuscode filter)
+17:49:39  INFO       CDX query www.idnes.cz/zpravy/domaci/*  2024-08-22 → 2024-09-04
+17:50:39  WARNING      CDX 504 — retrying
+17:53:43  INFO         got 2429 rows, kept 2170 (after statuscode filter)
+17:53:45  INFO       CDX query www.idnes.cz/zpravy/domaci/*  2024-09-05 → 2024-09-18
+17:54:45  WARNING      CDX 504 — retrying
+17:57:27  INFO         got 3659 rows, kept 3096 (after statuscode filter)
+17:57:29  INFO       CDX query www.idnes.cz/zpravy/domaci/*  2024-09-19 → 2024-10-02
+17:58:13  INFO         got 4316 rows, kept 2816 (after statuscode filter)
+17:58:15  INFO       CDX query www.idnes.cz/zpravy/domaci/*  2024-10-03 → 2024-10-16
+17:58:47  INFO         got 3471 rows, kept 2788 (after statuscode filter)
+17:58:49  INFO       CDX query www.idnes.cz/zpravy/domaci/*  2024-10-17 → 2024-10-30
+18:00:07  INFO         got 254 rows, kept 54 (after statuscode filter)
+18:00:09  INFO       CDX query www.idnes.cz/zpravy/domaci/*  2024-10-31 → 2024-11-13
+18:02:26  INFO         got 2968 rows, kept 2377 (after statuscode filter)
+18:02:28  INFO       CDX query www.idnes.cz/zpravy/domaci/*  2024-11-14 → 2024-11-27
+18:03:31  INFO         got 1313 rows, kept 466 (after statuscode filter)
+18:03:33  INFO       CDX query www.idnes.cz/zpravy/domaci/*  2024-11-28 → 2024-12-11
+18:04:33  WARNING      CDX 504 — retrying
+18:06:58  INFO         got 3501 rows, kept 2193 (after statuscode filter)
+18:07:00  INFO       CDX query www.idnes.cz/zpravy/domaci/*  2024-12-12 → 2024-12-25
+18:07:36  INFO         got 3428 rows, kept 2171 (after statuscode filter)
+18:07:38  INFO       CDX query www.idnes.cz/zpravy/domaci/*  2024-12-26 → 2025-01-08
+18:08:04  INFO         got 2681 rows, kept 1792 (after statuscode filter)
+18:08:06  INFO       CDX query www.idnes.cz/zpravy/domaci/*  2025-01-09 → 2025-01-22
+18:08:21  INFO         got 4197 rows, kept 3403 (after statuscode filter)
+18:08:23  INFO       CDX query www.idnes.cz/zpravy/domaci/*  2025-01-23 → 2025-02-05
+18:08:32  INFO         got 2739 rows, kept 1512 (after statuscode filter)
+18:08:34  INFO       CDX query www.idnes.cz/zpravy/domaci/*  2025-02-06 → 2025-02-19
+18:09:21  INFO         got 4306 rows, kept 3948 (after statuscode filter)
+18:09:23  INFO       CDX query www.idnes.cz/zpravy/domaci/*  2025-02-20 → 2025-03-05
+18:10:20  INFO         got 1361 rows, kept 503 (after statuscode filter)
+18:10:22  INFO       CDX query www.idnes.cz/zpravy/domaci/*  2025-03-06 → 2025-03-19
+18:12:48  INFO         got 1915 rows, kept 1327 (after statuscode filter)
+18:12:50  INFO       CDX query www.idnes.cz/zpravy/domaci/*  2025-03-20 → 2025-04-02
+18:13:51  INFO         got 2592 rows, kept 1999 (after statuscode filter)
+18:13:53  INFO       CDX query www.idnes.cz/zpravy/domaci/*  2025-04-03 → 2025-04-16
+18:14:45  INFO         got 2211 rows, kept 768 (after statuscode filter)
+18:14:47  INFO       CDX query www.idnes.cz/zpravy/domaci/*  2025-04-17 → 2025-04-30
+18:16:04  INFO         got 3992 rows, kept 3245 (after statuscode filter)
+18:16:06  INFO       CDX query www.idnes.cz/zpravy/domaci/*  2025-05-01 → 2025-05-14
+18:16:25  INFO         got 1825 rows, kept 1045 (after statuscode filter)
+18:16:27  INFO       CDX query www.idnes.cz/zpravy/domaci/*  2025-05-15 → 2025-05-28
+18:16:46  INFO         got 3447 rows, kept 2768 (after statuscode filter)
+18:16:48  INFO       CDX query www.idnes.cz/zpravy/domaci/*  2025-05-29 → 2025-06-11
+18:17:00  INFO         got 1476 rows, kept 745 (after statuscode filter)
+18:17:02  INFO       CDX query www.idnes.cz/zpravy/domaci/*  2025-06-12 → 2025-06-25
+18:17:47  INFO         got 3349 rows, kept 3031 (after statuscode filter)
+18:17:49  INFO       CDX query www.idnes.cz/zpravy/domaci/*  2025-06-26 → 2025-07-09
+18:19:42  INFO         got 1539 rows, kept 958 (after statuscode filter)
+18:19:44  INFO       CDX query www.idnes.cz/zpravy/domaci/*  2025-07-10 → 2025-07-23
+18:20:52  INFO         got 4657 rows, kept 2316 (after statuscode filter)
+18:20:54  INFO       CDX query www.idnes.cz/zpravy/domaci/*  2025-07-24 → 2025-08-06
+18:21:44  INFO         got 2443 rows, kept 1580 (after statuscode filter)
+18:21:46  INFO       CDX query www.idnes.cz/zpravy/domaci/*  2025-08-07 → 2025-08-20
+18:22:29  INFO         got 2941 rows, kept 1811 (after statuscode filter)
+18:22:31  INFO       CDX query www.idnes.cz/zpravy/domaci/*  2025-08-21 → 2025-09-03
+18:23:48  INFO         got 1670 rows, kept 888 (after statuscode filter)
+18:23:50  INFO       CDX query www.idnes.cz/zpravy/domaci/*  2025-09-04 → 2025-09-17
+18:24:16  INFO         got 2526 rows, kept 2461 (after statuscode filter)
+18:24:18  INFO       CDX query www.idnes.cz/zpravy/domaci/*  2025-09-18 → 2025-10-01
+18:25:08  INFO         got 1936 rows, kept 1885 (after statuscode filter)
+18:25:10  INFO       CDX query www.idnes.cz/zpravy/domaci/*  2025-10-02 → 2025-10-15
+18:25:50  INFO         got 5669 rows, kept 4244 (after statuscode filter)
+18:25:52  INFO       CDX query www.idnes.cz/zpravy/domaci/*  2025-10-16 → 2025-10-29
+18:26:52  WARNING      CDX 504 — retrying
+18:27:57  WARNING      CDX 504 — retrying
+18:29:04  INFO         got 1730 rows, kept 1671 (after statuscode filter)
+18:29:06  INFO       CDX query www.idnes.cz/zpravy/domaci/*  2025-10-30 → 2025-11-12
+18:30:06  WARNING      CDX 504 — retrying
+18:31:32  INFO         got 2237 rows, kept 2058 (after statuscode filter)
+18:31:34  INFO       CDX query www.idnes.cz/zpravy/domaci/*  2025-11-13 → 2025-11-26
+18:32:34  WARNING      CDX 504 — retrying
+18:33:11  INFO         got 1762 rows, kept 1661 (after statuscode filter)
+18:33:13  INFO       CDX query www.idnes.cz/zpravy/domaci/*  2025-11-27 → 2025-12-10
+18:34:13  WARNING      CDX 504 — retrying
+18:35:18  WARNING      CDX 504 — retrying
+18:36:18  INFO         got 2233 rows, kept 2112 (after statuscode filter)
+18:36:20  INFO       CDX query www.idnes.cz/zpravy/domaci/*  2025-12-11 → 2025-12-24
+18:36:58  INFO         got 2737 rows, kept 1872 (after statuscode filter)
+18:37:00  INFO       CDX query www.idnes.cz/zpravy/domaci/*  2025-12-25 → 2026-01-07
+18:37:35  INFO         got 1565 rows, kept 1010 (after statuscode filter)
+18:37:37  INFO       CDX query www.idnes.cz/zpravy/domaci/*  2026-01-08 → 2026-01-21
+18:38:37  WARNING      CDX 504 — retrying
+18:39:07  INFO         got 2480 rows, kept 2410 (after statuscode filter)
+18:39:10  INFO       CDX query www.idnes.cz/zpravy/domaci/*  2026-01-22 → 2026-02-04
+18:40:04  INFO         got 1400 rows, kept 1337 (after statuscode filter)
+18:40:06  INFO       CDX query www.idnes.cz/zpravy/domaci/*  2026-02-05 → 2026-02-18
+18:41:17  INFO         got 3351 rows, kept 3278 (after statuscode filter)
+18:41:19  INFO       CDX query www.idnes.cz/zpravy/domaci/*  2026-02-19 → 2026-02-23
+18:41:34  INFO         got 652 rows, kept 633 (after statuscode filter)
+18:41:36  INFO       pattern: www.idnes.cz/zpravy/zahranicni/*
+18:41:36  INFO       CDX query www.idnes.cz/zpravy/zahranicni/*  2024-04-04 → 2024-04-17
+18:42:01  INFO         got 4978 rows, kept 4904 (after statuscode filter)
+18:42:03  INFO       CDX query www.idnes.cz/zpravy/zahranicni/*  2024-04-18 → 2024-05-01
+18:42:17  INFO         got 4076 rows, kept 4025 (after statuscode filter)
+18:42:19  INFO       CDX query www.idnes.cz/zpravy/zahranicni/*  2024-05-02 → 2024-05-15
+18:43:02  INFO         got 4357 rows, kept 4294 (after statuscode filter)
+18:43:04  INFO       CDX query www.idnes.cz/zpravy/zahranicni/*  2024-05-16 → 2024-05-29
+18:44:22  INFO         got 5489 rows, kept 5330 (after statuscode filter)
+18:44:24  INFO       CDX query www.idnes.cz/zpravy/zahranicni/*  2024-05-30 → 2024-06-12
+18:45:06  INFO         got 3200 rows, kept 3060 (after statuscode filter)
+18:45:08  INFO       CDX query www.idnes.cz/zpravy/zahranicni/*  2024-06-13 → 2024-06-26
+18:45:53  INFO         got 4123 rows, kept 3884 (after statuscode filter)
+18:45:55  INFO       CDX query www.idnes.cz/zpravy/zahranicni/*  2024-06-27 → 2024-07-10
+18:46:18  INFO         got 3167 rows, kept 2976 (after statuscode filter)
+18:46:20  INFO       CDX query www.idnes.cz/zpravy/zahranicni/*  2024-07-11 → 2024-07-24
+18:46:51  INFO         got 4615 rows, kept 4492 (after statuscode filter)
+18:46:53  INFO       CDX query www.idnes.cz/zpravy/zahranicni/*  2024-07-25 → 2024-08-07
+18:49:58  INFO         got 3597 rows, kept 3518 (after statuscode filter)
+18:50:00  INFO       CDX query www.idnes.cz/zpravy/zahranicni/*  2024-08-08 → 2024-08-21
+18:51:27  INFO         got 4070 rows, kept 3919 (after statuscode filter)
+18:51:29  INFO       CDX query www.idnes.cz/zpravy/zahranicni/*  2024-08-22 → 2024-09-04
+18:52:29  WARNING      CDX 504 — retrying
+18:53:51  INFO         got 2999 rows, kept 2838 (after statuscode filter)
+18:53:53  INFO       CDX query www.idnes.cz/zpravy/zahranicni/*  2024-09-05 → 2024-09-18
+18:54:08  INFO         got 3936 rows, kept 3511 (after statuscode filter)
+18:54:10  INFO       CDX query www.idnes.cz/zpravy/zahranicni/*  2024-09-19 → 2024-10-02
+18:55:59  INFO         got 3446 rows, kept 2819 (after statuscode filter)
+18:56:01  INFO       CDX query www.idnes.cz/zpravy/zahranicni/*  2024-10-03 → 2024-10-16
+18:56:50  INFO         got 2753 rows, kept 2386 (after statuscode filter)
+18:56:52  INFO       CDX query www.idnes.cz/zpravy/zahranicni/*  2024-10-17 → 2024-10-30
+18:57:29  INFO         got 324 rows, kept 50 (after statuscode filter)
+18:57:31  INFO       CDX query www.idnes.cz/zpravy/zahranicni/*  2024-10-31 → 2024-11-13
+18:58:06  INFO         got 2476 rows, kept 1831 (after statuscode filter)
+18:58:08  INFO       CDX query www.idnes.cz/zpravy/zahranicni/*  2024-11-14 → 2024-11-27
+18:58:35  INFO         got 1217 rows, kept 474 (after statuscode filter)
+18:58:37  INFO       CDX query www.idnes.cz/zpravy/zahranicni/*  2024-11-28 → 2024-12-11
+18:59:14  INFO         got 2950 rows, kept 1994 (after statuscode filter)
+18:59:16  INFO       CDX query www.idnes.cz/zpravy/zahranicni/*  2024-12-12 → 2024-12-25
+18:59:28  INFO         got 3587 rows, kept 2510 (after statuscode filter)
+18:59:30  INFO       CDX query www.idnes.cz/zpravy/zahranicni/*  2024-12-26 → 2025-01-08
+18:59:48  INFO         got 3773 rows, kept 2929 (after statuscode filter)
+18:59:50  INFO       CDX query www.idnes.cz/zpravy/zahranicni/*  2025-01-09 → 2025-01-22
+19:00:07  INFO         got 4713 rows, kept 4032 (after statuscode filter)
+19:00:09  INFO       CDX query www.idnes.cz/zpravy/zahranicni/*  2025-01-23 → 2025-02-05
+19:00:51  INFO         got 3697 rows, kept 2206 (after statuscode filter)
+19:00:53  INFO       CDX query www.idnes.cz/zpravy/zahranicni/*  2025-02-06 → 2025-02-19
+19:01:06  INFO         got 5471 rows, kept 5076 (after statuscode filter)
+19:01:08  INFO       CDX query www.idnes.cz/zpravy/zahranicni/*  2025-02-20 → 2025-03-05
+19:01:43  INFO         got 1325 rows, kept 535 (after statuscode filter)
+19:01:45  INFO       CDX query www.idnes.cz/zpravy/zahranicni/*  2025-03-06 → 2025-03-19
+19:02:07  INFO         got 1693 rows, kept 1103 (after statuscode filter)
+19:02:09  INFO       CDX query www.idnes.cz/zpravy/zahranicni/*  2025-03-20 → 2025-04-02
+19:02:39  INFO         got 1953 rows, kept 1466 (after statuscode filter)
+19:02:41  INFO       CDX query www.idnes.cz/zpravy/zahranicni/*  2025-04-03 → 2025-04-16
+19:04:43  INFO         got 1932 rows, kept 953 (after statuscode filter)
+19:04:45  INFO       CDX query www.idnes.cz/zpravy/zahranicni/*  2025-04-17 → 2025-04-30
+19:06:05  INFO         got 3300 rows, kept 2510 (after statuscode filter)
+19:06:07  INFO       CDX query www.idnes.cz/zpravy/zahranicni/*  2025-05-01 → 2025-05-14
+19:06:29  INFO         got 1711 rows, kept 1061 (after statuscode filter)
+19:06:31  INFO       CDX query www.idnes.cz/zpravy/zahranicni/*  2025-05-15 → 2025-05-28
+19:08:16  INFO         got 2960 rows, kept 2301 (after statuscode filter)
+19:08:18  INFO       CDX query www.idnes.cz/zpravy/zahranicni/*  2025-05-29 → 2025-06-11
+19:09:54  INFO         got 1099 rows, kept 472 (after statuscode filter)
+19:09:56  INFO       CDX query www.idnes.cz/zpravy/zahranicni/*  2025-06-12 → 2025-06-25
+19:10:42  INFO         got 2839 rows, kept 2475 (after statuscode filter)
+19:10:44  INFO       CDX query www.idnes.cz/zpravy/zahranicni/*  2025-06-26 → 2025-07-09
+19:12:53  WARNING      CDX gave non-JSON response
+19:14:43  INFO         got 1336 rows, kept 839 (after statuscode filter)
+19:14:45  INFO       CDX query www.idnes.cz/zpravy/zahranicni/*  2025-07-10 → 2025-07-23
+19:15:31  INFO         got 4547 rows, kept 1995 (after statuscode filter)
+19:15:33  INFO       CDX query www.idnes.cz/zpravy/zahranicni/*  2025-07-24 → 2025-08-06
+19:16:12  INFO         got 2256 rows, kept 1595 (after statuscode filter)
+19:16:14  INFO       CDX query www.idnes.cz/zpravy/zahranicni/*  2025-08-07 → 2025-08-20
+19:17:22  INFO         got 2519 rows, kept 1692 (after statuscode filter)
+19:17:24  INFO       CDX query www.idnes.cz/zpravy/zahranicni/*  2025-08-21 → 2025-09-03
+19:17:53  INFO         got 1723 rows, kept 978 (after statuscode filter)
+19:17:55  INFO       CDX query www.idnes.cz/zpravy/zahranicni/*  2025-09-04 → 2025-09-17
+19:18:51  WARNING      CDX gave non-JSON response
+19:19:36  INFO         got 2221 rows, kept 2153 (after statuscode filter)
+19:19:38  INFO       CDX query www.idnes.cz/zpravy/zahranicni/*  2025-09-18 → 2025-10-01
+19:20:10  INFO         got 1349 rows, kept 1308 (after statuscode filter)
+19:20:12  INFO       CDX query www.idnes.cz/zpravy/zahranicni/*  2025-10-02 → 2025-10-15
+19:21:12  WARNING      CDX 504 — retrying
+19:22:17  WARNING      CDX 504 — retrying
+19:23:19  INFO         got 2824 rows, kept 2733 (after statuscode filter)
+19:23:21  INFO       CDX query www.idnes.cz/zpravy/zahranicni/*  2025-10-16 → 2025-10-29
+19:23:58  INFO         got 1623 rows, kept 1580 (after statuscode filter)
+19:24:00  INFO       CDX query www.idnes.cz/zpravy/zahranicni/*  2025-10-30 → 2025-11-12
+19:24:40  INFO         got 1675 rows, kept 1583 (after statuscode filter)
+19:24:42  INFO       CDX query www.idnes.cz/zpravy/zahranicni/*  2025-11-13 → 2025-11-26
+19:25:49  INFO         got 1372 rows, kept 1313 (after statuscode filter)
+19:25:51  INFO       CDX query www.idnes.cz/zpravy/zahranicni/*  2025-11-27 → 2025-12-10
+19:42:08  WARNING      CDX error: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer')) — retrying
+20:12:06  WARNING      CDX error: HTTPSConnectionPool(host='web.archive.org', port=443): Read timed out. (read timeout=180) — retrying
+20:13:16  WARNING      CDX 504 — retrying
+20:13:31  WARNING      CDX 504 — bisecting 2025-11-27→2025-12-10 into 2025-11-27→2025-12-03 and 2025-12-04→2025-12-10
+20:13:31  INFO       CDX query www.idnes.cz/zpravy/zahranicni/*  2025-11-27 → 2025-12-03
+20:14:32  WARNING      CDX 504 — retrying
+20:15:37  WARNING      CDX 504 — retrying
+20:16:17  INFO         got 561 rows, kept 519 (after statuscode filter)
+20:16:17  INFO       CDX query www.idnes.cz/zpravy/zahranicni/*  2025-12-04 → 2025-12-10
+20:17:17  WARNING      CDX 504 — retrying
+20:18:04  INFO         got 1387 rows, kept 1311 (after statuscode filter)
+20:18:06  INFO       CDX query www.idnes.cz/zpravy/zahranicni/*  2025-12-11 → 2025-12-24
+20:19:12  INFO         got 2479 rows, kept 1710 (after statuscode filter)
+20:19:14  INFO       CDX query www.idnes.cz/zpravy/zahranicni/*  2025-12-25 → 2026-01-07
+20:20:08  INFO         got 1642 rows, kept 1054 (after statuscode filter)
+20:20:10  INFO       CDX query www.idnes.cz/zpravy/zahranicni/*  2026-01-08 → 2026-01-21
+20:20:44  INFO         got 2098 rows, kept 2018 (after statuscode filter)
+20:20:46  INFO       CDX query www.idnes.cz/zpravy/zahranicni/*  2026-01-22 → 2026-02-04
+20:21:39  INFO         got 1330 rows, kept 1272 (after statuscode filter)
+20:21:41  INFO       CDX query www.idnes.cz/zpravy/zahranicni/*  2026-02-05 → 2026-02-18
+20:22:41  WARNING      CDX 504 — retrying
+20:23:18  INFO         got 2693 rows, kept 2649 (after statuscode filter)
+20:23:20  INFO       CDX query www.idnes.cz/zpravy/zahranicni/*  2026-02-19 → 2026-02-23
+20:24:20  WARNING      CDX 504 — retrying
+20:25:16  INFO         got 595 rows, kept 579 (after statuscode filter)
+20:25:18  INFO       pattern: www.idnes.cz/ekonomika/*
+20:25:18  INFO       CDX query www.idnes.cz/ekonomika/*  2024-04-04 → 2024-04-17
+20:26:43  INFO         got 2762 rows, kept 2730 (after statuscode filter)
+20:26:45  INFO       CDX query www.idnes.cz/ekonomika/*  2024-04-18 → 2024-05-01
+20:27:46  INFO         got 2397 rows, kept 2368 (after statuscode filter)
+20:27:48  INFO       CDX query www.idnes.cz/ekonomika/*  2024-05-02 → 2024-05-15
+20:28:08  INFO         got 2204 rows, kept 2120 (after statuscode filter)
+20:28:10  INFO       CDX query www.idnes.cz/ekonomika/*  2024-05-16 → 2024-05-29
+20:29:34  INFO         got 3292 rows, kept 3212 (after statuscode filter)
+20:29:36  INFO       CDX query www.idnes.cz/ekonomika/*  2024-05-30 → 2024-06-12
+20:30:06  INFO         got 1569 rows, kept 1509 (after statuscode filter)
+20:34:46  INFO       CDX query www.idnes.cz/ekonomika/*  2024-06-13 → 2024-06-26
+20:34:46  WARNING      CDX error: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer')) — retrying
+21:01:11  WARNING      CDX error: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer')) — retrying
+21:01:28  INFO         got 3217 rows, kept 3034 (after statuscode filter)
+21:01:30  INFO       CDX query www.idnes.cz/ekonomika/*  2024-06-27 → 2024-07-10
+21:02:30  WARNING      CDX 504 — retrying
+21:03:57  INFO         got 1481 rows, kept 1346 (after statuscode filter)
+21:03:59  INFO       CDX query www.idnes.cz/ekonomika/*  2024-07-11 → 2024-07-24
+21:04:19  INFO         got 3950 rows, kept 3860 (after statuscode filter)
+21:04:21  INFO       CDX query www.idnes.cz/ekonomika/*  2024-07-25 → 2024-08-07
+21:04:44  INFO         got 2671 rows, kept 2637 (after statuscode filter)
+21:04:46  INFO       CDX query www.idnes.cz/ekonomika/*  2024-08-08 → 2024-08-21
+21:06:16  INFO         got 2931 rows, kept 2856 (after statuscode filter)
+21:06:18  INFO       CDX query www.idnes.cz/ekonomika/*  2024-08-22 → 2024-09-04
+21:07:15  INFO         got 1314 rows, kept 1226 (after statuscode filter)
+21:07:17  INFO       CDX query www.idnes.cz/ekonomika/*  2024-09-05 → 2024-09-18
+21:07:41  INFO         got 2783 rows, kept 2601 (after statuscode filter)
+21:07:43  INFO       CDX query www.idnes.cz/ekonomika/*  2024-09-19 → 2024-10-02
+21:08:05  INFO         got 2041 rows, kept 1630 (after statuscode filter)
+21:08:07  INFO       CDX query www.idnes.cz/ekonomika/*  2024-10-03 → 2024-10-16
+21:10:24  INFO         got 2257 rows, kept 2068 (after statuscode filter)
+21:10:26  INFO       CDX query www.idnes.cz/ekonomika/*  2024-10-17 → 2024-10-30
+21:10:34  INFO         got 176 rows, kept 37 (after statuscode filter)
+21:10:36  INFO       CDX query www.idnes.cz/ekonomika/*  2024-10-31 → 2024-11-13
+21:11:09  INFO         got 1953 rows, kept 1678 (after statuscode filter)
+21:11:11  INFO       CDX query www.idnes.cz/ekonomika/*  2024-11-14 → 2024-11-27
+21:11:58  INFO         got 629 rows, kept 265 (after statuscode filter)
+21:12:00  INFO       CDX query www.idnes.cz/ekonomika/*  2024-11-28 → 2024-12-11
+21:12:33  INFO         got 1765 rows, kept 1370 (after statuscode filter)
+21:12:35  INFO       CDX query www.idnes.cz/ekonomika/*  2024-12-12 → 2024-12-25
+21:12:50  INFO         got 2028 rows, kept 1530 (after statuscode filter)
+21:12:52  INFO       CDX query www.idnes.cz/ekonomika/*  2024-12-26 → 2025-01-08
+21:13:51  INFO         got 1776 rows, kept 1408 (after statuscode filter)
+21:13:53  INFO       CDX query www.idnes.cz/ekonomika/*  2025-01-09 → 2025-01-22
+21:14:15  INFO         got 2683 rows, kept 2362 (after statuscode filter)
+21:14:17  INFO       CDX query www.idnes.cz/ekonomika/*  2025-01-23 → 2025-02-05
+21:14:27  INFO         got 1837 rows, kept 1227 (after statuscode filter)
+21:14:29  INFO       CDX query www.idnes.cz/ekonomika/*  2025-02-06 → 2025-02-19
+21:16:46  INFO         got 3216 rows, kept 3058 (after statuscode filter)
+21:16:48  INFO       CDX query www.idnes.cz/ekonomika/*  2025-02-20 → 2025-03-05
+21:17:26  INFO         got 463 rows, kept 159 (after statuscode filter)
+21:17:28  INFO       CDX query www.idnes.cz/ekonomika/*  2025-03-06 → 2025-03-19
+21:18:21  INFO         got 791 rows, kept 456 (after statuscode filter)
+21:18:23  INFO       CDX query www.idnes.cz/ekonomika/*  2025-03-20 → 2025-04-02
+21:19:13  INFO         got 1930 rows, kept 1243 (after statuscode filter)
+21:19:15  INFO       CDX query www.idnes.cz/ekonomika/*  2025-04-03 → 2025-04-16
+21:20:04  INFO         got 926 rows, kept 455 (after statuscode filter)
+21:20:06  INFO       CDX query www.idnes.cz/ekonomika/*  2025-04-17 → 2025-04-30
+21:20:40  INFO         got 2106 rows, kept 1731 (after statuscode filter)
+21:20:42  INFO       CDX query www.idnes.cz/ekonomika/*  2025-05-01 → 2025-05-14
+21:21:07  INFO         got 677 rows, kept 337 (after statuscode filter)
+21:21:09  INFO       CDX query www.idnes.cz/ekonomika/*  2025-05-15 → 2025-05-28
+21:21:42  INFO         got 1578 rows, kept 1271 (after statuscode filter)
+21:21:44  INFO       CDX query www.idnes.cz/ekonomika/*  2025-05-29 → 2025-06-11
+21:22:45  WARNING      CDX 504 — retrying
+21:23:20  INFO         got 524 rows, kept 198 (after statuscode filter)
+21:23:22  INFO       CDX query www.idnes.cz/ekonomika/*  2025-06-12 → 2025-06-25
+21:24:06  INFO         got 1482 rows, kept 1311 (after statuscode filter)
+21:24:08  INFO       CDX query www.idnes.cz/ekonomika/*  2025-06-26 → 2025-07-09
+21:24:27  INFO         got 974 rows, kept 723 (after statuscode filter)
+21:24:29  INFO       CDX query www.idnes.cz/ekonomika/*  2025-07-10 → 2025-07-23
+21:26:02  INFO         got 2451 rows, kept 1433 (after statuscode filter)
+21:26:04  INFO       CDX query www.idnes.cz/ekonomika/*  2025-07-24 → 2025-08-06
+21:26:56  INFO         got 1439 rows, kept 937 (after statuscode filter)
+21:26:58  INFO       CDX query www.idnes.cz/ekonomika/*  2025-08-07 → 2025-08-20
+21:27:48  INFO         got 1512 rows, kept 1105 (after statuscode filter)
+21:27:50  INFO       CDX query www.idnes.cz/ekonomika/*  2025-08-21 → 2025-09-03
+21:28:02  INFO         got 723 rows, kept 375 (after statuscode filter)
+21:28:04  INFO       CDX query www.idnes.cz/ekonomika/*  2025-09-04 → 2025-09-17
+21:29:04  WARNING      CDX 504 — retrying
+21:30:09  WARNING      CDX 504 — retrying
+21:31:26  INFO         got 1674 rows, kept 1652 (after statuscode filter)
+21:31:28  INFO       CDX query www.idnes.cz/ekonomika/*  2025-09-18 → 2025-10-01
+21:32:36  INFO         got 640 rows, kept 622 (after statuscode filter)
+21:32:38  INFO       CDX query www.idnes.cz/ekonomika/*  2025-10-02 → 2025-10-15
+21:33:38  WARNING      CDX 504 — retrying
+21:34:39  INFO         got 2312 rows, kept 2084 (after statuscode filter)
+21:34:41  INFO       CDX query www.idnes.cz/ekonomika/*  2025-10-16 → 2025-10-29
+21:35:13  INFO         got 810 rows, kept 785 (after statuscode filter)
+21:35:15  INFO       CDX query www.idnes.cz/ekonomika/*  2025-10-30 → 2025-11-12
+21:35:21  INFO         got 822 rows, kept 766 (after statuscode filter)
+21:35:23  INFO       CDX query www.idnes.cz/ekonomika/*  2025-11-13 → 2025-11-26
+21:36:23  WARNING      CDX 504 — retrying
+21:37:28  WARNING      CDX 504 — retrying
+21:38:43  INFO         got 1151 rows, kept 1110 (after statuscode filter)
+21:38:45  INFO       CDX query www.idnes.cz/ekonomika/*  2025-11-27 → 2025-12-10
+21:39:46  WARNING      CDX 504 — retrying
+21:40:27  INFO         got 1452 rows, kept 1389 (after statuscode filter)
+21:40:29  INFO       CDX query www.idnes.cz/ekonomika/*  2025-12-11 → 2025-12-24
+21:41:18  INFO         got 1829 rows, kept 1391 (after statuscode filter)
+21:41:20  INFO       CDX query www.idnes.cz/ekonomika/*  2025-12-25 → 2026-01-07
+21:41:32  INFO         got 788 rows, kept 494 (after statuscode filter)
+21:41:34  INFO       CDX query www.idnes.cz/ekonomika/*  2026-01-08 → 2026-01-21
+21:42:35  WARNING      CDX 504 — retrying
+21:43:05  INFO         got 1362 rows, kept 1326 (after statuscode filter)
+21:43:07  INFO       CDX query www.idnes.cz/ekonomika/*  2026-01-22 → 2026-02-04
+21:44:08  WARNING      CDX 504 — retrying
+21:44:57  INFO         got 997 rows, kept 985 (after statuscode filter)
+21:44:59  INFO       CDX query www.idnes.cz/ekonomika/*  2026-02-05 → 2026-02-18
+21:45:41  INFO         got 1642 rows, kept 1625 (after statuscode filter)
+21:45:43  INFO       CDX query www.idnes.cz/ekonomika/*  2026-02-19 → 2026-02-23
+21:46:43  WARNING      CDX 504 — retrying
+21:46:56  INFO         got 245 rows, kept 242 (after statuscode filter)
+21:46:58  INFO       CDX discovery finished: 129591 new URLs, 129591 total
+21:46:58  INFO       candidate article URLs after filtering: 125290
+21:46:58  INFO       loaded checkpoint: 0 URLs already scraped
+21:53:23  INFO       scraped=25  skipped=169  no_snapshot=4  rejected=91
+21:58:22  INFO       scraped=50  skipped=319  no_snapshot=4  rejected=148
+22:04:29  INFO       scraped=75  skipped=499  no_snapshot=22  rejected=255
+22:59:30  INFO       scraped=100  skipped=740  no_snapshot=36  rejected=332
+23:21:10  INFO       scraped=125  skipped=936  no_snapshot=49  rejected=437
+23:25:34  INFO       scraped=150  skipped=1077  no_snapshot=51  rejected=516
+23:31:13  INFO       scraped=175  skipped=1298  no_snapshot=61  rejected=611
+23:35:05  INFO       scraped=200  skipped=1433  no_snapshot=62  rejected=660
+23:41:19  INFO       scraped=225  skipped=1713  no_snapshot=64  rejected=750
+23:45:48  INFO       scraped=250  skipped=1909  no_snapshot=67  rejected=817
+23:49:41  INFO       scraped=275  skipped=2035  no_snapshot=67  rejected=880
+23:54:08  INFO       scraped=300  skipped=2206  no_snapshot=69  rejected=933
+23:59:40  INFO       scraped=325  skipped=2457  no_snapshot=69  rejected=984
+00:05:36  INFO       scraped=350  skipped=2720  no_snapshot=70  rejected=1046
+00:10:26  INFO       scraped=375  skipped=2938  no_snapshot=70  rejected=1107
+00:16:10  INFO       scraped=400  skipped=3169  no_snapshot=70  rejected=1174
+00:20:43  INFO       scraped=425  skipped=3380  no_snapshot=70  rejected=1218
+00:24:54  INFO       scraped=450  skipped=3556  no_snapshot=70  rejected=1280
+00:27:17  INFO       scraped=475  skipped=3595  no_snapshot=71  rejected=1340
+00:30:10  INFO       scraped=500  skipped=3638  no_snapshot=71  rejected=1421
+00:33:00  INFO       scraped=525  skipped=3690  no_snapshot=71  rejected=1496
+00:35:52  INFO       scraped=550  skipped=3738  no_snapshot=90  rejected=1583
+01:10:48  INFO       scraped=575  skipped=3767  no_snapshot=102  rejected=1654
+01:13:14  INFO       scraped=600  skipped=3813  no_snapshot=102  rejected=1709
+01:15:14  INFO       scraped=625  skipped=3842  no_snapshot=102  rejected=1762
+01:17:47  INFO       scraped=650  skipped=3883  no_snapshot=102  rejected=1817
+01:24:49  INFO       scraped=675  skipped=4239  no_snapshot=102  rejected=1853
+01:30:16  INFO       scraped=700  skipped=4482  no_snapshot=102  rejected=1919
+01:34:57  INFO       scraped=725  skipped=4707  no_snapshot=103  rejected=1973
+01:40:47  INFO       scraped=750  skipped=5004  no_snapshot=104  rejected=2026
+01:44:56  INFO       scraped=775  skipped=5200  no_snapshot=104  rejected=2076
+01:50:59  INFO       scraped=800  skipped=5516  no_snapshot=105  rejected=2156
+01:54:42  INFO       scraped=825  skipped=5674  no_snapshot=105  rejected=2205
+02:01:33  INFO       scraped=850  skipped=6063  no_snapshot=105  rejected=2247
+02:04:50  INFO       scraped=875  skipped=6167  no_snapshot=105  rejected=2304
+02:06:29  INFO       scraped=900  skipped=6196  no_snapshot=105  rejected=2318
+02:08:36  INFO       scraped=925  skipped=6245  no_snapshot=105  rejected=2341
+02:12:22  INFO       scraped=950  skipped=6381  no_snapshot=105  rejected=2392
+02:15:15  INFO       scraped=975  skipped=6465  no_snapshot=107  rejected=2430
+02:33:21  INFO       scraped=1000  skipped=6527  no_snapshot=108  rejected=2476
+02:36:55  INFO       scraped=1025  skipped=6671  no_snapshot=108  rejected=2517
+02:40:07  INFO       scraped=1050  skipped=6783  no_snapshot=108  rejected=2563
+02:45:15  INFO       scraped=1075  skipped=7003  no_snapshot=108  rejected=2623
+02:49:11  INFO       scraped=1100  skipped=7173  no_snapshot=108  rejected=2672
+02:52:39  INFO       scraped=1125  skipped=7308  no_snapshot=109  rejected=2716
+02:57:47  INFO       scraped=1150  skipped=7573  no_snapshot=109  rejected=2773
+03:02:44  INFO       scraped=1175  skipped=7820  no_snapshot=109  rejected=2820
+03:06:27  INFO       scraped=1200  skipped=7944  no_snapshot=109  rejected=2887
+03:13:18  INFO       scraped=1225  skipped=8320  no_snapshot=111  rejected=2939
+03:17:44  INFO       scraped=1250  skipped=8531  no_snapshot=111  rejected=2969
+03:22:05  INFO       scraped=1275  skipped=8728  no_snapshot=111  rejected=3010
+03:26:20  INFO       scraped=1300  skipped=8933  no_snapshot=111  rejected=3050
+03:28:56  INFO       scraped=1325  skipped=9009  no_snapshot=111  rejected=3094
+03:31:18  INFO       scraped=1350  skipped=9058  no_snapshot=111  rejected=3135
+03:35:16  INFO       scraped=1375  skipped=9197  no_snapshot=112  rejected=3199
+03:38:01  INFO       scraped=1400  skipped=9277  no_snapshot=112  rejected=3246
+03:40:37  INFO       scraped=1425  skipped=9338  no_snapshot=113  rejected=3290
+03:43:23  INFO       scraped=1450  skipped=9420  no_snapshot=113  rejected=3323
+03:46:51  INFO       scraped=1475  skipped=9558  no_snapshot=114  rejected=3369
+03:51:43  INFO       scraped=1500  skipped=9770  no_snapshot=118  rejected=3424
+04:04:33  INFO       scraped=1525  skipped=9853  no_snapshot=123  rejected=3494
+04:08:33  INFO       scraped=1550  skipped=10008  no_snapshot=131  rejected=3553
+04:13:26  INFO       scraped=1575  skipped=10225  no_snapshot=133  rejected=3609
+04:17:43  INFO       scraped=1600  skipped=10400  no_snapshot=135  rejected=3688
+04:22:55  INFO       scraped=1625  skipped=10632  no_snapshot=135  rejected=3751
+04:28:19  INFO       scraped=1650  skipped=10901  no_snapshot=139  rejected=3817
+04:32:59  INFO       scraped=1675  skipped=11100  no_snapshot=142  rejected=3875
+04:35:52  INFO       scraped=1700  skipped=11197  no_snapshot=142  rejected=3913
+04:40:06  INFO       scraped=1725  skipped=11340  no_snapshot=148  rejected=3977
+04:44:37  INFO       scraped=1750  skipped=11509  no_snapshot=151  rejected=4039
+04:47:01  INFO       scraped=1775  skipped=11559  no_snapshot=152  rejected=4083
+04:51:18  INFO       scraped=1800  skipped=11728  no_snapshot=154  rejected=4144
+04:54:34  INFO       scraped=1825  skipped=11846  no_snapshot=154  rejected=4192
+04:57:15  INFO       scraped=1850  skipped=11916  no_snapshot=157  rejected=4239
+05:00:18  INFO       scraped=1875  skipped=12022  no_snapshot=157  rejected=4289
+05:02:49  INFO       scraped=1900  skipped=12096  no_snapshot=162  rejected=4329
+05:06:18  INFO       scraped=1925  skipped=12236  no_snapshot=164  rejected=4371
+05:09:40  INFO       scraped=1950  skipped=12341  no_snapshot=180  rejected=4412
+05:12:44  INFO       scraped=1975  skipped=12415  no_snapshot=181  rejected=4487
+05:16:43  INFO       scraped=2000  skipped=12573  no_snapshot=187  rejected=4530
+05:20:01  INFO       scraped=2025  skipped=12709  no_snapshot=188  rejected=4566
+05:21:30  INFO       scraped=2050  skipped=12728  no_snapshot=188  rejected=4579
+05:23:35  INFO       scraped=2075  skipped=12756  no_snapshot=188  rejected=4618
+05:25:40  INFO       scraped=2100  skipped=12784  no_snapshot=188  rejected=4661
+05:27:33  INFO       scraped=2125  skipped=12806  no_snapshot=190  rejected=4710
+05:29:24  INFO       scraped=2150  skipped=12845  no_snapshot=194  rejected=4732
+05:48:32  INFO       scraped=2175  skipped=12872  no_snapshot=195  rejected=4808
+05:50:40  INFO       scraped=2200  skipped=12906  no_snapshot=195  rejected=4849
+05:53:59  INFO       scraped=2225  skipped=13014  no_snapshot=197  rejected=4902
+05:57:03  INFO       scraped=2250  skipped=13104  no_snapshot=198  rejected=4968
+06:00:45  INFO       scraped=2275  skipped=13241  no_snapshot=198  rejected=5018
+06:03:07  INFO       scraped=2300  skipped=13294  no_snapshot=198  rejected=5060
+06:04:59  INFO       scraped=2325  skipped=13319  no_snapshot=198  rejected=5096
+06:07:47  INFO       scraped=2350  skipped=13402  no_snapshot=198  rejected=5143
+06:10:52  INFO       scraped=2375  skipped=13507  no_snapshot=198  rejected=5189
+06:13:38  INFO       scraped=2400  skipped=13595  no_snapshot=198  rejected=5219
+06:16:37  INFO       scraped=2425  skipped=13669  no_snapshot=198  rejected=5290
+06:18:51  INFO       scraped=2450  skipped=13722  no_snapshot=198  rejected=5321
+06:21:18  INFO       scraped=2475  skipped=13785  no_snapshot=199  rejected=5351
+06:23:48  INFO       scraped=2500  skipped=13812  no_snapshot=200  rejected=5427
+06:26:16  INFO       scraped=2525  skipped=13859  no_snapshot=200  rejected=5487
+06:29:29  INFO       scraped=2550  skipped=13928  no_snapshot=201  rejected=5521
+06:33:38  INFO       scraped=2575  skipped=14105  no_snapshot=203  rejected=5560
+06:37:27  INFO       scraped=2600  skipped=14257  no_snapshot=204  rejected=5588
+06:41:46  INFO       scraped=2625  skipped=14449  no_snapshot=204  rejected=5620
+06:46:38  INFO       scraped=2650  skipped=14663  no_snapshot=204  rejected=5679
+06:50:36  INFO       scraped=2675  skipped=14846  no_snapshot=207  rejected=5704
+06:54:41  INFO       scraped=2700  skipped=14935  no_snapshot=209  rejected=5721
+06:57:32  INFO       scraped=2725  skipped=15039  no_snapshot=209  rejected=5735
+07:01:05  INFO       scraped=2750  skipped=15196  no_snapshot=209  rejected=5748
+07:04:39  INFO       scraped=2775  skipped=15366  no_snapshot=209  rejected=5766
+07:07:45  INFO       scraped=2800  skipped=15507  no_snapshot=209  rejected=5775
+07:10:45  INFO       scraped=2825  skipped=15622  no_snapshot=209  rejected=5788
+07:14:52  INFO       scraped=2850  skipped=15829  no_snapshot=209  rejected=5794
+07:19:26  INFO       scraped=2875  skipped=16043  no_snapshot=209  rejected=5811
+07:21:27  INFO       scraped=2900  skipped=16066  no_snapshot=210  rejected=5816
+07:23:32  INFO       scraped=2925  skipped=16115  no_snapshot=210  rejected=5828
+07:25:09  INFO       scraped=2950  skipped=16152  no_snapshot=210  rejected=5839
+07:27:14  INFO       scraped=2975  skipped=16208  no_snapshot=210  rejected=5852
+07:29:36  INFO       scraped=3000  skipped=16281  no_snapshot=210  rejected=5858
+07:32:09  INFO       scraped=3025  skipped=16357  no_snapshot=211  rejected=5872
+07:33:49  INFO       scraped=3050  skipped=16406  no_snapshot=212  rejected=5876
+07:58:23  INFO       scraped=3075  skipped=16493  no_snapshot=214  rejected=5888
+08:00:29  INFO       scraped=3100  skipped=16537  no_snapshot=216  rejected=5907
+08:02:59  INFO       scraped=3125  skipped=16630  no_snapshot=216  rejected=5910
+08:05:00  INFO       scraped=3150  skipped=16696  no_snapshot=216  rejected=5914
+08:08:04  INFO       scraped=3175  skipped=16828  no_snapshot=216  rejected=5924
+08:11:13  INFO       scraped=3200  skipped=16943  no_snapshot=216  rejected=5932
+08:13:22  INFO       scraped=3225  skipped=16999  no_snapshot=216  rejected=5940
+08:15:18  INFO       scraped=3250  skipped=17058  no_snapshot=216  rejected=5948
+08:17:45  INFO       scraped=3275  skipped=17116  no_snapshot=216  rejected=5980
+08:19:53  INFO       scraped=3300  skipped=17169  no_snapshot=216  rejected=5995
+08:22:02  INFO       scraped=3325  skipped=17215  no_snapshot=216  rejected=6021
+08:25:24  INFO       scraped=3350  skipped=17270  no_snapshot=217  rejected=6058
+08:27:24  INFO       scraped=3375  skipped=17304  no_snapshot=217  rejected=6089
+08:29:42  INFO       scraped=3400  skipped=17347  no_snapshot=218  rejected=6122
+08:31:58  INFO       scraped=3425  skipped=17391  no_snapshot=218  rejected=6159
+08:35:55  INFO       scraped=3450  skipped=17420  no_snapshot=221  rejected=6177
+08:38:41  INFO       scraped=3475  skipped=17467  no_snapshot=221  rejected=6212
+08:40:58  INFO       scraped=3500  skipped=17504  no_snapshot=221  rejected=6244
+08:42:59  INFO       scraped=3525  skipped=17524  no_snapshot=226  rejected=6281
+08:44:51  INFO       scraped=3550  skipped=17541  no_snapshot=226  rejected=6310
+08:46:45  INFO       scraped=3575  skipped=17555  no_snapshot=226  rejected=6357
+08:48:20  INFO       scraped=3600  skipped=17561  no_snapshot=226  rejected=6391
+08:50:00  INFO       scraped=3625  skipped=17571  no_snapshot=226  rejected=6422
+08:52:17  INFO       scraped=3650  skipped=17588  no_snapshot=226  rejected=6486
+08:54:02  INFO       scraped=3675  skipped=17602  no_snapshot=226  rejected=6507
+08:55:52  INFO       scraped=3700  skipped=17613  no_snapshot=226  rejected=6553
+08:59:44  INFO       scraped=3725  skipped=17651  no_snapshot=92534  rejected=6580
+09:00:57  INFO       scraped=3750  skipped=17660  no_snapshot=92540  rejected=6583
+09:02:05  INFO       scraped=3775  skipped=17669  no_snapshot=92540  rejected=6587
+09:03:11  INFO       scraped=3800  skipped=17672  no_snapshot=92540  rejected=6591
+09:04:19  INFO       scraped=3825  skipped=17681  no_snapshot=92540  rejected=6597
+09:05:34  INFO       scraped=3850  skipped=17687  no_snapshot=92540  rejected=6601
+09:06:57  INFO       scraped=3875  skipped=17697  no_snapshot=92542  rejected=6608
+09:08:26  INFO       scraped=3900  skipped=17711  no_snapshot=92542  rejected=6614
+09:12:08  INFO       scraped=3925  skipped=17715  no_snapshot=92543  rejected=6621
+09:13:17  INFO       scraped=3950  skipped=17716  no_snapshot=92543  rejected=6629
+09:14:21  INFO       scraped=3975  skipped=17719  no_snapshot=92544  rejected=6633
+09:15:47  INFO       scraped=4000  skipped=17750  no_snapshot=92544  rejected=6634
+09:18:43  INFO       scraped=4025  skipped=17793  no_snapshot=92545  rejected=6640
+09:20:23  INFO       scraped=4050  skipped=17826  no_snapshot=92549  rejected=6646
+09:21:43  INFO       scraped=4075  skipped=17842  no_snapshot=92549  rejected=6653
+09:52:50  INFO       scraped=4100  skipped=17846  no_snapshot=92551  rejected=6653
+09:54:56  INFO       scraped=4125  skipped=17850  no_snapshot=92552  rejected=6660
+09:56:03  INFO       scraped=4150  skipped=17857  no_snapshot=92557  rejected=6662
+09:57:10  INFO       scraped=4175  skipped=17862  no_snapshot=92558  rejected=6669
+09:58:14  INFO       scraped=4200  skipped=17863  no_snapshot=92558  rejected=6672
+09:59:20  INFO       scraped=4225  skipped=17864  no_snapshot=92558  rejected=6677
+10:00:32  INFO       scraped=4250  skipped=17875  no_snapshot=92558  rejected=6677
+10:01:47  INFO       scraped=4275  skipped=17893  no_snapshot=92558  rejected=6678
+10:03:23  INFO       scraped=4300  skipped=17924  no_snapshot=92558  rejected=6685
+10:05:17  INFO       scraped=4325  skipped=17977  no_snapshot=92558  rejected=6689
+10:06:44  INFO       scraped=4350  skipped=18009  no_snapshot=92558  rejected=6689
+10:08:03  INFO       scraped=4375  skipped=18027  no_snapshot=92558  rejected=6697
+10:09:24  INFO       scraped=4400  skipped=18044  no_snapshot=92558  rejected=6700
+10:10:36  INFO       scraped=4425  skipped=18051  no_snapshot=92558  rejected=6704
+10:11:43  INFO       scraped=4450  skipped=18057  no_snapshot=92558  rejected=6710
+10:13:01  INFO       scraped=4475  skipped=18074  no_snapshot=92558  rejected=6715
+10:14:23  INFO       scraped=4500  skipped=18090  no_snapshot=92558  rejected=6719
+10:15:36  INFO       scraped=4525  skipped=18100  no_snapshot=92558  rejected=6722
+10:16:51  INFO       scraped=4550  skipped=18110  no_snapshot=92560  rejected=6726
+10:18:05  INFO       scraped=4575  skipped=18124  no_snapshot=92560  rejected=6728
+10:19:20  INFO       scraped=4600  skipped=18126  no_snapshot=92560  rejected=6742
+10:20:29  INFO       scraped=4625  skipped=18128  no_snapshot=92560  rejected=6748
+10:21:51  INFO       scraped=4650  skipped=18147  no_snapshot=92561  rejected=6752
+10:24:23  INFO       scraped=4675  skipped=18237  no_snapshot=92562  rejected=6764
+10:27:09  INFO       scraped=4700  skipped=18331  no_snapshot=92562  rejected=6787
+10:28:44  INFO       scraped=4725  skipped=18362  no_snapshot=92562  rejected=6798
+10:30:14  INFO       scraped=4750  skipped=18394  no_snapshot=92562  rejected=6804
+10:31:24  INFO       scraped=4775  skipped=18404  no_snapshot=92562  rejected=6811
+10:32:44  INFO       scraped=4800  skipped=18426  no_snapshot=92562  rejected=6812
+10:34:09  INFO       scraped=4825  skipped=18450  no_snapshot=92562  rejected=6812
+10:35:32  INFO       scraped=4850  skipped=18478  no_snapshot=92562  rejected=6816
+10:52:53  INFO       scraped=4875  skipped=18484  no_snapshot=92565  rejected=6818
+11:28:17  INFO       scraped=4900  skipped=18488  no_snapshot=92567  rejected=6824
+11:29:40  INFO       scraped=4925  skipped=18502  no_snapshot=92567  rejected=6829
+11:31:08  INFO       scraped=4950  skipped=18525  no_snapshot=92569  rejected=6835
+11:32:24  INFO       scraped=4975  skipped=18536  no_snapshot=92569  rejected=6835
+11:33:47  INFO       scraped=5000  skipped=18557  no_snapshot=92569  rejected=6838
+11:34:58  INFO       scraped=5025  skipped=18568  no_snapshot=92569  rejected=6839
+11:36:05  INFO       scraped=5050  skipped=18579  no_snapshot=92569  rejected=6839
+11:37:30  INFO       scraped=5075  skipped=18598  no_snapshot=92570  rejected=6841
+11:44:39  INFO       done.  scraped=5097  skipped=18646  no_snapshot=94697  rejected=6850
+11:44:39  INFO       CSV written to: ../../data/idnes_supplement.csv

@@ -1,0 +1,988 @@
+17:50:31  INFO       Novinky CDX+Wayback scraper — 2024-03-23 → 2026-02-23
+17:50:31  INFO       host: www.novinky.cz
+17:50:31  INFO       output: ../../data/novinky_supplement.csv
+17:50:31  INFO       CDX cache: ../../data/novinky_cdx_urls.jsonl
+17:50:31  INFO       starting CDX URL discovery...
+17:50:31  INFO       querying 6 CDX pattern(s), chunk_days=14
+17:50:31  INFO       pattern: www.novinky.cz/clanek/domaci*
+17:50:31  INFO       CDX query www.novinky.cz/clanek/domaci*  2024-03-23 → 2024-04-05
+17:51:50  INFO         got 1308 rows, kept 688 (after statuscode filter)
+17:51:52  INFO       CDX query www.novinky.cz/clanek/domaci*  2024-04-06 → 2024-04-19
+17:52:53  WARNING      CDX 504 — retrying
+17:53:10  INFO         got 1043 rows, kept 288 (after statuscode filter)
+17:53:12  INFO       CDX query www.novinky.cz/clanek/domaci*  2024-04-20 → 2024-05-03
+17:53:27  INFO         got 739 rows, kept 212 (after statuscode filter)
+17:53:29  INFO       CDX query www.novinky.cz/clanek/domaci*  2024-05-04 → 2024-05-17
+17:54:30  WARNING      CDX 504 — retrying
+17:55:36  INFO         got 1018 rows, kept 742 (after statuscode filter)
+17:55:38  INFO       CDX query www.novinky.cz/clanek/domaci*  2024-05-18 → 2024-05-31
+17:55:45  INFO         got 1271 rows, kept 650 (after statuscode filter)
+17:55:47  INFO       CDX query www.novinky.cz/clanek/domaci*  2024-06-01 → 2024-06-14
+17:55:53  INFO         got 945 rows, kept 616 (after statuscode filter)
+17:55:55  INFO       CDX query www.novinky.cz/clanek/domaci*  2024-06-15 → 2024-06-28
+17:56:07  INFO         got 1280 rows, kept 1048 (after statuscode filter)
+17:56:09  INFO       CDX query www.novinky.cz/clanek/domaci*  2024-06-29 → 2024-07-12
+17:56:20  INFO         got 878 rows, kept 656 (after statuscode filter)
+17:56:22  INFO       CDX query www.novinky.cz/clanek/domaci*  2024-07-13 → 2024-07-26
+17:57:25  INFO         got 684 rows, kept 573 (after statuscode filter)
+17:57:27  INFO       CDX query www.novinky.cz/clanek/domaci*  2024-07-27 → 2024-08-09
+17:57:41  INFO         got 607 rows, kept 498 (after statuscode filter)
+17:57:43  INFO       CDX query www.novinky.cz/clanek/domaci*  2024-08-10 → 2024-08-23
+17:58:06  INFO         got 542 rows, kept 486 (after statuscode filter)
+17:58:08  INFO       CDX query www.novinky.cz/clanek/domaci*  2024-08-24 → 2024-09-06
+17:58:11  INFO         got 757 rows, kept 703 (after statuscode filter)
+17:58:13  INFO       CDX query www.novinky.cz/clanek/domaci*  2024-09-07 → 2024-09-20
+17:58:37  INFO         got 881 rows, kept 759 (after statuscode filter)
+17:58:39  INFO       CDX query www.novinky.cz/clanek/domaci*  2024-09-21 → 2024-10-04
+17:58:50  INFO         got 2933 rows, kept 912 (after statuscode filter)
+17:58:52  INFO       CDX query www.novinky.cz/clanek/domaci*  2024-10-05 → 2024-10-18
+17:59:06  INFO         got 1174 rows, kept 305 (after statuscode filter)
+17:59:08  INFO       CDX query www.novinky.cz/clanek/domaci*  2024-10-19 → 2024-11-01
+17:59:19  INFO         got 195 rows, kept 180 (after statuscode filter)
+17:59:21  INFO       CDX query www.novinky.cz/clanek/domaci*  2024-11-02 → 2024-11-15
+18:00:20  INFO         got 625 rows, kept 515 (after statuscode filter)
+18:00:22  INFO       CDX query www.novinky.cz/clanek/domaci*  2024-11-16 → 2024-11-29
+18:00:40  INFO         got 647 rows, kept 495 (after statuscode filter)
+18:00:42  INFO       CDX query www.novinky.cz/clanek/domaci*  2024-11-30 → 2024-12-13
+18:00:59  INFO         got 1138 rows, kept 989 (after statuscode filter)
+18:01:01  INFO       CDX query www.novinky.cz/clanek/domaci*  2024-12-14 → 2024-12-27
+18:01:09  INFO         got 874 rows, kept 761 (after statuscode filter)
+18:01:11  INFO       CDX query www.novinky.cz/clanek/domaci*  2024-12-28 → 2025-01-10
+18:02:12  WARNING      CDX 504 — retrying
+18:02:54  INFO         got 731 rows, kept 636 (after statuscode filter)
+18:02:56  INFO       CDX query www.novinky.cz/clanek/domaci*  2025-01-11 → 2025-01-24
+18:03:53  INFO         got 1154 rows, kept 995 (after statuscode filter)
+18:03:55  INFO       CDX query www.novinky.cz/clanek/domaci*  2025-01-25 → 2025-02-07
+18:04:05  INFO         got 834 rows, kept 704 (after statuscode filter)
+18:04:07  INFO       CDX query www.novinky.cz/clanek/domaci*  2025-02-08 → 2025-02-21
+18:04:31  INFO         got 976 rows, kept 865 (after statuscode filter)
+18:04:33  INFO       CDX query www.novinky.cz/clanek/domaci*  2025-02-22 → 2025-03-07
+18:05:06  INFO         got 482 rows, kept 343 (after statuscode filter)
+18:05:08  INFO       CDX query www.novinky.cz/clanek/domaci*  2025-03-08 → 2025-03-21
+18:05:14  INFO         got 524 rows, kept 379 (after statuscode filter)
+18:05:16  INFO       CDX query www.novinky.cz/clanek/domaci*  2025-03-22 → 2025-04-04
+18:06:16  WARNING      CDX 504 — retrying
+18:06:51  INFO         got 683 rows, kept 515 (after statuscode filter)
+18:06:53  INFO       CDX query www.novinky.cz/clanek/domaci*  2025-04-05 → 2025-04-18
+18:08:00  INFO         got 1563 rows, kept 1395 (after statuscode filter)
+18:08:02  INFO       CDX query www.novinky.cz/clanek/domaci*  2025-04-19 → 2025-05-02
+18:08:18  INFO         got 734 rows, kept 579 (after statuscode filter)
+18:08:20  INFO       CDX query www.novinky.cz/clanek/domaci*  2025-05-03 → 2025-05-16
+18:08:29  INFO         got 652 rows, kept 521 (after statuscode filter)
+18:08:31  INFO       CDX query www.novinky.cz/clanek/domaci*  2025-05-17 → 2025-05-30
+18:08:51  INFO         got 760 rows, kept 660 (after statuscode filter)
+18:08:53  INFO       CDX query www.novinky.cz/clanek/domaci*  2025-05-31 → 2025-06-13
+18:09:13  INFO         got 760 rows, kept 727 (after statuscode filter)
+18:09:15  INFO       CDX query www.novinky.cz/clanek/domaci*  2025-06-14 → 2025-06-27
+18:09:46  INFO         got 740 rows, kept 714 (after statuscode filter)
+18:09:48  INFO       CDX query www.novinky.cz/clanek/domaci*  2025-06-28 → 2025-07-11
+18:09:59  INFO         got 7340 rows, kept 7088 (after statuscode filter)
+18:10:01  INFO       CDX query www.novinky.cz/clanek/domaci*  2025-07-12 → 2025-07-25
+18:10:08  INFO         got 2725 rows, kept 2623 (after statuscode filter)
+18:10:10  INFO       CDX query www.novinky.cz/clanek/domaci*  2025-07-26 → 2025-08-08
+18:10:56  INFO         got 812 rows, kept 682 (after statuscode filter)
+18:10:58  INFO       CDX query www.novinky.cz/clanek/domaci*  2025-08-09 → 2025-08-22
+18:11:07  INFO         got 813 rows, kept 732 (after statuscode filter)
+18:11:09  INFO       CDX query www.novinky.cz/clanek/domaci*  2025-08-23 → 2025-09-05
+18:11:19  INFO         got 1581 rows, kept 1517 (after statuscode filter)
+18:11:21  INFO       CDX query www.novinky.cz/clanek/domaci*  2025-09-06 → 2025-09-19
+18:11:46  INFO         got 959 rows, kept 901 (after statuscode filter)
+18:11:48  INFO       CDX query www.novinky.cz/clanek/domaci*  2025-09-20 → 2025-10-03
+18:12:36  INFO         got 1002 rows, kept 945 (after statuscode filter)
+18:12:38  INFO       CDX query www.novinky.cz/clanek/domaci*  2025-10-04 → 2025-10-17
+18:13:38  WARNING      CDX 504 — retrying
+18:14:00  INFO         got 2747 rows, kept 904 (after statuscode filter)
+18:14:02  INFO       CDX query www.novinky.cz/clanek/domaci*  2025-10-18 → 2025-10-31
+18:14:28  INFO         got 802 rows, kept 653 (after statuscode filter)
+18:14:30  INFO       CDX query www.novinky.cz/clanek/domaci*  2025-11-01 → 2025-11-14
+18:14:52  INFO         got 835 rows, kept 677 (after statuscode filter)
+18:14:54  INFO       CDX query www.novinky.cz/clanek/domaci*  2025-11-15 → 2025-11-28
+18:15:18  INFO         got 1064 rows, kept 924 (after statuscode filter)
+18:15:20  INFO       CDX query www.novinky.cz/clanek/domaci*  2025-11-29 → 2025-12-12
+18:15:29  INFO         got 884 rows, kept 734 (after statuscode filter)
+18:15:31  INFO       CDX query www.novinky.cz/clanek/domaci*  2025-12-13 → 2025-12-26
+18:16:32  WARNING      CDX 504 — retrying
+18:16:50  INFO         got 875 rows, kept 811 (after statuscode filter)
+18:16:52  INFO       CDX query www.novinky.cz/clanek/domaci*  2025-12-27 → 2026-01-09
+18:16:58  INFO         got 1116 rows, kept 1029 (after statuscode filter)
+18:17:00  INFO       CDX query www.novinky.cz/clanek/domaci*  2026-01-10 → 2026-01-23
+18:17:08  INFO         got 813 rows, kept 756 (after statuscode filter)
+18:17:10  INFO       CDX query www.novinky.cz/clanek/domaci*  2026-01-24 → 2026-02-06
+18:17:58  INFO         got 857 rows, kept 758 (after statuscode filter)
+18:18:00  INFO       CDX query www.novinky.cz/clanek/domaci*  2026-02-07 → 2026-02-20
+18:18:08  INFO         got 1223 rows, kept 1094 (after statuscode filter)
+18:18:10  INFO       CDX query www.novinky.cz/clanek/domaci*  2026-02-21 → 2026-02-23
+18:18:13  INFO         got 232 rows, kept 223 (after statuscode filter)
+18:18:15  INFO       pattern: www.novinky.cz/clanek/zahranicni*
+18:18:15  INFO       CDX query www.novinky.cz/clanek/zahranicni*  2024-03-23 → 2024-04-05
+18:18:32  INFO         got 1581 rows, kept 782 (after statuscode filter)
+18:18:34  INFO       CDX query www.novinky.cz/clanek/zahranicni*  2024-04-06 → 2024-04-19
+18:18:54  INFO         got 1328 rows, kept 359 (after statuscode filter)
+18:18:56  INFO       CDX query www.novinky.cz/clanek/zahranicni*  2024-04-20 → 2024-05-03
+18:19:42  INFO         got 865 rows, kept 280 (after statuscode filter)
+18:19:44  INFO       CDX query www.novinky.cz/clanek/zahranicni*  2024-05-04 → 2024-05-17
+18:20:34  INFO         got 1095 rows, kept 823 (after statuscode filter)
+18:20:36  INFO       CDX query www.novinky.cz/clanek/zahranicni*  2024-05-18 → 2024-05-31
+18:20:47  INFO         got 1082 rows, kept 839 (after statuscode filter)
+18:20:49  INFO       CDX query www.novinky.cz/clanek/zahranicni*  2024-06-01 → 2024-06-14
+18:20:55  INFO         got 765 rows, kept 545 (after statuscode filter)
+18:20:57  INFO       CDX query www.novinky.cz/clanek/zahranicni*  2024-06-15 → 2024-06-28
+18:21:03  INFO         got 1550 rows, kept 1246 (after statuscode filter)
+18:21:05  INFO       CDX query www.novinky.cz/clanek/zahranicni*  2024-06-29 → 2024-07-12
+18:21:11  INFO         got 711 rows, kept 557 (after statuscode filter)
+18:21:13  INFO       CDX query www.novinky.cz/clanek/zahranicni*  2024-07-13 → 2024-07-26
+18:21:28  INFO         got 800 rows, kept 673 (after statuscode filter)
+18:21:30  INFO       CDX query www.novinky.cz/clanek/zahranicni*  2024-07-27 → 2024-08-09
+18:22:29  INFO         got 639 rows, kept 540 (after statuscode filter)
+18:22:31  INFO       CDX query www.novinky.cz/clanek/zahranicni*  2024-08-10 → 2024-08-23
+18:22:50  INFO         got 765 rows, kept 583 (after statuscode filter)
+18:22:52  INFO       CDX query www.novinky.cz/clanek/zahranicni*  2024-08-24 → 2024-09-06
+18:23:12  INFO         got 1013 rows, kept 880 (after statuscode filter)
+18:23:14  INFO       CDX query www.novinky.cz/clanek/zahranicni*  2024-09-07 → 2024-09-20
+18:24:09  INFO         got 937 rows, kept 842 (after statuscode filter)
+18:24:11  INFO       CDX query www.novinky.cz/clanek/zahranicni*  2024-09-21 → 2024-10-04
+18:24:26  INFO         got 1275 rows, kept 701 (after statuscode filter)
+18:24:28  INFO       CDX query www.novinky.cz/clanek/zahranicni*  2024-10-05 → 2024-10-18
+18:24:42  INFO         got 698 rows, kept 291 (after statuscode filter)
+18:24:44  INFO       CDX query www.novinky.cz/clanek/zahranicni*  2024-10-19 → 2024-11-01
+18:25:00  INFO         got 212 rows, kept 202 (after statuscode filter)
+18:25:02  INFO       CDX query www.novinky.cz/clanek/zahranicni*  2024-11-02 → 2024-11-15
+18:26:13  INFO         got 537 rows, kept 460 (after statuscode filter)
+18:26:15  INFO       CDX query www.novinky.cz/clanek/zahranicni*  2024-11-16 → 2024-11-29
+18:26:59  INFO         got 533 rows, kept 463 (after statuscode filter)
+18:27:01  INFO       CDX query www.novinky.cz/clanek/zahranicni*  2024-11-30 → 2024-12-13
+18:27:39  INFO         got 1127 rows, kept 960 (after statuscode filter)
+18:27:41  INFO       CDX query www.novinky.cz/clanek/zahranicni*  2024-12-14 → 2024-12-27
+18:28:34  WARNING      CDX gave non-JSON response
+18:29:00  INFO         got 955 rows, kept 824 (after statuscode filter)
+18:29:02  INFO       CDX query www.novinky.cz/clanek/zahranicni*  2024-12-28 → 2025-01-10
+18:29:32  INFO         got 920 rows, kept 733 (after statuscode filter)
+18:29:34  INFO       CDX query www.novinky.cz/clanek/zahranicni*  2025-01-11 → 2025-01-24
+18:29:59  INFO         got 1338 rows, kept 1062 (after statuscode filter)
+18:30:01  INFO       CDX query www.novinky.cz/clanek/zahranicni*  2025-01-25 → 2025-02-07
+18:30:46  INFO         got 1478 rows, kept 1089 (after statuscode filter)
+18:30:48  INFO       CDX query www.novinky.cz/clanek/zahranicni*  2025-02-08 → 2025-02-21
+18:30:57  INFO         got 1192 rows, kept 1070 (after statuscode filter)
+18:30:59  INFO       CDX query www.novinky.cz/clanek/zahranicni*  2025-02-22 → 2025-03-07
+18:31:06  INFO         got 542 rows, kept 421 (after statuscode filter)
+18:31:08  INFO       CDX query www.novinky.cz/clanek/zahranicni*  2025-03-08 → 2025-03-21
+18:31:22  INFO         got 578 rows, kept 455 (after statuscode filter)
+18:31:24  INFO       CDX query www.novinky.cz/clanek/zahranicni*  2025-03-22 → 2025-04-04
+18:31:30  INFO         got 763 rows, kept 591 (after statuscode filter)
+18:31:32  INFO       CDX query www.novinky.cz/clanek/zahranicni*  2025-04-05 → 2025-04-18
+18:31:54  INFO         got 1523 rows, kept 1339 (after statuscode filter)
+18:31:56  INFO       CDX query www.novinky.cz/clanek/zahranicni*  2025-04-19 → 2025-05-02
+18:32:56  WARNING      CDX 504 — retrying
+18:33:21  INFO         got 990 rows, kept 810 (after statuscode filter)
+18:33:23  INFO       CDX query www.novinky.cz/clanek/zahranicni*  2025-05-03 → 2025-05-16
+18:34:04  INFO         got 844 rows, kept 730 (after statuscode filter)
+18:34:06  INFO       CDX query www.novinky.cz/clanek/zahranicni*  2025-05-17 → 2025-05-30
+18:34:43  INFO         got 980 rows, kept 916 (after statuscode filter)
+18:34:45  INFO       CDX query www.novinky.cz/clanek/zahranicni*  2025-05-31 → 2025-06-13
+18:35:00  INFO         got 1056 rows, kept 1025 (after statuscode filter)
+18:35:02  INFO       CDX query www.novinky.cz/clanek/zahranicni*  2025-06-14 → 2025-06-27
+18:35:18  INFO         got 832 rows, kept 813 (after statuscode filter)
+18:35:20  INFO       CDX query www.novinky.cz/clanek/zahranicni*  2025-06-28 → 2025-07-11
+18:35:48  INFO         got 9096 rows, kept 8469 (after statuscode filter)
+18:35:50  INFO       CDX query www.novinky.cz/clanek/zahranicni*  2025-07-12 → 2025-07-25
+18:36:07  INFO         got 3749 rows, kept 3639 (after statuscode filter)
+18:36:09  INFO       CDX query www.novinky.cz/clanek/zahranicni*  2025-07-26 → 2025-08-08
+18:36:20  INFO         got 938 rows, kept 834 (after statuscode filter)
+18:36:22  INFO       CDX query www.novinky.cz/clanek/zahranicni*  2025-08-09 → 2025-08-22
+18:36:47  INFO         got 977 rows, kept 727 (after statuscode filter)
+18:36:49  INFO       CDX query www.novinky.cz/clanek/zahranicni*  2025-08-23 → 2025-09-05
+18:37:01  INFO         got 2023 rows, kept 1982 (after statuscode filter)
+18:37:03  INFO       CDX query www.novinky.cz/clanek/zahranicni*  2025-09-06 → 2025-09-19
+18:37:46  INFO         got 1146 rows, kept 1106 (after statuscode filter)
+18:37:48  INFO       CDX query www.novinky.cz/clanek/zahranicni*  2025-09-20 → 2025-10-03
+18:38:25  INFO         got 959 rows, kept 938 (after statuscode filter)
+18:38:27  INFO       CDX query www.novinky.cz/clanek/zahranicni*  2025-10-04 → 2025-10-17
+18:38:39  INFO         got 1226 rows, kept 858 (after statuscode filter)
+18:38:41  INFO       CDX query www.novinky.cz/clanek/zahranicni*  2025-10-18 → 2025-10-31
+18:39:18  INFO         got 992 rows, kept 829 (after statuscode filter)
+18:39:20  INFO       CDX query www.novinky.cz/clanek/zahranicni*  2025-11-01 → 2025-11-14
+18:39:33  INFO         got 993 rows, kept 866 (after statuscode filter)
+18:39:35  INFO       CDX query www.novinky.cz/clanek/zahranicni*  2025-11-15 → 2025-11-28
+18:39:49  INFO         got 824 rows, kept 748 (after statuscode filter)
+18:39:51  INFO       CDX query www.novinky.cz/clanek/zahranicni*  2025-11-29 → 2025-12-12
+18:39:54  INFO         got 728 rows, kept 682 (after statuscode filter)
+18:39:56  INFO       CDX query www.novinky.cz/clanek/zahranicni*  2025-12-13 → 2025-12-26
+18:40:45  INFO         got 873 rows, kept 820 (after statuscode filter)
+18:40:47  INFO       CDX query www.novinky.cz/clanek/zahranicni*  2025-12-27 → 2026-01-09
+18:41:08  INFO         got 1041 rows, kept 998 (after statuscode filter)
+18:41:10  INFO       CDX query www.novinky.cz/clanek/zahranicni*  2026-01-10 → 2026-01-23
+18:41:28  INFO         got 737 rows, kept 708 (after statuscode filter)
+18:41:30  INFO       CDX query www.novinky.cz/clanek/zahranicni*  2026-01-24 → 2026-02-06
+18:41:51  INFO         got 697 rows, kept 646 (after statuscode filter)
+18:41:53  INFO       CDX query www.novinky.cz/clanek/zahranicni*  2026-02-07 → 2026-02-20
+18:42:17  INFO         got 1091 rows, kept 984 (after statuscode filter)
+18:42:19  INFO       CDX query www.novinky.cz/clanek/zahranicni*  2026-02-21 → 2026-02-23
+18:42:25  INFO         got 211 rows, kept 204 (after statuscode filter)
+18:42:27  INFO       pattern: www.novinky.cz/clanek/krimi*
+18:42:27  INFO       CDX query www.novinky.cz/clanek/krimi*  2024-03-23 → 2024-04-05
+18:42:38  INFO         got 1018 rows, kept 552 (after statuscode filter)
+18:42:40  INFO       CDX query www.novinky.cz/clanek/krimi*  2024-04-06 → 2024-04-19
+18:43:27  INFO         got 901 rows, kept 274 (after statuscode filter)
+18:43:29  INFO       CDX query www.novinky.cz/clanek/krimi*  2024-04-20 → 2024-05-03
+18:43:32  INFO         got 535 rows, kept 125 (after statuscode filter)
+18:43:34  INFO       CDX query www.novinky.cz/clanek/krimi*  2024-05-04 → 2024-05-17
+18:43:48  INFO         got 706 rows, kept 589 (after statuscode filter)
+18:43:50  INFO       CDX query www.novinky.cz/clanek/krimi*  2024-05-18 → 2024-05-31
+18:44:16  INFO         got 612 rows, kept 459 (after statuscode filter)
+18:44:18  INFO       CDX query www.novinky.cz/clanek/krimi*  2024-06-01 → 2024-06-14
+18:44:52  INFO         got 608 rows, kept 460 (after statuscode filter)
+18:44:54  INFO       CDX query www.novinky.cz/clanek/krimi*  2024-06-15 → 2024-06-28
+18:45:54  INFO         got 614 rows, kept 480 (after statuscode filter)
+18:45:56  INFO       CDX query www.novinky.cz/clanek/krimi*  2024-06-29 → 2024-07-12
+18:46:20  INFO         got 471 rows, kept 374 (after statuscode filter)
+18:46:22  INFO       CDX query www.novinky.cz/clanek/krimi*  2024-07-13 → 2024-07-26
+18:46:27  INFO         got 579 rows, kept 522 (after statuscode filter)
+18:46:29  INFO       CDX query www.novinky.cz/clanek/krimi*  2024-07-27 → 2024-08-09
+18:46:55  INFO         got 507 rows, kept 430 (after statuscode filter)
+18:46:57  INFO       CDX query www.novinky.cz/clanek/krimi*  2024-08-10 → 2024-08-23
+18:47:55  INFO         got 506 rows, kept 474 (after statuscode filter)
+18:47:57  INFO       CDX query www.novinky.cz/clanek/krimi*  2024-08-24 → 2024-09-06
+18:48:13  INFO         got 812 rows, kept 736 (after statuscode filter)
+18:48:15  INFO       CDX query www.novinky.cz/clanek/krimi*  2024-09-07 → 2024-09-20
+18:48:40  INFO         got 689 rows, kept 610 (after statuscode filter)
+18:48:42  INFO       CDX query www.novinky.cz/clanek/krimi*  2024-09-21 → 2024-10-04
+18:49:03  INFO         got 707 rows, kept 471 (after statuscode filter)
+18:49:05  INFO       CDX query www.novinky.cz/clanek/krimi*  2024-10-05 → 2024-10-18
+18:50:06  WARNING      CDX 504 — retrying
+18:50:19  INFO         got 297 rows, kept 186 (after statuscode filter)
+18:50:21  INFO       CDX query www.novinky.cz/clanek/krimi*  2024-10-19 → 2024-11-01
+18:51:07  INFO         got 99 rows, kept 97 (after statuscode filter)
+18:51:09  INFO       CDX query www.novinky.cz/clanek/krimi*  2024-11-02 → 2024-11-15
+18:51:34  INFO         got 307 rows, kept 267 (after statuscode filter)
+18:51:36  INFO       CDX query www.novinky.cz/clanek/krimi*  2024-11-16 → 2024-11-29
+18:53:08  WARNING      CDX gave non-JSON response
+18:53:21  INFO         got 392 rows, kept 317 (after statuscode filter)
+18:53:23  INFO       CDX query www.novinky.cz/clanek/krimi*  2024-11-30 → 2024-12-13
+18:53:35  INFO         got 425 rows, kept 379 (after statuscode filter)
+18:53:37  INFO       CDX query www.novinky.cz/clanek/krimi*  2024-12-14 → 2024-12-27
+18:54:00  INFO         got 380 rows, kept 338 (after statuscode filter)
+18:54:02  INFO       CDX query www.novinky.cz/clanek/krimi*  2024-12-28 → 2025-01-10
+18:54:59  INFO         got 518 rows, kept 468 (after statuscode filter)
+18:55:01  INFO       CDX query www.novinky.cz/clanek/krimi*  2025-01-11 → 2025-01-24
+18:55:25  INFO         got 712 rows, kept 569 (after statuscode filter)
+18:55:27  INFO       CDX query www.novinky.cz/clanek/krimi*  2025-01-25 → 2025-02-07
+18:55:38  INFO         got 536 rows, kept 474 (after statuscode filter)
+18:55:40  INFO       CDX query www.novinky.cz/clanek/krimi*  2025-02-08 → 2025-02-21
+18:55:48  INFO         got 732 rows, kept 695 (after statuscode filter)
+18:55:50  INFO       CDX query www.novinky.cz/clanek/krimi*  2025-02-22 → 2025-03-07
+18:55:55  INFO         got 395 rows, kept 270 (after statuscode filter)
+18:55:57  INFO       CDX query www.novinky.cz/clanek/krimi*  2025-03-08 → 2025-03-21
+18:56:02  INFO         got 369 rows, kept 306 (after statuscode filter)
+18:56:04  INFO       CDX query www.novinky.cz/clanek/krimi*  2025-03-22 → 2025-04-04
+18:56:14  INFO         got 475 rows, kept 374 (after statuscode filter)
+18:56:16  INFO       CDX query www.novinky.cz/clanek/krimi*  2025-04-05 → 2025-04-18
+18:56:27  INFO         got 1361 rows, kept 1265 (after statuscode filter)
+18:56:29  INFO       CDX query www.novinky.cz/clanek/krimi*  2025-04-19 → 2025-05-02
+18:56:52  INFO         got 398 rows, kept 305 (after statuscode filter)
+18:56:54  INFO       CDX query www.novinky.cz/clanek/krimi*  2025-05-03 → 2025-05-16
+18:57:04  INFO         got 399 rows, kept 367 (after statuscode filter)
+18:57:06  INFO       CDX query www.novinky.cz/clanek/krimi*  2025-05-17 → 2025-05-30
+18:57:15  INFO         got 535 rows, kept 489 (after statuscode filter)
+18:57:17  INFO       CDX query www.novinky.cz/clanek/krimi*  2025-05-31 → 2025-06-13
+18:57:28  INFO         got 513 rows, kept 499 (after statuscode filter)
+18:57:30  INFO       CDX query www.novinky.cz/clanek/krimi*  2025-06-14 → 2025-06-27
+18:57:55  INFO         got 447 rows, kept 438 (after statuscode filter)
+18:57:57  INFO       CDX query www.novinky.cz/clanek/krimi*  2025-06-28 → 2025-07-11
+18:58:07  INFO         got 5582 rows, kept 5538 (after statuscode filter)
+18:58:09  INFO       CDX query www.novinky.cz/clanek/krimi*  2025-07-12 → 2025-07-25
+18:58:21  INFO         got 2841 rows, kept 2810 (after statuscode filter)
+18:58:23  INFO       CDX query www.novinky.cz/clanek/krimi*  2025-07-26 → 2025-08-08
+18:59:26  INFO         got 601 rows, kept 554 (after statuscode filter)
+18:59:28  INFO       CDX query www.novinky.cz/clanek/krimi*  2025-08-09 → 2025-08-22
+18:59:37  INFO         got 536 rows, kept 498 (after statuscode filter)
+18:59:39  INFO       CDX query www.novinky.cz/clanek/krimi*  2025-08-23 → 2025-09-05
+19:00:04  INFO         got 1664 rows, kept 1608 (after statuscode filter)
+19:00:06  INFO       CDX query www.novinky.cz/clanek/krimi*  2025-09-06 → 2025-09-19
+19:00:09  INFO         got 692 rows, kept 673 (after statuscode filter)
+19:00:11  INFO       CDX query www.novinky.cz/clanek/krimi*  2025-09-20 → 2025-10-03
+19:00:22  INFO         got 696 rows, kept 668 (after statuscode filter)
+19:00:24  INFO       CDX query www.novinky.cz/clanek/krimi*  2025-10-04 → 2025-10-17
+19:00:50  INFO         got 642 rows, kept 513 (after statuscode filter)
+19:00:52  INFO       CDX query www.novinky.cz/clanek/krimi*  2025-10-18 → 2025-10-31
+19:01:01  INFO         got 647 rows, kept 564 (after statuscode filter)
+19:01:03  INFO       CDX query www.novinky.cz/clanek/krimi*  2025-11-01 → 2025-11-14
+19:01:08  INFO         got 544 rows, kept 486 (after statuscode filter)
+19:01:10  INFO       CDX query www.novinky.cz/clanek/krimi*  2025-11-15 → 2025-11-28
+19:01:26  INFO         got 558 rows, kept 529 (after statuscode filter)
+19:01:28  INFO       CDX query www.novinky.cz/clanek/krimi*  2025-11-29 → 2025-12-12
+19:01:43  INFO         got 595 rows, kept 558 (after statuscode filter)
+19:01:45  INFO       CDX query www.novinky.cz/clanek/krimi*  2025-12-13 → 2025-12-26
+19:01:57  INFO         got 502 rows, kept 466 (after statuscode filter)
+19:01:59  INFO       CDX query www.novinky.cz/clanek/krimi*  2025-12-27 → 2026-01-09
+19:02:23  INFO         got 705 rows, kept 672 (after statuscode filter)
+19:02:25  INFO       CDX query www.novinky.cz/clanek/krimi*  2026-01-10 → 2026-01-23
+19:02:37  INFO         got 552 rows, kept 521 (after statuscode filter)
+19:02:39  INFO       CDX query www.novinky.cz/clanek/krimi*  2026-01-24 → 2026-02-06
+19:03:00  INFO         got 623 rows, kept 504 (after statuscode filter)
+19:03:02  INFO       CDX query www.novinky.cz/clanek/krimi*  2026-02-07 → 2026-02-20
+19:03:16  INFO         got 715 rows, kept 645 (after statuscode filter)
+19:03:18  INFO       CDX query www.novinky.cz/clanek/krimi*  2026-02-21 → 2026-02-23
+19:04:05  INFO         got 160 rows, kept 142 (after statuscode filter)
+19:04:07  INFO       pattern: www.novinky.cz/clanek/ekonomika*
+19:04:07  INFO       CDX query www.novinky.cz/clanek/ekonomika*  2024-03-23 → 2024-04-05
+19:04:25  INFO         got 501 rows, kept 252 (after statuscode filter)
+19:04:27  INFO       CDX query www.novinky.cz/clanek/ekonomika*  2024-04-06 → 2024-04-19
+19:04:53  INFO         got 437 rows, kept 131 (after statuscode filter)
+19:04:55  INFO       CDX query www.novinky.cz/clanek/ekonomika*  2024-04-20 → 2024-05-03
+19:05:16  INFO         got 302 rows, kept 84 (after statuscode filter)
+19:05:18  INFO       CDX query www.novinky.cz/clanek/ekonomika*  2024-05-04 → 2024-05-17
+19:05:22  INFO         got 534 rows, kept 457 (after statuscode filter)
+19:05:24  INFO       CDX query www.novinky.cz/clanek/ekonomika*  2024-05-18 → 2024-05-31
+19:06:03  INFO         got 413 rows, kept 291 (after statuscode filter)
+19:06:05  INFO       CDX query www.novinky.cz/clanek/ekonomika*  2024-06-01 → 2024-06-14
+19:06:30  INFO         got 301 rows, kept 234 (after statuscode filter)
+19:06:32  INFO       CDX query www.novinky.cz/clanek/ekonomika*  2024-06-15 → 2024-06-28
+19:06:54  INFO         got 465 rows, kept 414 (after statuscode filter)
+19:06:56  INFO       CDX query www.novinky.cz/clanek/ekonomika*  2024-06-29 → 2024-07-12
+19:07:29  INFO         got 297 rows, kept 250 (after statuscode filter)
+19:07:31  INFO       CDX query www.novinky.cz/clanek/ekonomika*  2024-07-13 → 2024-07-26
+19:07:57  INFO         got 341 rows, kept 297 (after statuscode filter)
+19:07:59  INFO       CDX query www.novinky.cz/clanek/ekonomika*  2024-07-27 → 2024-08-09
+19:08:01  INFO         got 318 rows, kept 265 (after statuscode filter)
+19:08:03  INFO       CDX query www.novinky.cz/clanek/ekonomika*  2024-08-10 → 2024-08-23
+19:08:27  INFO         got 313 rows, kept 291 (after statuscode filter)
+19:08:29  INFO       CDX query www.novinky.cz/clanek/ekonomika*  2024-08-24 → 2024-09-06
+19:08:35  INFO         got 430 rows, kept 416 (after statuscode filter)
+19:08:37  INFO       CDX query www.novinky.cz/clanek/ekonomika*  2024-09-07 → 2024-09-20
+19:08:41  INFO         got 449 rows, kept 407 (after statuscode filter)
+19:08:43  INFO       CDX query www.novinky.cz/clanek/ekonomika*  2024-09-21 → 2024-10-04
+19:08:51  INFO         got 620 rows, kept 359 (after statuscode filter)
+19:08:53  INFO       CDX query www.novinky.cz/clanek/ekonomika*  2024-10-05 → 2024-10-18
+19:09:01  INFO         got 294 rows, kept 141 (after statuscode filter)
+19:09:03  INFO       CDX query www.novinky.cz/clanek/ekonomika*  2024-10-19 → 2024-11-01
+19:09:07  INFO         got 96 rows, kept 93 (after statuscode filter)
+19:09:09  INFO       CDX query www.novinky.cz/clanek/ekonomika*  2024-11-02 → 2024-11-15
+19:09:31  INFO         got 289 rows, kept 247 (after statuscode filter)
+19:09:33  INFO       CDX query www.novinky.cz/clanek/ekonomika*  2024-11-16 → 2024-11-29
+19:09:43  INFO         got 330 rows, kept 281 (after statuscode filter)
+19:09:45  INFO       CDX query www.novinky.cz/clanek/ekonomika*  2024-11-30 → 2024-12-13
+19:09:55  INFO         got 343 rows, kept 314 (after statuscode filter)
+19:09:57  INFO       CDX query www.novinky.cz/clanek/ekonomika*  2024-12-14 → 2024-12-27
+19:10:05  INFO         got 335 rows, kept 311 (after statuscode filter)
+19:10:07  INFO       CDX query www.novinky.cz/clanek/ekonomika*  2024-12-28 → 2025-01-10
+19:10:50  INFO         got 368 rows, kept 340 (after statuscode filter)
+19:10:52  INFO       CDX query www.novinky.cz/clanek/ekonomika*  2025-01-11 → 2025-01-24
+19:11:34  INFO         got 448 rows, kept 404 (after statuscode filter)
+19:11:36  INFO       CDX query www.novinky.cz/clanek/ekonomika*  2025-01-25 → 2025-02-07
+19:11:41  INFO         got 387 rows, kept 341 (after statuscode filter)
+19:11:43  INFO       CDX query www.novinky.cz/clanek/ekonomika*  2025-02-08 → 2025-02-21
+19:12:43  WARNING      CDX 504 — retrying
+19:13:05  INFO         got 487 rows, kept 464 (after statuscode filter)
+19:13:07  INFO       CDX query www.novinky.cz/clanek/ekonomika*  2025-02-22 → 2025-03-07
+19:13:17  INFO         got 198 rows, kept 178 (after statuscode filter)
+19:13:19  INFO       CDX query www.novinky.cz/clanek/ekonomika*  2025-03-08 → 2025-03-21
+19:13:21  INFO         got 254 rows, kept 227 (after statuscode filter)
+19:13:23  INFO       CDX query www.novinky.cz/clanek/ekonomika*  2025-03-22 → 2025-04-04
+19:13:29  INFO         got 340 rows, kept 264 (after statuscode filter)
+19:13:31  INFO       CDX query www.novinky.cz/clanek/ekonomika*  2025-04-05 → 2025-04-18
+19:13:46  INFO         got 721 rows, kept 673 (after statuscode filter)
+19:13:48  INFO       CDX query www.novinky.cz/clanek/ekonomika*  2025-04-19 → 2025-05-02
+19:13:55  INFO         got 322 rows, kept 281 (after statuscode filter)
+19:13:57  INFO       CDX query www.novinky.cz/clanek/ekonomika*  2025-05-03 → 2025-05-16
+19:14:02  INFO         got 300 rows, kept 264 (after statuscode filter)
+19:14:04  INFO       CDX query www.novinky.cz/clanek/ekonomika*  2025-05-17 → 2025-05-30
+19:14:10  INFO         got 364 rows, kept 338 (after statuscode filter)
+19:14:12  INFO       CDX query www.novinky.cz/clanek/ekonomika*  2025-05-31 → 2025-06-13
+19:14:28  INFO         got 275 rows, kept 274 (after statuscode filter)
+19:14:30  INFO       CDX query www.novinky.cz/clanek/ekonomika*  2025-06-14 → 2025-06-27
+19:14:36  INFO         got 336 rows, kept 327 (after statuscode filter)
+19:14:38  INFO       CDX query www.novinky.cz/clanek/ekonomika*  2025-06-28 → 2025-07-11
+19:15:03  INFO         got 2628 rows, kept 2544 (after statuscode filter)
+19:15:05  INFO       CDX query www.novinky.cz/clanek/ekonomika*  2025-07-12 → 2025-07-25
+19:15:29  INFO         got 1597 rows, kept 1549 (after statuscode filter)
+19:15:31  INFO       CDX query www.novinky.cz/clanek/ekonomika*  2025-07-26 → 2025-08-08
+19:15:39  INFO         got 494 rows, kept 446 (after statuscode filter)
+19:15:41  INFO       CDX query www.novinky.cz/clanek/ekonomika*  2025-08-09 → 2025-08-22
+19:15:48  INFO         got 342 rows, kept 316 (after statuscode filter)
+19:15:50  INFO       CDX query www.novinky.cz/clanek/ekonomika*  2025-08-23 → 2025-09-05
+19:16:05  INFO         got 852 rows, kept 839 (after statuscode filter)
+19:16:07  INFO       CDX query www.novinky.cz/clanek/ekonomika*  2025-09-06 → 2025-09-19
+19:16:46  INFO         got 453 rows, kept 447 (after statuscode filter)
+19:16:48  INFO       CDX query www.novinky.cz/clanek/ekonomika*  2025-09-20 → 2025-10-03
+19:17:00  INFO         got 666 rows, kept 647 (after statuscode filter)
+19:17:02  INFO       CDX query www.novinky.cz/clanek/ekonomika*  2025-10-04 → 2025-10-17
+19:17:11  INFO         got 611 rows, kept 386 (after statuscode filter)
+19:17:13  INFO       CDX query www.novinky.cz/clanek/ekonomika*  2025-10-18 → 2025-10-31
+19:17:24  INFO         got 511 rows, kept 426 (after statuscode filter)
+19:17:26  INFO       CDX query www.novinky.cz/clanek/ekonomika*  2025-11-01 → 2025-11-14
+19:18:11  INFO         got 319 rows, kept 304 (after statuscode filter)
+19:18:13  INFO       CDX query www.novinky.cz/clanek/ekonomika*  2025-11-15 → 2025-11-28
+19:18:22  INFO         got 453 rows, kept 436 (after statuscode filter)
+19:18:24  INFO       CDX query www.novinky.cz/clanek/ekonomika*  2025-11-29 → 2025-12-12
+19:18:34  INFO         got 363 rows, kept 345 (after statuscode filter)
+19:18:36  INFO       CDX query www.novinky.cz/clanek/ekonomika*  2025-12-13 → 2025-12-26
+19:18:43  INFO         got 353 rows, kept 323 (after statuscode filter)
+19:18:45  INFO       CDX query www.novinky.cz/clanek/ekonomika*  2025-12-27 → 2026-01-09
+19:18:48  INFO         got 462 rows, kept 448 (after statuscode filter)
+19:18:50  INFO       CDX query www.novinky.cz/clanek/ekonomika*  2026-01-10 → 2026-01-23
+19:18:52  INFO         got 404 rows, kept 393 (after statuscode filter)
+19:18:54  INFO       CDX query www.novinky.cz/clanek/ekonomika*  2026-01-24 → 2026-02-06
+19:19:15  INFO         got 341 rows, kept 326 (after statuscode filter)
+19:19:17  INFO       CDX query www.novinky.cz/clanek/ekonomika*  2026-02-07 → 2026-02-20
+19:19:40  INFO         got 523 rows, kept 493 (after statuscode filter)
+19:19:42  INFO       CDX query www.novinky.cz/clanek/ekonomika*  2026-02-21 → 2026-02-23
+19:19:47  INFO         got 93 rows, kept 89 (after statuscode filter)
+19:19:49  INFO       pattern: www.novinky.cz/clanek/koktejl*
+19:19:49  INFO       CDX query www.novinky.cz/clanek/koktejl*  2024-03-23 → 2024-04-05
+19:20:05  INFO         got 334 rows, kept 168 (after statuscode filter)
+19:20:07  INFO       CDX query www.novinky.cz/clanek/koktejl*  2024-04-06 → 2024-04-19
+19:20:09  INFO         got 288 rows, kept 79 (after statuscode filter)
+19:20:11  INFO       CDX query www.novinky.cz/clanek/koktejl*  2024-04-20 → 2024-05-03
+19:20:30  INFO         got 182 rows, kept 62 (after statuscode filter)
+19:20:32  INFO       CDX query www.novinky.cz/clanek/koktejl*  2024-05-04 → 2024-05-17
+19:20:35  INFO         got 188 rows, kept 167 (after statuscode filter)
+19:20:37  INFO       CDX query www.novinky.cz/clanek/koktejl*  2024-05-18 → 2024-05-31
+19:20:42  INFO         got 189 rows, kept 149 (after statuscode filter)
+19:20:44  INFO       CDX query www.novinky.cz/clanek/koktejl*  2024-06-01 → 2024-06-14
+19:20:49  INFO         got 185 rows, kept 108 (after statuscode filter)
+19:20:51  INFO       CDX query www.novinky.cz/clanek/koktejl*  2024-06-15 → 2024-06-28
+19:21:07  INFO         got 178 rows, kept 148 (after statuscode filter)
+19:21:09  INFO       CDX query www.novinky.cz/clanek/koktejl*  2024-06-29 → 2024-07-12
+19:21:42  INFO         got 189 rows, kept 138 (after statuscode filter)
+19:21:44  INFO       CDX query www.novinky.cz/clanek/koktejl*  2024-07-13 → 2024-07-26
+19:22:04  INFO         got 240 rows, kept 216 (after statuscode filter)
+19:22:06  INFO       CDX query www.novinky.cz/clanek/koktejl*  2024-07-27 → 2024-08-09
+19:22:26  INFO         got 156 rows, kept 135 (after statuscode filter)
+19:22:28  INFO       CDX query www.novinky.cz/clanek/koktejl*  2024-08-10 → 2024-08-23
+19:22:33  INFO         got 159 rows, kept 138 (after statuscode filter)
+19:22:35  INFO       CDX query www.novinky.cz/clanek/koktejl*  2024-08-24 → 2024-09-06
+19:22:39  INFO         got 225 rows, kept 194 (after statuscode filter)
+19:22:41  INFO       CDX query www.novinky.cz/clanek/koktejl*  2024-09-07 → 2024-09-20
+19:22:53  INFO         got 207 rows, kept 186 (after statuscode filter)
+19:22:55  INFO       CDX query www.novinky.cz/clanek/koktejl*  2024-09-21 → 2024-10-04
+19:23:03  INFO         got 236 rows, kept 179 (after statuscode filter)
+19:23:05  INFO       CDX query www.novinky.cz/clanek/koktejl*  2024-10-05 → 2024-10-18
+19:23:07  INFO         got 116 rows, kept 77 (after statuscode filter)
+19:23:09  INFO       CDX query www.novinky.cz/clanek/koktejl*  2024-10-19 → 2024-11-01
+19:23:13  INFO         got 45 rows, kept 44 (after statuscode filter)
+19:23:15  INFO       CDX query www.novinky.cz/clanek/koktejl*  2024-11-02 → 2024-11-15
+19:23:29  INFO         got 137 rows, kept 108 (after statuscode filter)
+19:23:31  INFO       CDX query www.novinky.cz/clanek/koktejl*  2024-11-16 → 2024-11-29
+19:23:37  INFO         got 143 rows, kept 123 (after statuscode filter)
+19:23:39  INFO       CDX query www.novinky.cz/clanek/koktejl*  2024-11-30 → 2024-12-13
+19:23:51  INFO         got 158 rows, kept 146 (after statuscode filter)
+19:23:53  INFO       CDX query www.novinky.cz/clanek/koktejl*  2024-12-14 → 2024-12-27
+19:24:01  INFO         got 161 rows, kept 132 (after statuscode filter)
+19:24:03  INFO       CDX query www.novinky.cz/clanek/koktejl*  2024-12-28 → 2025-01-10
+19:24:11  INFO         got 220 rows, kept 191 (after statuscode filter)
+19:24:13  INFO       CDX query www.novinky.cz/clanek/koktejl*  2025-01-11 → 2025-01-24
+19:24:31  INFO         got 250 rows, kept 194 (after statuscode filter)
+19:24:33  INFO       CDX query www.novinky.cz/clanek/koktejl*  2025-01-25 → 2025-02-07
+19:24:46  INFO         got 211 rows, kept 171 (after statuscode filter)
+19:24:48  INFO       CDX query www.novinky.cz/clanek/koktejl*  2025-02-08 → 2025-02-21
+19:24:52  INFO         got 258 rows, kept 225 (after statuscode filter)
+19:24:54  INFO       CDX query www.novinky.cz/clanek/koktejl*  2025-02-22 → 2025-03-07
+19:24:58  INFO         got 95 rows, kept 70 (after statuscode filter)
+19:25:00  INFO       CDX query www.novinky.cz/clanek/koktejl*  2025-03-08 → 2025-03-21
+19:25:16  INFO         got 152 rows, kept 106 (after statuscode filter)
+19:25:18  INFO       CDX query www.novinky.cz/clanek/koktejl*  2025-03-22 → 2025-04-04
+19:25:33  INFO         got 192 rows, kept 136 (after statuscode filter)
+19:25:35  INFO       CDX query www.novinky.cz/clanek/koktejl*  2025-04-05 → 2025-04-18
+19:25:49  INFO         got 546 rows, kept 509 (after statuscode filter)
+19:25:51  INFO       CDX query www.novinky.cz/clanek/koktejl*  2025-04-19 → 2025-05-02
+19:25:55  INFO         got 170 rows, kept 133 (after statuscode filter)
+19:25:57  INFO       CDX query www.novinky.cz/clanek/koktejl*  2025-05-03 → 2025-05-16
+19:26:10  INFO         got 133 rows, kept 123 (after statuscode filter)
+19:26:12  INFO       CDX query www.novinky.cz/clanek/koktejl*  2025-05-17 → 2025-05-30
+19:26:25  INFO         got 180 rows, kept 163 (after statuscode filter)
+19:26:27  INFO       CDX query www.novinky.cz/clanek/koktejl*  2025-05-31 → 2025-06-13
+19:26:33  INFO         got 217 rows, kept 214 (after statuscode filter)
+19:26:35  INFO       CDX query www.novinky.cz/clanek/koktejl*  2025-06-14 → 2025-06-27
+19:26:41  INFO         got 164 rows, kept 155 (after statuscode filter)
+19:26:43  INFO       CDX query www.novinky.cz/clanek/koktejl*  2025-06-28 → 2025-07-11
+19:42:08  WARNING      CDX error: ('Connection aborted.', ConnectionResetError(54, 'Connection reset by peer')) — retrying
+19:42:18  INFO         got 2359 rows, kept 2338 (after statuscode filter)
+19:42:20  INFO       CDX query www.novinky.cz/clanek/koktejl*  2025-07-12 → 2025-07-25
+20:12:12  WARNING      CDX error: HTTPSConnectionPool(host='web.archive.org', port=443): Read timed out. (read timeout=180) — retrying
+20:12:23  INFO         got 856 rows, kept 848 (after statuscode filter)
+20:12:25  INFO       CDX query www.novinky.cz/clanek/koktejl*  2025-07-26 → 2025-08-08
+20:12:32  INFO         got 231 rows, kept 208 (after statuscode filter)
+20:12:34  INFO       CDX query www.novinky.cz/clanek/koktejl*  2025-08-09 → 2025-08-22
+20:12:35  INFO         got 174 rows, kept 167 (after statuscode filter)
+20:12:37  INFO       CDX query www.novinky.cz/clanek/koktejl*  2025-08-23 → 2025-09-05
+20:12:40  INFO         got 525 rows, kept 512 (after statuscode filter)
+20:12:42  INFO       CDX query www.novinky.cz/clanek/koktejl*  2025-09-06 → 2025-09-19
+20:12:49  INFO         got 278 rows, kept 272 (after statuscode filter)
+20:12:51  INFO       CDX query www.novinky.cz/clanek/koktejl*  2025-09-20 → 2025-10-03
+20:13:09  INFO         got 197 rows, kept 194 (after statuscode filter)
+20:13:11  INFO       CDX query www.novinky.cz/clanek/koktejl*  2025-10-04 → 2025-10-17
+20:13:26  INFO         got 242 rows, kept 220 (after statuscode filter)
+20:13:28  INFO       CDX query www.novinky.cz/clanek/koktejl*  2025-10-18 → 2025-10-31
+20:13:40  INFO         got 180 rows, kept 166 (after statuscode filter)
+20:13:42  INFO       CDX query www.novinky.cz/clanek/koktejl*  2025-11-01 → 2025-11-14
+20:13:44  INFO         got 160 rows, kept 157 (after statuscode filter)
+20:13:46  INFO       CDX query www.novinky.cz/clanek/koktejl*  2025-11-15 → 2025-11-28
+20:13:59  INFO         got 180 rows, kept 178 (after statuscode filter)
+20:14:01  INFO       CDX query www.novinky.cz/clanek/koktejl*  2025-11-29 → 2025-12-12
+20:14:20  INFO         got 156 rows, kept 154 (after statuscode filter)
+20:14:22  INFO       CDX query www.novinky.cz/clanek/koktejl*  2025-12-13 → 2025-12-26
+20:14:24  INFO         got 247 rows, kept 234 (after statuscode filter)
+20:14:26  INFO       CDX query www.novinky.cz/clanek/koktejl*  2025-12-27 → 2026-01-09
+20:14:38  INFO         got 209 rows, kept 205 (after statuscode filter)
+20:14:40  INFO       CDX query www.novinky.cz/clanek/koktejl*  2026-01-10 → 2026-01-23
+20:14:43  INFO         got 174 rows, kept 173 (after statuscode filter)
+20:14:45  INFO       CDX query www.novinky.cz/clanek/koktejl*  2026-01-24 → 2026-02-06
+20:14:53  INFO         got 182 rows, kept 180 (after statuscode filter)
+20:14:55  INFO       CDX query www.novinky.cz/clanek/koktejl*  2026-02-07 → 2026-02-20
+20:15:02  INFO         got 246 rows, kept 225 (after statuscode filter)
+20:15:04  INFO       CDX query www.novinky.cz/clanek/koktejl*  2026-02-21 → 2026-02-23
+20:15:08  INFO         got 57 rows, kept 57 (after statuscode filter)
+20:15:10  INFO       pattern: www.novinky.cz/clanek/valka-na-ukrajine*
+20:15:10  INFO       CDX query www.novinky.cz/clanek/valka-na-ukrajine*  2024-03-23 → 2024-04-05
+20:15:19  INFO         got 209 rows, kept 100 (after statuscode filter)
+20:15:21  INFO       CDX query www.novinky.cz/clanek/valka-na-ukrajine*  2024-04-06 → 2024-04-19
+20:15:23  INFO         got 182 rows, kept 49 (after statuscode filter)
+20:15:25  INFO       CDX query www.novinky.cz/clanek/valka-na-ukrajine*  2024-04-20 → 2024-05-03
+20:15:30  INFO         got 117 rows, kept 45 (after statuscode filter)
+20:15:32  INFO       CDX query www.novinky.cz/clanek/valka-na-ukrajine*  2024-05-04 → 2024-05-17
+20:16:08  INFO         got 124 rows, kept 84 (after statuscode filter)
+20:16:10  INFO       CDX query www.novinky.cz/clanek/valka-na-ukrajine*  2024-05-18 → 2024-05-31
+20:16:15  INFO         got 127 rows, kept 108 (after statuscode filter)
+20:16:17  INFO       CDX query www.novinky.cz/clanek/valka-na-ukrajine*  2024-06-01 → 2024-06-14
+20:16:24  INFO         got 91 rows, kept 57 (after statuscode filter)
+20:16:26  INFO       CDX query www.novinky.cz/clanek/valka-na-ukrajine*  2024-06-15 → 2024-06-28
+20:16:34  INFO         got 104 rows, kept 80 (after statuscode filter)
+20:16:36  INFO       CDX query www.novinky.cz/clanek/valka-na-ukrajine*  2024-06-29 → 2024-07-12
+20:16:42  INFO         got 103 rows, kept 80 (after statuscode filter)
+20:16:44  INFO       CDX query www.novinky.cz/clanek/valka-na-ukrajine*  2024-07-13 → 2024-07-26
+20:16:47  INFO         got 83 rows, kept 74 (after statuscode filter)
+20:16:49  INFO       CDX query www.novinky.cz/clanek/valka-na-ukrajine*  2024-07-27 → 2024-08-09
+20:16:52  INFO         got 98 rows, kept 78 (after statuscode filter)
+20:16:54  INFO       CDX query www.novinky.cz/clanek/valka-na-ukrajine*  2024-08-10 → 2024-08-23
+20:16:56  INFO         got 158 rows, kept 131 (after statuscode filter)
+20:16:58  INFO       CDX query www.novinky.cz/clanek/valka-na-ukrajine*  2024-08-24 → 2024-09-06
+20:17:04  INFO         got 191 rows, kept 164 (after statuscode filter)
+20:17:06  INFO       CDX query www.novinky.cz/clanek/valka-na-ukrajine*  2024-09-07 → 2024-09-20
+20:17:15  INFO         got 178 rows, kept 166 (after statuscode filter)
+20:17:17  INFO       CDX query www.novinky.cz/clanek/valka-na-ukrajine*  2024-09-21 → 2024-10-04
+20:17:25  INFO         got 192 rows, kept 152 (after statuscode filter)
+20:17:27  INFO       CDX query www.novinky.cz/clanek/valka-na-ukrajine*  2024-10-05 → 2024-10-18
+20:17:44  INFO         got 83 rows, kept 50 (after statuscode filter)
+20:17:46  INFO       CDX query www.novinky.cz/clanek/valka-na-ukrajine*  2024-10-19 → 2024-11-01
+20:17:51  INFO         got 48 rows, kept 47 (after statuscode filter)
+20:17:53  INFO       CDX query www.novinky.cz/clanek/valka-na-ukrajine*  2024-11-02 → 2024-11-15
+20:18:16  INFO         got 130 rows, kept 116 (after statuscode filter)
+20:18:18  INFO       CDX query www.novinky.cz/clanek/valka-na-ukrajine*  2024-11-16 → 2024-11-29
+20:18:24  INFO         got 179 rows, kept 149 (after statuscode filter)
+20:18:26  INFO       CDX query www.novinky.cz/clanek/valka-na-ukrajine*  2024-11-30 → 2024-12-13
+20:18:39  INFO         got 127 rows, kept 107 (after statuscode filter)
+20:18:41  INFO       CDX query www.novinky.cz/clanek/valka-na-ukrajine*  2024-12-14 → 2024-12-27
+20:18:43  INFO         got 185 rows, kept 146 (after statuscode filter)
+20:18:45  INFO       CDX query www.novinky.cz/clanek/valka-na-ukrajine*  2024-12-28 → 2025-01-10
+20:18:49  INFO         got 198 rows, kept 159 (after statuscode filter)
+20:18:51  INFO       CDX query www.novinky.cz/clanek/valka-na-ukrajine*  2025-01-11 → 2025-01-24
+20:19:18  INFO         got 243 rows, kept 194 (after statuscode filter)
+20:19:20  INFO       CDX query www.novinky.cz/clanek/valka-na-ukrajine*  2025-01-25 → 2025-02-07
+20:19:53  INFO         got 194 rows, kept 162 (after statuscode filter)
+20:19:55  INFO       CDX query www.novinky.cz/clanek/valka-na-ukrajine*  2025-02-08 → 2025-02-21
+20:20:03  INFO         got 291 rows, kept 235 (after statuscode filter)
+20:20:05  INFO       CDX query www.novinky.cz/clanek/valka-na-ukrajine*  2025-02-22 → 2025-03-07
+20:20:25  INFO         got 195 rows, kept 160 (after statuscode filter)
+20:20:27  INFO       CDX query www.novinky.cz/clanek/valka-na-ukrajine*  2025-03-08 → 2025-03-21
+20:20:33  INFO         got 275 rows, kept 210 (after statuscode filter)
+20:20:35  INFO       CDX query www.novinky.cz/clanek/valka-na-ukrajine*  2025-03-22 → 2025-04-04
+20:21:11  INFO         got 208 rows, kept 173 (after statuscode filter)
+20:21:13  INFO       CDX query www.novinky.cz/clanek/valka-na-ukrajine*  2025-04-05 → 2025-04-18
+20:21:19  WARNING      CDX 503 — retrying
+20:21:32  INFO         got 442 rows, kept 385 (after statuscode filter)
+20:21:34  INFO       CDX query www.novinky.cz/clanek/valka-na-ukrajine*  2025-04-19 → 2025-05-02
+20:21:38  INFO         got 250 rows, kept 210 (after statuscode filter)
+20:21:40  INFO       CDX query www.novinky.cz/clanek/valka-na-ukrajine*  2025-05-03 → 2025-05-16
+20:21:53  INFO         got 201 rows, kept 185 (after statuscode filter)
+20:21:55  INFO       CDX query www.novinky.cz/clanek/valka-na-ukrajine*  2025-05-17 → 2025-05-30
+20:22:04  INFO         got 237 rows, kept 225 (after statuscode filter)
+20:22:06  INFO       CDX query www.novinky.cz/clanek/valka-na-ukrajine*  2025-05-31 → 2025-06-13
+20:22:11  INFO         got 260 rows, kept 252 (after statuscode filter)
+20:22:13  INFO       CDX query www.novinky.cz/clanek/valka-na-ukrajine*  2025-06-14 → 2025-06-27
+20:22:16  INFO         got 117 rows, kept 117 (after statuscode filter)
+20:22:18  INFO       CDX query www.novinky.cz/clanek/valka-na-ukrajine*  2025-06-28 → 2025-07-11
+20:22:23  INFO         got 461 rows, kept 451 (after statuscode filter)
+20:22:25  INFO       CDX query www.novinky.cz/clanek/valka-na-ukrajine*  2025-07-12 → 2025-07-25
+20:23:04  WARNING      CDX gave non-JSON response
+20:23:17  INFO         got 678 rows, kept 658 (after statuscode filter)
+20:23:19  INFO       CDX query www.novinky.cz/clanek/valka-na-ukrajine*  2025-07-26 → 2025-08-08
+20:23:22  INFO         got 259 rows, kept 234 (after statuscode filter)
+20:23:24  INFO       CDX query www.novinky.cz/clanek/valka-na-ukrajine*  2025-08-09 → 2025-08-22
+20:23:35  INFO         got 275 rows, kept 248 (after statuscode filter)
+20:23:37  INFO       CDX query www.novinky.cz/clanek/valka-na-ukrajine*  2025-08-23 → 2025-09-05
+20:24:32  INFO         got 416 rows, kept 402 (after statuscode filter)
+20:24:34  INFO       CDX query www.novinky.cz/clanek/valka-na-ukrajine*  2025-09-06 → 2025-09-19
+20:24:49  INFO         got 191 rows, kept 186 (after statuscode filter)
+20:24:51  INFO       CDX query www.novinky.cz/clanek/valka-na-ukrajine*  2025-09-20 → 2025-10-03
+20:24:56  INFO         got 256 rows, kept 247 (after statuscode filter)
+20:24:58  INFO       CDX query www.novinky.cz/clanek/valka-na-ukrajine*  2025-10-04 → 2025-10-17
+20:25:10  INFO         got 292 rows, kept 197 (after statuscode filter)
+20:25:12  INFO       CDX query www.novinky.cz/clanek/valka-na-ukrajine*  2025-10-18 → 2025-10-31
+20:25:17  INFO         got 191 rows, kept 189 (after statuscode filter)
+20:25:19  INFO       CDX query www.novinky.cz/clanek/valka-na-ukrajine*  2025-11-01 → 2025-11-14
+20:25:37  INFO         got 192 rows, kept 190 (after statuscode filter)
+20:25:39  INFO       CDX query www.novinky.cz/clanek/valka-na-ukrajine*  2025-11-15 → 2025-11-28
+20:25:42  INFO         got 212 rows, kept 201 (after statuscode filter)
+20:25:44  INFO       CDX query www.novinky.cz/clanek/valka-na-ukrajine*  2025-11-29 → 2025-12-12
+20:26:31  INFO         got 246 rows, kept 238 (after statuscode filter)
+20:26:33  INFO       CDX query www.novinky.cz/clanek/valka-na-ukrajine*  2025-12-13 → 2025-12-26
+20:26:35  INFO         got 171 rows, kept 169 (after statuscode filter)
+20:26:37  INFO       CDX query www.novinky.cz/clanek/valka-na-ukrajine*  2025-12-27 → 2026-01-09
+20:26:50  INFO         got 271 rows, kept 264 (after statuscode filter)
+20:26:52  INFO       CDX query www.novinky.cz/clanek/valka-na-ukrajine*  2026-01-10 → 2026-01-23
+20:26:58  INFO         got 169 rows, kept 165 (after statuscode filter)
+20:27:00  INFO       CDX query www.novinky.cz/clanek/valka-na-ukrajine*  2026-01-24 → 2026-02-06
+20:27:13  INFO         got 171 rows, kept 164 (after statuscode filter)
+20:27:15  INFO       CDX query www.novinky.cz/clanek/valka-na-ukrajine*  2026-02-07 → 2026-02-20
+20:27:32  INFO         got 198 rows, kept 183 (after statuscode filter)
+20:27:34  INFO       CDX query www.novinky.cz/clanek/valka-na-ukrajine*  2026-02-21 → 2026-02-23
+20:27:36  INFO         got 49 rows, kept 44 (after statuscode filter)
+20:27:38  INFO       CDX discovery finished: 99433 new URLs, 99433 total
+20:27:38  INFO       candidate article URLs after filtering: 99411
+20:27:38  INFO       loaded checkpoint: 0 URLs already scraped
+21:06:18  INFO       scraped=25  skipped=100  no_snapshot=13  rejected=18
+21:09:58  INFO       scraped=50  skipped=154  no_snapshot=15  rejected=18
+21:16:34  INFO       scraped=75  skipped=231  no_snapshot=21  rejected=18
+21:21:30  INFO       scraped=100  skipped=300  no_snapshot=27  rejected=18
+21:26:02  INFO       scraped=125  skipped=368  no_snapshot=33  rejected=19
+21:30:05  INFO       scraped=150  skipped=423  no_snapshot=41  rejected=24
+21:32:14  INFO       scraped=175  skipped=437  no_snapshot=44  rejected=24
+21:34:59  INFO       scraped=200  skipped=462  no_snapshot=47  rejected=24
+21:38:25  INFO       scraped=225  skipped=489  no_snapshot=47  rejected=26
+21:40:32  INFO       scraped=250  skipped=504  no_snapshot=47  rejected=26
+21:43:04  INFO       scraped=275  skipped=525  no_snapshot=47  rejected=27
+21:45:05  INFO       scraped=300  skipped=539  no_snapshot=49  rejected=27
+21:46:52  INFO       scraped=325  skipped=555  no_snapshot=49  rejected=27
+21:49:01  INFO       scraped=350  skipped=566  no_snapshot=49  rejected=49
+21:50:51  INFO       scraped=375  skipped=587  no_snapshot=49  rejected=49
+21:52:39  INFO       scraped=400  skipped=603  no_snapshot=49  rejected=49
+21:54:19  INFO       scraped=425  skipped=610  no_snapshot=49  rejected=49
+21:55:31  INFO       scraped=450  skipped=613  no_snapshot=49  rejected=49
+21:57:04  INFO       scraped=475  skipped=620  no_snapshot=49  rejected=49
+21:58:34  INFO       scraped=500  skipped=626  no_snapshot=49  rejected=49
+22:00:22  INFO       scraped=525  skipped=639  no_snapshot=49  rejected=49
+22:01:59  INFO       scraped=550  skipped=652  no_snapshot=49  rejected=49
+22:03:33  INFO       scraped=575  skipped=665  no_snapshot=49  rejected=49
+22:04:56  INFO       scraped=600  skipped=677  no_snapshot=49  rejected=49
+22:06:32  INFO       scraped=625  skipped=691  no_snapshot=49  rejected=49
+22:08:09  INFO       scraped=650  skipped=703  no_snapshot=49  rejected=49
+22:09:52  INFO       scraped=675  skipped=728  no_snapshot=49  rejected=49
+22:59:09  INFO       scraped=700  skipped=762  no_snapshot=52  rejected=49
+23:17:07  INFO       scraped=725  skipped=776  no_snapshot=53  rejected=53
+23:19:01  INFO       scraped=750  skipped=807  no_snapshot=53  rejected=57
+23:20:32  INFO       scraped=775  skipped=828  no_snapshot=53  rejected=57
+23:22:04  INFO       scraped=800  skipped=852  no_snapshot=53  rejected=57
+23:23:58  INFO       scraped=825  skipped=874  no_snapshot=53  rejected=57
+23:25:28  INFO       scraped=850  skipped=886  no_snapshot=53  rejected=58
+23:27:05  INFO       scraped=875  skipped=908  no_snapshot=53  rejected=58
+23:28:42  INFO       scraped=900  skipped=930  no_snapshot=53  rejected=59
+23:31:07  INFO       scraped=925  skipped=983  no_snapshot=53  rejected=60
+23:33:02  INFO       scraped=950  skipped=1019  no_snapshot=53  rejected=67
+23:34:43  INFO       scraped=975  skipped=1054  no_snapshot=53  rejected=67
+23:36:45  INFO       scraped=1000  skipped=1104  no_snapshot=53  rejected=67
+23:38:36  INFO       scraped=1025  skipped=1146  no_snapshot=53  rejected=68
+23:40:39  INFO       scraped=1050  skipped=1198  no_snapshot=53  rejected=68
+23:42:19  INFO       scraped=1075  skipped=1229  no_snapshot=53  rejected=68
+23:44:34  INFO       scraped=1100  skipped=1283  no_snapshot=53  rejected=69
+23:46:49  INFO       scraped=1125  skipped=1338  no_snapshot=53  rejected=69
+23:49:39  INFO       scraped=1150  skipped=1410  no_snapshot=53  rejected=76
+23:51:39  INFO       scraped=1175  skipped=1461  no_snapshot=53  rejected=77
+23:54:07  INFO       scraped=1200  skipped=1532  no_snapshot=53  rejected=78
+23:56:26  INFO       scraped=1225  skipped=1598  no_snapshot=53  rejected=79
+23:59:03  INFO       scraped=1250  skipped=1686  no_snapshot=53  rejected=79
+00:01:25  INFO       scraped=1275  skipped=1745  no_snapshot=53  rejected=79
+00:04:38  INFO       scraped=1300  skipped=1841  no_snapshot=53  rejected=79
+00:07:41  INFO       scraped=1325  skipped=1940  no_snapshot=53  rejected=79
+00:09:47  INFO       scraped=1350  skipped=1993  no_snapshot=53  rejected=79
+00:12:14  INFO       scraped=1375  skipped=2067  no_snapshot=53  rejected=83
+00:14:36  INFO       scraped=1400  skipped=2110  no_snapshot=53  rejected=83
+00:16:25  INFO       scraped=1425  skipped=2145  no_snapshot=53  rejected=83
+00:18:45  INFO       scraped=1450  skipped=2201  no_snapshot=53  rejected=83
+00:20:56  INFO       scraped=1475  skipped=2250  no_snapshot=53  rejected=84
+00:22:39  INFO       scraped=1500  skipped=2283  no_snapshot=53  rejected=85
+00:24:13  INFO       scraped=1525  skipped=2297  no_snapshot=53  rejected=86
+00:26:05  INFO       scraped=1550  skipped=2338  no_snapshot=53  rejected=87
+00:27:38  INFO       scraped=1575  skipped=2359  no_snapshot=53  rejected=87
+00:29:11  INFO       scraped=1600  skipped=2381  no_snapshot=53  rejected=87
+00:30:46  INFO       scraped=1625  skipped=2405  no_snapshot=53  rejected=87
+00:32:36  INFO       scraped=1650  skipped=2438  no_snapshot=54  rejected=87
+00:34:28  INFO       scraped=1675  skipped=2477  no_snapshot=54  rejected=88
+00:36:12  INFO       scraped=1700  skipped=2507  no_snapshot=54  rejected=94
+00:54:34  INFO       scraped=1725  skipped=2550  no_snapshot=55  rejected=94
+01:12:12  INFO       scraped=1750  skipped=2595  no_snapshot=56  rejected=94
+01:13:53  INFO       scraped=1775  skipped=2625  no_snapshot=56  rejected=94
+01:15:54  INFO       scraped=1800  skipped=2669  no_snapshot=56  rejected=95
+01:17:28  INFO       scraped=1825  skipped=2690  no_snapshot=56  rejected=101
+01:19:02  INFO       scraped=1850  skipped=2711  no_snapshot=56  rejected=101
+01:20:15  INFO       scraped=1875  skipped=2720  no_snapshot=56  rejected=101
+01:21:35  INFO       scraped=1900  skipped=2734  no_snapshot=56  rejected=101
+01:22:54  INFO       scraped=1925  skipped=2743  no_snapshot=56  rejected=101
+01:24:18  INFO       scraped=1950  skipped=2758  no_snapshot=56  rejected=101
+01:25:43  INFO       scraped=1975  skipped=2775  no_snapshot=56  rejected=101
+01:27:15  INFO       scraped=2000  skipped=2792  no_snapshot=56  rejected=107
+01:28:46  INFO       scraped=2025  skipped=2817  no_snapshot=56  rejected=107
+01:30:16  INFO       scraped=2050  skipped=2839  no_snapshot=56  rejected=109
+01:31:50  INFO       scraped=2075  skipped=2859  no_snapshot=56  rejected=110
+01:33:21  INFO       scraped=2100  skipped=2888  no_snapshot=56  rejected=110
+01:34:52  INFO       scraped=2125  skipped=2913  no_snapshot=56  rejected=110
+01:36:13  INFO       scraped=2150  skipped=2920  no_snapshot=56  rejected=118
+01:37:27  INFO       scraped=2175  skipped=2926  no_snapshot=56  rejected=119
+01:38:39  INFO       scraped=2200  skipped=2933  no_snapshot=56  rejected=119
+01:39:53  INFO       scraped=2225  skipped=2940  no_snapshot=56  rejected=119
+01:41:16  INFO       scraped=2250  skipped=2950  no_snapshot=56  rejected=120
+01:42:35  INFO       scraped=2275  skipped=2961  no_snapshot=56  rejected=120
+01:43:53  INFO       scraped=2300  skipped=2970  no_snapshot=56  rejected=121
+01:45:09  INFO       scraped=2325  skipped=2981  no_snapshot=56  rejected=121
+01:46:22  INFO       scraped=2350  skipped=2989  no_snapshot=56  rejected=121
+01:47:43  INFO       scraped=2375  skipped=2995  no_snapshot=56  rejected=121
+01:49:09  INFO       scraped=2400  skipped=3007  no_snapshot=56  rejected=121
+01:50:42  INFO       scraped=2425  skipped=3024  no_snapshot=56  rejected=125
+01:51:59  INFO       scraped=2450  skipped=3031  no_snapshot=56  rejected=125
+01:53:19  INFO       scraped=2475  skipped=3045  no_snapshot=56  rejected=126
+01:54:46  INFO       scraped=2500  skipped=3061  no_snapshot=56  rejected=126
+01:56:15  INFO       scraped=2525  skipped=3083  no_snapshot=56  rejected=127
+01:57:50  INFO       scraped=2550  skipped=3102  no_snapshot=56  rejected=127
+01:59:02  INFO       scraped=2575  skipped=3110  no_snapshot=56  rejected=127
+02:00:24  INFO       scraped=2600  skipped=3123  no_snapshot=56  rejected=127
+02:01:53  INFO       scraped=2625  skipped=3145  no_snapshot=56  rejected=127
+02:03:19  INFO       scraped=2650  skipped=3160  no_snapshot=56  rejected=133
+02:04:40  INFO       scraped=2675  skipped=3171  no_snapshot=56  rejected=133
+02:06:03  INFO       scraped=2700  skipped=3181  no_snapshot=56  rejected=134
+02:07:18  INFO       scraped=2725  skipped=3184  no_snapshot=56  rejected=136
+02:08:38  INFO       scraped=2750  skipped=3188  no_snapshot=56  rejected=137
+02:09:48  INFO       scraped=2775  skipped=3190  no_snapshot=56  rejected=137
+02:11:04  INFO       scraped=2800  skipped=3194  no_snapshot=56  rejected=137
+02:12:19  INFO       scraped=2825  skipped=3194  no_snapshot=56  rejected=137
+02:14:09  INFO       scraped=2850  skipped=3239  no_snapshot=56  rejected=137
+02:31:08  INFO       scraped=2875  skipped=3247  no_snapshot=57  rejected=144
+02:32:33  INFO       scraped=2900  skipped=3261  no_snapshot=57  rejected=144
+02:33:59  INFO       scraped=2925  skipped=3272  no_snapshot=57  rejected=144
+02:35:33  INFO       scraped=2950  skipped=3292  no_snapshot=57  rejected=144
+02:36:53  INFO       scraped=2975  skipped=3305  no_snapshot=57  rejected=145
+02:38:21  INFO       scraped=3000  skipped=3318  no_snapshot=57  rejected=146
+02:39:53  INFO       scraped=3025  skipped=3342  no_snapshot=57  rejected=146
+02:41:18  INFO       scraped=3050  skipped=3363  no_snapshot=57  rejected=146
+02:42:48  INFO       scraped=3075  skipped=3379  no_snapshot=57  rejected=153
+02:44:14  INFO       scraped=3100  skipped=3391  no_snapshot=57  rejected=154
+02:45:41  INFO       scraped=3125  skipped=3407  no_snapshot=57  rejected=155
+02:47:05  INFO       scraped=3150  skipped=3424  no_snapshot=57  rejected=155
+02:48:31  INFO       scraped=3175  skipped=3439  no_snapshot=57  rejected=155
+02:50:22  INFO       scraped=3200  skipped=3479  no_snapshot=57  rejected=155
+02:53:18  INFO       scraped=3225  skipped=3558  no_snapshot=58  rejected=161
+02:55:32  INFO       scraped=3250  skipped=3611  no_snapshot=58  rejected=161
+02:57:26  INFO       scraped=3275  skipped=3649  no_snapshot=58  rejected=161
+02:59:30  INFO       scraped=3300  skipped=3700  no_snapshot=58  rejected=162
+03:01:32  INFO       scraped=3325  skipped=3753  no_snapshot=58  rejected=163
+03:03:33  INFO       scraped=3350  skipped=3803  no_snapshot=58  rejected=163
+03:06:08  INFO       scraped=3375  skipped=3876  no_snapshot=58  rejected=164
+03:07:15  INFO       scraped=3400  skipped=3876  no_snapshot=58  rejected=165
+03:08:24  INFO       scraped=3425  skipped=3876  no_snapshot=58  rejected=166
+03:09:57  INFO       scraped=3450  skipped=3896  no_snapshot=58  rejected=166
+03:12:18  INFO       scraped=3475  skipped=3955  no_snapshot=59  rejected=171
+03:14:32  INFO       scraped=3500  skipped=4014  no_snapshot=59  rejected=172
+03:16:32  INFO       scraped=3525  skipped=4059  no_snapshot=59  rejected=174
+03:18:21  INFO       scraped=3550  skipped=4100  no_snapshot=60  rejected=174
+03:19:36  INFO       scraped=3575  skipped=4100  no_snapshot=60  rejected=174
+03:20:57  INFO       scraped=3600  skipped=4104  no_snapshot=60  rejected=174
+03:22:15  INFO       scraped=3625  skipped=4113  no_snapshot=60  rejected=177
+03:23:34  INFO       scraped=3650  skipped=4127  no_snapshot=60  rejected=177
+03:25:17  INFO       scraped=3675  skipped=4160  no_snapshot=60  rejected=178
+03:27:02  INFO       scraped=3700  skipped=4188  no_snapshot=60  rejected=181
+03:28:07  INFO       scraped=3725  skipped=4188  no_snapshot=60  rejected=181
+03:29:14  INFO       scraped=3750  skipped=4188  no_snapshot=60  rejected=183
+03:30:25  INFO       scraped=3775  skipped=4188  no_snapshot=60  rejected=183
+03:32:17  INFO       scraped=3800  skipped=4231  no_snapshot=60  rejected=183
+03:34:20  INFO       scraped=3825  skipped=4282  no_snapshot=60  rejected=190
+03:36:15  INFO       scraped=3850  skipped=4323  no_snapshot=60  rejected=190
+03:38:02  INFO       scraped=3875  skipped=4355  no_snapshot=60  rejected=192
+03:40:04  INFO       scraped=3900  skipped=4400  no_snapshot=60  rejected=192
+03:41:57  INFO       scraped=3925  skipped=4444  no_snapshot=60  rejected=192
+03:43:19  INFO       scraped=3950  skipped=4456  no_snapshot=60  rejected=196
+03:44:31  INFO       scraped=3975  skipped=4456  no_snapshot=60  rejected=196
+03:45:37  INFO       scraped=4000  skipped=4456  no_snapshot=60  rejected=197
+03:46:44  INFO       scraped=4025  skipped=4456  no_snapshot=60  rejected=197
+03:48:20  INFO       scraped=4050  skipped=4478  no_snapshot=60  rejected=202
+03:50:20  INFO       scraped=4075  skipped=4517  no_snapshot=60  rejected=202
+03:51:45  INFO       scraped=4100  skipped=4534  no_snapshot=60  rejected=202
+04:02:34  INFO       scraped=4125  skipped=4560  no_snapshot=62  rejected=203
+04:03:43  INFO       scraped=4150  skipped=4560  no_snapshot=62  rejected=204
+04:04:48  INFO       scraped=4175  skipped=4560  no_snapshot=62  rejected=204
+04:06:22  INFO       scraped=4200  skipped=4582  no_snapshot=62  rejected=205
+04:08:19  INFO       scraped=4225  skipped=4622  no_snapshot=62  rejected=209
+04:09:58  INFO       scraped=4250  skipped=4646  no_snapshot=62  rejected=209
+04:11:26  INFO       scraped=4275  skipped=4667  no_snapshot=62  rejected=209
+04:13:02  INFO       scraped=4300  skipped=4681  no_snapshot=62  rejected=209
+04:14:46  INFO       scraped=4325  skipped=4704  no_snapshot=62  rejected=209
+04:15:57  INFO       scraped=4350  skipped=4704  no_snapshot=62  rejected=212
+04:17:10  INFO       scraped=4375  skipped=4704  no_snapshot=62  rejected=213
+04:18:32  INFO       scraped=4400  skipped=4711  no_snapshot=62  rejected=214
+04:20:19  INFO       scraped=4425  skipped=4730  no_snapshot=62  rejected=216
+04:21:50  INFO       scraped=4450  skipped=4742  no_snapshot=62  rejected=216
+04:23:49  INFO       scraped=4475  skipped=4765  no_snapshot=63  rejected=217
+04:25:40  INFO       scraped=4500  skipped=4780  no_snapshot=63  rejected=219
+04:26:49  INFO       scraped=4525  skipped=4780  no_snapshot=63  rejected=219
+04:28:14  INFO       scraped=4550  skipped=4793  no_snapshot=63  rejected=219
+04:29:50  INFO       scraped=4575  skipped=4799  no_snapshot=63  rejected=226
+04:31:17  INFO       scraped=4600  skipped=4814  no_snapshot=63  rejected=226
+04:32:55  INFO       scraped=4625  skipped=4831  no_snapshot=63  rejected=226
+04:34:19  INFO       scraped=4650  skipped=4839  no_snapshot=63  rejected=227
+04:36:40  INFO       scraped=4675  skipped=4839  no_snapshot=65  rejected=227
+04:37:56  INFO       scraped=4700  skipped=4839  no_snapshot=65  rejected=228
+04:39:47  INFO       scraped=4725  skipped=4856  no_snapshot=65  rejected=229
+04:41:50  INFO       scraped=4750  skipped=4886  no_snapshot=65  rejected=233
+04:43:28  INFO       scraped=4775  skipped=4912  no_snapshot=65  rejected=233
+04:45:07  INFO       scraped=4800  skipped=4929  no_snapshot=65  rejected=233
+04:46:53  INFO       scraped=4825  skipped=4955  no_snapshot=65  rejected=233
+04:48:08  INFO       scraped=4850  skipped=4955  no_snapshot=65  rejected=236
+04:49:13  INFO       scraped=4875  skipped=4955  no_snapshot=65  rejected=236
+04:50:34  INFO       scraped=4900  skipped=4955  no_snapshot=65  rejected=237
+04:52:21  INFO       scraped=4925  skipped=4992  no_snapshot=65  rejected=237
+04:54:27  INFO       scraped=4950  skipped=5038  no_snapshot=65  rejected=237
+04:57:53  INFO       scraped=4975  skipped=5144  no_snapshot=65  rejected=244
+04:59:52  INFO       scraped=5000  skipped=5186  no_snapshot=65  rejected=244
+05:02:26  INFO       scraped=5025  skipped=5254  no_snapshot=65  rejected=246
+05:04:49  INFO       scraped=5050  skipped=5305  no_snapshot=66  rejected=246
+05:07:23  INFO       scraped=5075  skipped=5378  no_snapshot=66  rejected=249
+05:08:32  INFO       scraped=5100  skipped=5378  no_snapshot=66  rejected=249
+05:09:42  INFO       scraped=5125  skipped=5378  no_snapshot=66  rejected=249
+05:10:56  INFO       scraped=5150  skipped=5378  no_snapshot=66  rejected=251
+05:12:09  INFO       scraped=5175  skipped=5378  no_snapshot=66  rejected=251
+05:13:26  INFO       scraped=5200  skipped=5378  no_snapshot=66  rejected=252
+05:15:20  INFO       scraped=5225  skipped=5401  no_snapshot=67  rejected=252
+05:17:30  INFO       scraped=5250  skipped=5436  no_snapshot=69  rejected=260
+05:19:07  INFO       scraped=5275  skipped=5455  no_snapshot=72  rejected=261
+05:20:38  INFO       scraped=5300  skipped=5466  no_snapshot=75  rejected=262
+05:22:17  INFO       scraped=5325  skipped=5486  no_snapshot=78  rejected=264
+05:23:29  INFO       scraped=5350  skipped=5486  no_snapshot=78  rejected=264
+05:24:52  INFO       scraped=5375  skipped=5486  no_snapshot=78  rejected=264
+05:26:09  INFO       scraped=5400  skipped=5491  no_snapshot=78  rejected=266
+05:27:38  INFO       scraped=5425  skipped=5504  no_snapshot=78  rejected=273
+05:29:03  INFO       scraped=5450  skipped=5518  no_snapshot=78  rejected=273
+05:47:30  INFO       scraped=5475  skipped=5536  no_snapshot=79  rejected=273
+05:49:06  INFO       scraped=5500  skipped=5554  no_snapshot=79  rejected=273
+05:50:29  INFO       scraped=5525  skipped=5555  no_snapshot=79  rejected=279
+05:51:39  INFO       scraped=5550  skipped=5555  no_snapshot=80  rejected=279
+05:52:55  INFO       scraped=5575  skipped=5556  no_snapshot=80  rejected=280
+05:54:28  INFO       scraped=5600  skipped=5573  no_snapshot=80  rejected=280
+05:55:58  INFO       scraped=5625  skipped=5587  no_snapshot=81  rejected=284
+05:57:49  INFO       scraped=5650  skipped=5611  no_snapshot=81  rejected=284
+05:59:18  INFO       scraped=5675  skipped=5624  no_snapshot=81  rejected=284
+06:01:02  INFO       scraped=5700  skipped=5644  no_snapshot=81  rejected=284
+06:02:40  INFO       scraped=5725  skipped=5658  no_snapshot=81  rejected=285
+06:03:54  INFO       scraped=5750  skipped=5658  no_snapshot=81  rejected=287
+06:05:06  INFO       scraped=5775  skipped=5658  no_snapshot=81  rejected=288
+06:06:19  INFO       scraped=5800  skipped=5658  no_snapshot=81  rejected=289
+06:07:47  INFO       scraped=5825  skipped=5672  no_snapshot=81  rejected=289
+06:09:26  INFO       scraped=5850  skipped=5686  no_snapshot=81  rejected=291
+06:11:06  INFO       scraped=5875  skipped=5708  no_snapshot=81  rejected=291
+06:12:28  INFO       scraped=5900  skipped=5720  no_snapshot=81  rejected=291
+06:14:04  INFO       scraped=5925  skipped=5746  no_snapshot=81  rejected=291
+06:15:31  INFO       scraped=5950  skipped=5757  no_snapshot=81  rejected=291
+06:17:05  INFO       scraped=5975  skipped=5769  no_snapshot=81  rejected=298
+06:18:12  INFO       scraped=6000  skipped=5769  no_snapshot=81  rejected=300
+06:19:23  INFO       scraped=6025  skipped=5769  no_snapshot=81  rejected=300
+06:20:34  INFO       scraped=6050  skipped=5769  no_snapshot=81  rejected=301
+06:21:44  INFO       scraped=6075  skipped=5769  no_snapshot=81  rejected=302
+06:22:57  INFO       scraped=6100  skipped=5771  no_snapshot=81  rejected=302
+06:24:19  INFO       scraped=6125  skipped=5777  no_snapshot=81  rejected=304
+06:25:37  INFO       scraped=6150  skipped=5781  no_snapshot=81  rejected=304
+06:26:55  INFO       scraped=6175  skipped=5787  no_snapshot=82  rejected=304
+06:28:19  INFO       scraped=6200  skipped=5795  no_snapshot=82  rejected=304
+06:29:38  INFO       scraped=6225  skipped=5802  no_snapshot=82  rejected=304
+06:30:52  INFO       scraped=6250  skipped=5804  no_snapshot=83  rejected=306
+06:32:02  INFO       scraped=6275  skipped=5804  no_snapshot=83  rejected=307
+06:33:12  INFO       scraped=6300  skipped=5804  no_snapshot=83  rejected=307
+06:34:17  INFO       scraped=6325  skipped=5804  no_snapshot=83  rejected=307
+06:35:24  INFO       scraped=6350  skipped=5804  no_snapshot=83  rejected=308
+06:40:54  INFO       scraped=6375  skipped=6053  no_snapshot=83  rejected=310
+07:00:04  INFO       scraped=6400  skipped=6995  no_snapshot=87  rejected=359
+07:25:37  INFO       scraped=6425  skipped=8550  no_snapshot=87  rejected=396
+08:04:08  INFO       scraped=6450  skipped=9565  no_snapshot=89  rejected=417
+08:25:27  INFO       scraped=6475  skipped=10702  no_snapshot=91  rejected=417
+08:49:58  INFO       scraped=6500  skipped=11952  no_snapshot=97  rejected=422
+08:51:04  INFO       scraped=6525  skipped=11952  no_snapshot=97  rejected=422
+08:52:18  INFO       scraped=6550  skipped=11952  no_snapshot=97  rejected=423
+08:53:31  INFO       scraped=6575  skipped=11952  no_snapshot=97  rejected=424
+08:55:59  INFO       scraped=6600  skipped=12017  no_snapshot=97  rejected=426
+09:01:26  INFO       scraped=6625  skipped=12195  no_snapshot=97  rejected=443
+09:04:56  INFO       scraped=6650  skipped=12345  no_snapshot=97  rejected=443
+09:08:04  INFO       scraped=6675  skipped=12465  no_snapshot=97  rejected=443
+09:14:49  INFO       scraped=6700  skipped=12622  no_snapshot=98  rejected=444
+09:19:43  INFO       scraped=6725  skipped=12798  no_snapshot=98  rejected=445
+09:21:28  INFO       scraped=6750  skipped=12840  no_snapshot=98  rejected=446
+09:52:52  INFO       scraped=6775  skipped=12840  no_snapshot=99  rejected=446
+09:54:33  INFO       scraped=6800  skipped=12840  no_snapshot=99  rejected=446
+09:55:41  INFO       scraped=6825  skipped=12840  no_snapshot=99  rejected=446
+09:57:33  INFO       scraped=6850  skipped=12870  no_snapshot=99  rejected=450
+09:59:12  INFO       scraped=6875  skipped=12888  no_snapshot=99  rejected=452
+10:00:59  INFO       scraped=6900  skipped=12917  no_snapshot=99  rejected=452
+10:02:34  INFO       scraped=6925  skipped=12939  no_snapshot=99  rejected=456
+10:03:39  INFO       scraped=6950  skipped=12939  no_snapshot=99  rejected=456
+10:04:45  INFO       scraped=6975  skipped=12939  no_snapshot=99  rejected=457
+10:06:17  INFO       scraped=7000  skipped=12955  no_snapshot=99  rejected=457
+10:08:21  INFO       scraped=7025  skipped=13001  no_snapshot=99  rejected=462
+10:10:03  INFO       scraped=7050  skipped=13036  no_snapshot=99  rejected=462
+10:12:02  INFO       scraped=7075  skipped=13084  no_snapshot=99  rejected=462
+10:13:34  INFO       scraped=7100  skipped=13113  no_snapshot=99  rejected=463
+10:14:45  INFO       scraped=7125  skipped=13113  no_snapshot=99  rejected=464
+10:15:48  INFO       scraped=7150  skipped=13113  no_snapshot=99  rejected=464
+10:17:18  INFO       scraped=7175  skipped=13141  no_snapshot=99  rejected=465
+10:19:18  INFO       scraped=7200  skipped=13202  no_snapshot=99  rejected=465
+10:21:29  INFO       scraped=7225  skipped=13261  no_snapshot=99  rejected=476
+10:24:30  INFO       scraped=7250  skipped=13379  no_snapshot=99  rejected=477
+10:27:01  INFO       scraped=7275  skipped=13458  no_snapshot=100  rejected=477
+10:29:12  INFO       scraped=7300  skipped=13522  no_snapshot=100  rejected=478
+10:30:17  INFO       scraped=7325  skipped=13522  no_snapshot=100  rejected=478
+10:31:23  INFO       scraped=7350  skipped=13522  no_snapshot=100  rejected=478
+10:32:30  INFO       scraped=7375  skipped=13522  no_snapshot=100  rejected=480
+10:33:33  INFO       scraped=7400  skipped=13522  no_snapshot=100  rejected=480
+10:34:53  INFO       scraped=7425  skipped=13533  no_snapshot=100  rejected=481
+10:52:43  INFO       scraped=7450  skipped=13560  no_snapshot=101  rejected=486
+11:28:19  INFO       scraped=7475  skipped=13590  no_snapshot=103  rejected=486
+11:30:00  INFO       scraped=7500  skipped=13617  no_snapshot=104  rejected=486
+11:31:45  INFO       scraped=7525  skipped=13661  no_snapshot=104  rejected=486
+11:32:51  INFO       scraped=7550  skipped=13662  no_snapshot=104  rejected=489
+11:33:57  INFO       scraped=7575  skipped=13662  no_snapshot=104  rejected=489
+11:35:00  INFO       scraped=7600  skipped=13662  no_snapshot=104  rejected=489
+11:36:11  INFO       scraped=7625  skipped=13662  no_snapshot=104  rejected=489
+11:37:17  INFO       scraped=7650  skipped=13663  no_snapshot=104  rejected=491
+13:04:22  INFO       scraped=7675  skipped=13681  no_snapshot=51432  rejected=494
+13:35:25  INFO       scraped=7700  skipped=13690  no_snapshot=51433  rejected=494
+13:36:52  INFO       scraped=7725  skipped=13695  no_snapshot=51433  rejected=494
+13:38:30  INFO       scraped=7750  skipped=13714  no_snapshot=51434  rejected=494
+13:39:49  INFO       scraped=7775  skipped=13719  no_snapshot=51434  rejected=494
+13:41:46  INFO       scraped=7800  skipped=13738  no_snapshot=51435  rejected=494
+13:43:10  INFO       scraped=7825  skipped=13751  no_snapshot=51436  rejected=494
+13:44:42  INFO       scraped=7850  skipped=13769  no_snapshot=51437  rejected=494
+13:46:08  INFO       scraped=7875  skipped=13773  no_snapshot=51437  rejected=494
+13:47:44  INFO       scraped=7900  skipped=13782  no_snapshot=51437  rejected=494
+13:49:07  INFO       scraped=7925  skipped=13790  no_snapshot=51437  rejected=494
+13:50:22  INFO       scraped=7950  skipped=13793  no_snapshot=51438  rejected=494
+13:51:53  INFO       scraped=7975  skipped=13803  no_snapshot=51438  rejected=494
+13:56:03  INFO       scraped=8000  skipped=13815  no_snapshot=51439  rejected=494
+13:57:21  INFO       scraped=8025  skipped=13827  no_snapshot=51439  rejected=494
+13:58:42  INFO       scraped=8050  skipped=13838  no_snapshot=51439  rejected=494
+14:00:00  INFO       scraped=8075  skipped=13847  no_snapshot=51439  rejected=494
+14:01:19  INFO       scraped=8100  skipped=13862  no_snapshot=51439  rejected=494
+14:02:43  INFO       scraped=8125  skipped=13876  no_snapshot=51439  rejected=494
+14:04:18  INFO       scraped=8150  skipped=13898  no_snapshot=51439  rejected=494
+14:05:52  INFO       scraped=8175  skipped=13903  no_snapshot=51439  rejected=494
+14:07:15  INFO       scraped=8200  skipped=13911  no_snapshot=51439  rejected=494
+14:08:33  INFO       scraped=8225  skipped=13923  no_snapshot=51439  rejected=494
+14:09:59  INFO       scraped=8250  skipped=13936  no_snapshot=51439  rejected=494
+14:11:12  INFO       scraped=8275  skipped=13941  no_snapshot=51439  rejected=494
+14:12:22  INFO       scraped=8300  skipped=13946  no_snapshot=51439  rejected=494
+14:14:13  INFO       scraped=8325  skipped=13956  no_snapshot=51440  rejected=494
+14:27:47  INFO       scraped=8350  skipped=13979  no_snapshot=51442  rejected=494
+14:29:07  INFO       scraped=8375  skipped=13986  no_snapshot=51442  rejected=494
+14:30:19  INFO       scraped=8400  skipped=13990  no_snapshot=51442  rejected=494
+14:31:37  INFO       scraped=8425  skipped=13995  no_snapshot=51442  rejected=494
+14:32:56  INFO       scraped=8450  skipped=13999  no_snapshot=51442  rejected=494
+14:34:18  INFO       scraped=8475  skipped=14003  no_snapshot=51442  rejected=494
+14:35:39  INFO       scraped=8500  skipped=14012  no_snapshot=51442  rejected=494
+14:37:10  INFO       scraped=8525  skipped=14022  no_snapshot=51442  rejected=494
+14:38:59  INFO       scraped=8550  skipped=14032  no_snapshot=51442  rejected=494
+14:40:30  INFO       scraped=8575  skipped=14039  no_snapshot=51442  rejected=494
+14:42:16  INFO       scraped=8600  skipped=14040  no_snapshot=51443  rejected=494
+14:50:17  INFO       done.  scraped=8608  skipped=14043  no_snapshot=76266  rejected=494
+14:50:17  INFO       CSV written to: ../../data/novinky_supplement.csv
