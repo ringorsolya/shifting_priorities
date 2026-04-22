@@ -45,6 +45,76 @@ DOCS_DIR = ROOT_DIR / "docs"
 EFI_CATS = {"macroeconomics", "energy"}
 HFI_CATS = {"civil rights", "immigration", "social welfare"}
 
+# ── Date filter: only post-invasion data is research-relevant ──
+MIN_DATE = "2022-01-01"
+
+# ── Country-grouped portal order (illiberal first within each country) ──
+PORTAL_KEY_ORDER = [
+    "mfdnes", "novinky",           # CZ
+    "magyarnemzet", "telex",       # HU
+    "wpolityce", "onet",           # PL
+    "pravda", "aktuality",         # SK
+]
+PORTAL_LABEL_ORDER = [
+    "MF Dnes", "Novinky",
+    "Magyar Nemzet", "Telex",
+    "wPolityce", "Onet",
+    "Pravda", "Aktuality",
+]
+
+# ── Multilingual stopwords ──
+# BERTopic's default stopword list is English-only, which leaves Hungarian,
+# Czech, Polish, and Slovak function words as top keywords (e.g. "ha", "így",
+# "jó"). These lists cover the most frequent closed-class words and common
+# noise tokens, and are passed to CountVectorizer.stop_words.
+STOPWORDS_HU = [
+    "a", "az", "egy", "és", "vagy", "de", "hogy", "mint", "ha", "így", "is",
+    "már", "még", "most", "csak", "nagyon", "nem", "igen", "itt", "ott",
+    "ez", "ezek", "azok", "ő", "ők", "én", "te", "mi", "ti", "ön",
+    "van", "volt", "lesz", "lett", "lenne", "legyen", "kell", "tud", "tudja",
+    "akkor", "amikor", "mert", "miatt", "között", "szerint", "után", "előtt",
+    "pedig", "illetve", "azonban", "vagyis", "tehát", "ugyanis",
+    "nak", "nek", "ra", "re", "ban", "ben", "ból", "ből", "val", "vel",
+    "jó", "rossz", "más", "ilyen", "olyan", "ennyi", "annyi", "minden",
+    "semmi", "valami", "néhány", "sok", "kevés", "több", "kisebb", "nagyobb",
+    "az az", "a a", "az egy", "hogy a", "hogy az", "az amerikai", "a magyar",
+]
+STOPWORDS_CZ = [
+    "a", "i", "o", "u", "z", "ze", "na", "do", "po", "za", "se", "si", "to",
+    "tato", "tento", "ten", "ta", "toto", "tyto", "ti", "ony", "ono", "oni",
+    "je", "jsou", "byl", "byla", "bylo", "byli", "bude", "budou", "být",
+    "ale", "nebo", "ani", "však", "proto", "protože", "aby", "když", "jak",
+    "co", "kdo", "kde", "kdy", "že", "tedy", "také", "již",
+    "jen", "jenom", "právě", "velmi", "více", "méně", "vše", "všechno",
+    "není", "má", "mají", "měl", "může",
+]
+STOPWORDS_PL = [
+    "a", "i", "o", "u", "w", "z", "ze", "na", "do", "po", "za", "od",
+    "ten", "ta", "to", "tego", "tej", "tym", "tych", "ci", "one",
+    "jest", "są", "był", "była", "było", "byli", "będzie", "będą", "być",
+    "ale", "lub", "albo", "czy", "że", "iż", "bo", "bowiem", "więc", "zatem",
+    "jak", "co", "kto", "gdzie", "kiedy", "dlaczego", "jednak", "również",
+    "tylko", "także", "już", "teraz", "oraz", "poprzez", "według",
+    "nie", "tak", "bardzo", "więcej", "mniej", "wszystko", "nic", "coś",
+]
+STOPWORDS_SK = [
+    "a", "i", "o", "u", "z", "zo", "na", "do", "po", "za", "od", "so",
+    "ten", "tá", "to", "toho", "tej", "tom", "tých", "tí", "oni",
+    "je", "sú", "bol", "bola", "bolo", "boli", "bude", "budú", "byť",
+    "ale", "alebo", "ani", "však", "preto", "pretože", "aby", "keď", "ako",
+    "čo", "kto", "kde", "kedy", "že", "teda", "tiež", "už", "iba", "len",
+    "veľmi", "viac", "menej", "všetko", "nič", "niečo", "niekoľko",
+    "nie", "áno", "tak", "takto",
+]
+# Technical/noise tokens common to all corpora
+STOPWORDS_NOISE = [
+    "amp", "nbsp", "quot", "http", "https", "www", "html", "com",
+    "cz", "hu", "pl", "sk", "eu", "usd", "eur", "gmt", "cet",
+]
+ALL_STOPWORDS = sorted(set(
+    STOPWORDS_HU + STOPWORDS_CZ + STOPWORDS_PL + STOPWORDS_SK + STOPWORDS_NOISE
+))
+
 # ── Cleaning ──
 HTML_ENT_RE = re.compile(r"&(?:amp|nbsp|quot|lt|gt|#\d+);?", re.IGNORECASE)
 HTML_TAG_RE = re.compile(r"<[^>]+>")
@@ -186,11 +256,11 @@ def run_topic_model(articles, portal_label, index_name, sentiment,
     embedding_model = SentenceTransformer(
         "paraphrase-multilingual-MiniLM-L12-v2")
 
-    noise_words = ["amp", "nbsp", "quot", "http", "https", "www",
-                   "html", "com", "cz", "hu", "pl", "sk"]
+    # Use the full multilingual stopword set (HU/CZ/PL/SK + technical noise)
+    # so keywords like "ha", "így", "jó", "az amerikai" don't dominate topics.
     vectorizer = CountVectorizer(
         max_features=5000, min_df=2, max_df=0.85,
-        ngram_range=(1, 2), stop_words=noise_words)
+        ngram_range=(1, 2), stop_words=ALL_STOPWORDS)
 
     adaptive_min = max(min_topic_size, len(texts) // 80)
 
