@@ -129,7 +129,7 @@ def filter_articles(rows, index_cats, sentiment):
             title = clean_text((row.get("document_title", "") or ""))
             dt = parse_date(row.get("date", ""))
             full = f"{title}. {text}" if text else title
-            if len(full) > 30 and dt:
+            if len(full) > 30 and dt and dt >= datetime.datetime(2022, 1, 1):
                 articles.append({
                     "text": full,
                     "title": title,
@@ -360,7 +360,7 @@ def main():
     ap = argparse.ArgumentParser(
         description="Topic modelling: EFI/HFI × Positive/Negative per portal")
     ap.add_argument("--portal", type=str, default="")
-    ap.add_argument("--min-docs", type=int, default=30)
+    ap.add_argument("--min-docs", type=int, default=50)
     ap.add_argument("--top-n", type=int, default=8)
     ap.add_argument("--export-json", action="store_true")
     args = ap.parse_args()
@@ -427,7 +427,12 @@ def main():
                   if (e["portal"], e["index"], e["sentiment"])
                   not in processed_keys]
         merged.extend(all_results)
-        merged.sort(key=lambda r: (r["portal"], r["index"], r["sentiment"]))
+        # Sort by country order (CZ, HU, PL, SK), then portal, index, sentiment
+        country_order = {"CZ": 0, "HU": 1, "PL": 2, "SK": 3}
+        portal_country = {v["label"]: v["country"] for v in PORTAL_CONFIG.values()}
+        merged.sort(key=lambda r: (
+            country_order.get(portal_country.get(r["portal"], ""), 9),
+            r["portal"], r["index"], r["sentiment"]))
 
         with open(out_path, "w") as f:
             json.dump(merged, f, ensure_ascii=False, indent=2)

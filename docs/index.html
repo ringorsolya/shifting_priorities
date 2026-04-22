@@ -201,8 +201,25 @@ fetch('topics.json')
     document.getElementById('topic-section').style.display='block';
     const container = document.getElementById('topic-charts');
 
+    // Country lookup for section headers
+    const portalCountry = {
+      'MF Dnes':'CZ','Novinky':'CZ','Magyar Nemzet':'HU','Telex':'HU',
+      'wPolityce':'PL','Onet':'PL','Pravda':'SK','Aktuality':'SK'};
+    const countryNames = {'CZ':'Czech Republic','HU':'Hungary','PL':'Poland','SK':'Slovakia'};
+    let lastCountry = '';
+
     topics.forEach((tm, idx) => {
       if(!tm.topics || !tm.topics.length) return;
+
+      // Insert country header when country changes
+      const cc = portalCountry[tm.portal] || '';
+      if(cc && cc !== lastCountry) {
+        lastCountry = cc;
+        const hdr = document.createElement('h3');
+        hdr.style.cssText = 'margin:30px 0 10px; font-size:16px; color:#7db8d4; border-bottom:1px solid #30363d; padding-bottom:6px;';
+        hdr.textContent = countryNames[cc] || cc;
+        container.appendChild(hdr);
+      }
 
       const wrapper = document.createElement('div');
       wrapper.className = 'chart-card full';
@@ -238,7 +255,25 @@ fetch('topics.json')
           t.keywords = t.keywords || t.words || [];
         });
       }
-      const qFinal = tm.quarters || [];
+
+      // ── Pad quarters so x-axis always starts at 2022-Q1 and ends at max observed quarter ──
+      // Filter out pre-2022 quarters entirely (only post-invasion data is research-relevant)
+      const parseQ = q => { const [y,qn] = q.split('-Q'); return parseInt(y)*4 + parseInt(qn) - 1; };
+      const fmtQ   = n => { const y = Math.floor(n/4); const qn = (n%4)+1; return `${y}-Q${qn}`; };
+      const MIN_Q = parseQ('2022-Q1');
+      const existing = (tm.quarters || []).filter(q => parseQ(q) >= MIN_Q);
+      const maxQ = existing.length ? Math.max(...existing.map(parseQ)) : MIN_Q + 16;
+      const fullQ = [];
+      for (let i = MIN_Q; i <= maxQ; i++) fullQ.push(fmtQ(i));
+      // Re-map topic.quarter_counts to the padded quarter list
+      const oldQ = tm.quarters || [];
+      const qIdxMap = Object.fromEntries(oldQ.map((q,i) => [q, i]));
+      tm.topics.forEach(t => {
+        const src = t.quarter_counts || [];
+        t.quarter_counts = fullQ.map(q => (q in qIdxMap) ? (src[qIdxMap[q]] || 0) : 0);
+      });
+      tm.quarters = fullQ;
+      const qFinal = fullQ;
 
       // Build z-matrix: raw counts + row-% for color
       const zRaw = tm.topics.map(t => t.quarter_counts || []);
