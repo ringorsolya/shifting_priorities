@@ -92,6 +92,12 @@
   <div class="chart-card"><h3>8c. HFI Over Time — PL</h3><div id="chart7-PL" style="height:280px"></div></div>
   <div class="chart-card"><h3>8d. HFI Over Time — SK</h3><div id="chart7-SK" style="height:280px"></div></div>
 </div>
+
+<div id="topic-section" style="display:none; padding: 0 40px 40px;">
+  <h2 style="margin-top:40px; font-size:18px; font-weight:600; color:#e7e9ea;">Topic Models — EFI & HFI by Sentiment</h2>
+  <p style="color:#8b949e; margin:8px 0 20px; font-size:13px;">Dynamic topic modelling (BERTopic) on Ukraine-war articles within EFI/HFI CAP categories, split by sentiment. Heatmaps show topic distribution across quarters; hover for article counts. Click a topic row to see representative article titles.</p>
+  <div id="topic-charts"></div>
+</div>
 <script>
 const L = {
   paper_bgcolor: '#161b22', plot_bgcolor: '#161b22',
@@ -186,6 +192,130 @@ fetch('data.json')
     });
   })
   .catch(e => { document.getElementById('status').textContent = 'Error: ' + e.message; });
+
+// ── Topic models from topics.json (heatmap + representative titles) ──
+fetch('topics.json')
+  .then(r => r.json())
+  .then(topics => {
+    if(!topics.length) return;
+    document.getElementById('topic-section').style.display='block';
+    const container = document.getElementById('topic-charts');
+
+    topics.forEach((tm, idx) => {
+      if(!tm.topics || !tm.topics.length) return;
+
+      const wrapper = document.createElement('div');
+      wrapper.className = 'chart-card full';
+      wrapper.style.marginBottom = '24px';
+
+      const heatId = 'topic-heat-'+idx;
+      const detailId = 'topic-detail-'+idx;
+      wrapper.innerHTML = `
+        <h3 style="font-size:15px">${tm.portal} — ${tm.index} — ${tm.sentiment}
+          <span style="color:#8b949e;font-weight:400"> (n=${tm.n_docs})</span></h3>
+        <div id="${heatId}" style="height:${Math.max(280, tm.topics.length*40+120)}px"></div>
+        <div id="${detailId}" style="margin-top:12px; font-size:12px; color:#8b949e;
+             max-height:0; overflow:hidden; transition:max-height 0.3s ease;"></div>`;
+      container.appendChild(wrapper);
+
+      // Handle both old format (words, topics_over_time) and new format (keywords, quarter_counts)
+      const isNewFmt = !!(tm.quarters && tm.topics[0] && tm.topics[0].quarter_counts);
+      const getKw = t => t.keywords || t.words || [];
+      const quarters = tm.quarters || [];
+      const tLabels = tm.topics.map(t => t.label || getKw(t).slice(0,3).join(' / '));
+
+      // For old format: build quarter_counts from topics_over_time
+      if(!isNewFmt && tm.topics_over_time) {
+        const allQ = [...new Set((tm.topics_over_time||[]).map(e=>e.timestamp))].sort();
+        tm.quarters = allQ;
+        const byTopic = {};
+        (tm.topics_over_time||[]).forEach(e => {
+          if(!byTopic[e.topic_id]) byTopic[e.topic_id] = {};
+          byTopic[e.topic_id][e.timestamp] = e.frequency;
+        });
+        tm.topics.forEach(t => {
+          t.quarter_counts = allQ.map(q => (byTopic[t.id]||{})[q] || 0);
+          t.keywords = t.keywords || t.words || [];
+        });
+      }
+      const qFinal = tm.quarters || [];
+
+      // Build z-matrix: raw counts + row-% for color
+      const zRaw = tm.topics.map(t => t.quarter_counts || []);
+      const zPct = zRaw.map(row => {
+        const tot = row.reduce((a,b) => a+b, 0);
+        return row.map(v => tot > 0 ? Math.round(v/tot*1000)/10 : 0);
+      });
+
+      // Hover: show article count + keywords
+      const hoverText = tm.topics.map((t, ti) =>
+        (t.quarter_counts||[]).map((v, qi) =>
+          `<b>${tLabels[ti]}</b><br>Quarter: ${qFinal[qi]}<br>` +
+          `Articles: ${v}<br>Share: ${zPct[ti][qi]}%<br>` +
+          `Keywords: ${getKw(t).slice(0,5).join(', ')}`
+        )
+      );
+
+      // Cell text: show raw count (skip zeros)
+      const cellText = zRaw.map(row => row.map(v => v > 0 ? String(v) : ''));
+
+      const colorscale = tm.sentiment === 'Negative'
+        ? [[0,'#1a1f2e'],[0.3,'#5c2a2a'],[0.6,'#a34444'],[1,'#e6765a']]
+        : [[0,'#1a1f2e'],[0.3,'#1e3a2a'],[0.6,'#3a7a4e'],[1,'#6aae8e']];
+
+      Plotly.newPlot(heatId, [{
+        z: zPct, x: qFinal, y: tLabels,
+        type: 'heatmap', colorscale: colorscale,
+        text: cellText, texttemplate: '%{text}',
+        textfont: { size: 10, color: '#e7e9ea' },
+        hovertext: hoverText, hoverinfo: 'text',
+        showscale: true,
+        colorbar: { title: '% of topic', titleside: 'right', ticksuffix: '%',
+                    thickness: 12, len: 0.8, tickfont: { size: 9 } },
+      }], {
+        paper_bgcolor: '#161b22', plot_bgcolor: '#161b22',
+        font: { color: '#c9d1d9', size: 11 },
+        xaxis: { tickangle: -45, tickfont: { size: 10 }, gridcolor: '#30363d',
+                 side: 'bottom', title: 'Quarter' },
+        yaxis: { automargin: true, tickfont: { size: 11 }, type: 'category' },
+        margin: { l: 20, r: 100, t: 10, b: 70 },
+      }, C);
+
+      // ── Click handler: show representative titles for the clicked topic row ──
+      const detailDiv = document.getElementById(detailId);
+      document.getElementById(heatId).on('plotly_click', function(data) {
+        const pt = data.points[0];
+        const topicIdx = pt.pointIndex[0];
+        const topic = tm.topics[topicIdx];
+        if(!topic) return;
+
+        const isOpen = detailDiv.style.maxHeight !== '0px';
+        if(isOpen && detailDiv.dataset.lastTopic == topicIdx) {
+          detailDiv.style.maxHeight = '0px';
+          return;
+        }
+        detailDiv.dataset.lastTopic = topicIdx;
+
+        let html = `<div style="padding:12px; background:#0d1117; border-radius:6px; border:1px solid #30363d;">
+          <div style="font-size:13px; font-weight:600; color:#c9d1d9; margin-bottom:6px;">
+            ${topic.label} <span style="color:#8b949e;font-weight:400">(${topic.count} articles)</span>
+          </div>
+          <div style="margin-bottom:8px; color:#7db8d4;">
+            Keywords: ${(topic.keywords||topic.words||[]).join(', ')}
+          </div>
+          <div style="font-weight:600; color:#c9d1d9; margin-bottom:4px;">Representative articles:</div>`;
+
+        (topic.representative_titles || []).forEach(t => {
+          html += `<div style="padding:3px 0; color:#adbac7; border-bottom:1px solid #21262d;">• ${t}</div>`;
+        });
+
+        html += '</div>';
+        detailDiv.innerHTML = html;
+        detailDiv.style.maxHeight = '400px';
+      });
+    });
+  })
+  .catch(e => console.log('No topics.json yet:', e.message));
 </script>
 </body>
 </html>

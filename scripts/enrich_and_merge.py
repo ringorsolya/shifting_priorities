@@ -242,7 +242,7 @@ def run_ner(rows: list[dict], indices: list[int], lang_code: str,
     t0 = time.time()
     for j, doc in enumerate(nlp.pipe(texts, batch_size=batch_size)):
         ner_str, nerw_str = format_ner(doc)
-        rows[indices[j]]["document_ner"] = ner_str
+        rows[indices[j]]["document_ner"] = ner_str if ner_str else "NONE"
         rows[indices[j]]["document_nerw"] = nerw_str
         if (j + 1) <= 3 or (j + 1) % 1000 == 0:
             log.info(f"    NER: {j+1}/{len(texts)}  "
@@ -563,16 +563,13 @@ def enrich_portal(portal: str, step: str, limit: int = 0,
              f"({n_ukraine/total*100:.1f}%) match keywords")
 
     # ── Step 3: CAP + Sentiment (only Ukraine articles) ──
-    if step in ("classify", "all"):
+    if step in ("classify", "cap", "all"):
         # Filter to Ukraine articles that still need classification
         needs_cap = [i for i in ukraine_idx
                      if not rows[i].get("document_cap_major_label")]
-        needs_sent = [i for i in ukraine_idx
-                      if not rows[i].get("document_sentiment3")]
 
         if limit:
             needs_cap = needs_cap[:limit]
-            needs_sent = needs_sent[:limit]
 
         if needs_cap:
             log.info(f"  Step 3a: CAP Major on {len(needs_cap)} "
@@ -588,6 +585,13 @@ def enrich_portal(portal: str, step: str, limit: int = 0,
             write_csv(supplement_path, fieldnames, rows)
             log.info(f"  saved after CAP: {supplement_path.name}")
             changed = False
+
+    if step in ("classify", "sentiment", "all"):
+        needs_sent = [i for i in ukraine_idx
+                      if not rows[i].get("document_sentiment3")]
+
+        if limit:
+            needs_sent = needs_sent[:limit]
 
         if needs_sent:
             log.info(f"  Step 3b: Sentiment3 on {len(needs_sent)} "
@@ -611,8 +615,9 @@ def main():
     ap.add_argument("--portal", type=str, default="",
                     help="process only this portal")
     ap.add_argument("--step", type=str, default="all",
-                    choices=["all", "ner", "classify"],
-                    help="ner=NER only, classify=CAP+Sentiment only, "
+                    choices=["all", "ner", "classify", "sentiment", "cap"],
+                    help="ner=NER only, classify=CAP+Sentiment, "
+                         "sentiment=Sentiment only, cap=CAP only, "
                          "all=full pipeline")
     ap.add_argument("--limit", type=int, default=0,
                     help="max rows to process per portal (0 = all)")
