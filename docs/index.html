@@ -201,15 +201,34 @@ fetch('topics.json')
     document.getElementById('topic-section').style.display='block';
     const container = document.getElementById('topic-charts');
 
-    // Country lookup for section headers
+    // Country lookup for section headers + sorting
     const portalCountry = {
       'MF Dnes':'CZ','Novinky':'CZ','Magyar Nemzet':'HU','Telex':'HU',
       'wPolityce':'PL','Onet':'PL','Pravda':'SK','Aktuality':'SK'};
+    const countryOrder = {'CZ':0,'HU':1,'PL':2,'SK':3};
+    const portalOrder = {'MF Dnes':0,'Novinky':1,'Magyar Nemzet':2,'Telex':3,
+      'wPolityce':4,'Onet':5,'Pravda':6,'Aktuality':7};
     const countryNames = {'CZ':'Czech Republic','HU':'Hungary','PL':'Poland','SK':'Slovakia'};
+
+    // Sort by country order, then portal, then index, then sentiment
+    topics.sort((a,b) => {
+      const ca = countryOrder[portalCountry[a.portal]] ?? 9;
+      const cb = countryOrder[portalCountry[b.portal]] ?? 9;
+      if(ca !== cb) return ca - cb;
+      const pa = portalOrder[a.portal] ?? 9;
+      const pb = portalOrder[b.portal] ?? 9;
+      if(pa !== pb) return pa - pb;
+      if(a.index !== b.index) return a.index < b.index ? -1 : 1;
+      return a.sentiment < b.sentiment ? -1 : 1;
+    });
+
+    // Filter out subsets with too few docs (< 50)
+    const MIN_DOCS = 50;
     let lastCountry = '';
 
     topics.forEach((tm, idx) => {
       if(!tm.topics || !tm.topics.length) return;
+      if(tm.n_docs < MIN_DOCS) return;
 
       // Insert country header when country changes
       const cc = portalCountry[tm.portal] || '';
