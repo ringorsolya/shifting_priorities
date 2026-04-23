@@ -216,26 +216,29 @@ fetch('data.json')
         marker:{color: pd.color},
       }], {...L, margin:{...L.margin,l:220}, showlegend:false,
            yaxis:{...L.yaxis,type:'category'},
-           xaxis:{...L.xaxis,title:'Share (%)'}}, C);
+           xaxis:{...L.xaxis,title:'Share (%)',range:[0,100]}}, C);
     });
 
-    // Chart 5c: CAP over time per portal (individual line charts)
+    // Chart 5c: CAP over time per portal (100% stacked area)
+    const areaColors = ['#2563eb','#dc2626','#16a34a','#d97706','#7c3aed',
+                        '#db2777','#0891b2','#ca8a04','#94a3b8'];
     ['CZ','HU','PL','SK'].forEach(country => {
       const countryData = data.chart5c[country] || {};
-      Object.entries(countryData).forEach(([portal, series]) => {
+      Object.entries(countryData).forEach(([portal, pd]) => {
         const divId = 'chart5c-'+portalIdMap[portal];
         if(!document.getElementById(divId)) return;
-        const traces = [];
-        let ci = 0;
-        Object.entries(series).forEach(([cat, d]) => {
-          traces.push({ x:d.months, y:d.values, type:'scatter', mode:'lines',
-            name: cat.charAt(0).toUpperCase()+cat.slice(1),
-            line:{width:2, color:capColors[ci%capColors.length]} });
-          ci++;
-        });
+        const traces = pd.series.map((s, i) => ({
+          x: pd.months, y: s.values,
+          type:'scatter', mode:'lines',
+          name: s.cat,
+          stackgroup:'one', groupnorm:'percent',
+          line:{width:0.5, color: areaColors[i % areaColors.length]},
+          fillcolor: areaColors[i % areaColors.length] + '99',
+        }));
         Plotly.newPlot(divId, traces,
-          {...Ltime, yaxis:{...Ltime.yaxis,title:'Share (%)'},
-           legend:{...L.legend,font:{size:9}}}, C);
+          {...Ltime,
+           yaxis:{...Ltime.yaxis, title:'Share (%)', range:[0,100]},
+           legend:{...L.legend, font:{size:9}}}, C);
       });
     });
 
