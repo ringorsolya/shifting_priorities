@@ -68,16 +68,23 @@
   <div class="chart-card"><h3>3b. Monthly Ukraine Volume — Hungary</h3><div id="chart3-HU" style="height:300px"></div></div>
   <div class="chart-card"><h3>3c. Monthly Ukraine Volume — Poland</h3><div id="chart3-PL" style="height:300px"></div></div>
   <div class="chart-card"><h3>3d. Monthly Ukraine Volume — Slovakia</h3><div id="chart3-SK" style="height:300px"></div></div>
+  <div class="chart-card"><h3>3e. Total vs War Articles — Czech Republic</h3><div class="chart-desc">Monthly total (area) vs Ukraine-war (line) article counts per portal</div><div id="chart3b-CZ" style="height:320px"></div></div>
+  <div class="chart-card"><h3>3f. Total vs War Articles — Hungary</h3><div class="chart-desc">Monthly total (area) vs Ukraine-war (line) article counts per portal</div><div id="chart3b-HU" style="height:320px"></div></div>
+  <div class="chart-card"><h3>3g. Total vs War Articles — Poland</h3><div class="chart-desc">Monthly total (area) vs Ukraine-war (line) article counts per portal</div><div id="chart3b-PL" style="height:320px"></div></div>
+  <div class="chart-card"><h3>3h. Total vs War Articles — Slovakia</h3><div class="chart-desc">Monthly total (area) vs Ukraine-war (line) article counts per portal</div><div id="chart3b-SK" style="height:320px"></div></div>
   <div class="chart-card full">
     <h3>4. Sentiment Distribution — Ukraine-War Articles by Portal</h3>
     <div class="chart-desc">Grouped bar: Negative / Neutral / Positive share per portal</div>
     <div id="chart4" style="height:400px"></div>
   </div>
-  <div class="chart-card">
-    <h3>5. CAP Topic Distribution — Ukraine-War Articles</h3>
-    <div class="chart-desc">Top 12 policy topics (CAP Major classification)</div>
-    <div id="chart5" style="height:400px"></div>
-  </div>
+  <div class="chart-card"><h3>5a. CAP Distribution — Czech Republic</h3><div class="chart-desc">Policy topic shares per portal (excl. No Policy Content)</div><div id="chart5b-CZ" style="height:380px"></div></div>
+  <div class="chart-card"><h3>5b. CAP Distribution — Hungary</h3><div id="chart5b-HU" style="height:380px"></div></div>
+  <div class="chart-card"><h3>5c. CAP Distribution — Poland</h3><div id="chart5b-PL" style="height:380px"></div></div>
+  <div class="chart-card"><h3>5d. CAP Distribution — Slovakia</h3><div id="chart5b-SK" style="height:380px"></div></div>
+  <div class="chart-card"><h3>5e. CAP Over Time — Czech Republic</h3><div class="chart-desc">Top policy categories share (%) over time</div><div id="chart5c-CZ" style="height:320px"></div></div>
+  <div class="chart-card"><h3>5f. CAP Over Time — Hungary</h3><div id="chart5c-HU" style="height:320px"></div></div>
+  <div class="chart-card"><h3>5g. CAP Over Time — Poland</h3><div id="chart5c-PL" style="height:320px"></div></div>
+  <div class="chart-card"><h3>5h. CAP Over Time — Slovakia</h3><div id="chart5c-SK" style="height:320px"></div></div>
   <div class="chart-card">
     <h3>6. Mean EFI & HFI by Portal</h3>
     <div class="chart-desc">Economic Focus (EFI) and Humanitarian Focus (HFI) indices</div>
@@ -165,12 +172,73 @@ fetch('data.json')
       { x:c4.portals, y:c4.positive, type:'bar', name:'Positive', marker:{color:'#6aae8e'} },
     ], {...L, barmode:'group', yaxis:{...L.yaxis,title:'Share (%)'}}, C);
 
-    // Chart 5: CAP topics
-    const c5 = data.chart5;
-    Plotly.newPlot('chart5', [{
-      y:c5.categories.slice().reverse(), x:c5.counts.slice().reverse(),
-      type:'bar', orientation:'h', marker:{color:'#7db8d4'},
-    }], {...L, margin:{...L.margin,l:220}, yaxis:{...L.yaxis, type:'category'}}, C);
+    // Chart 3b: Total vs Ukraine per portal by country
+    const portalCountryMap = {};
+    Object.entries(data.chart3b||{}).forEach(([c,portals]) => {
+      Object.keys(portals).forEach(p => { portalCountryMap[p] = c; });
+    });
+    ['CZ','HU','PL','SK'].forEach(c => {
+      const traces = [];
+      Object.entries(data.chart3b[c]||{}).forEach(([p,d]) => {
+        // Total as area
+        traces.push({ x:d.months, y:d.total, type:'scatter', mode:'lines',
+          fill:'tozeroy', name:p+' (total)',
+          line:{color:d.color, width:1, dash:d.dash},
+          fillcolor: d.color === '#c0675a' ? 'rgba(192,103,90,0.12)' : 'rgba(106,159,189,0.12)',
+          legendgroup:p });
+        // Ukraine as solid line
+        traces.push({ x:d.months, y:d.ukraine, type:'scatter', mode:'lines',
+          name:p+' (war)', line:{color:d.color, width:2.5, dash:d.dash},
+          legendgroup:p });
+      });
+      Plotly.newPlot('chart3b-'+c, traces,
+        {...Ltime, yaxis:{...Ltime.yaxis,title:'Articles'}, legend:{...L.legend,font:{size:9}}}, C);
+    });
+
+    // Chart 5b: CAP per portal by country (grouped bar)
+    const capColors = ['#7db8d4','#c0675a','#6aae8e','#c9a560','#a78bfa','#f472b6',
+                       '#34d399','#f59e0b','#60a5fa','#e879f9','#fb923c','#94a3b8'];
+    const pCountryMap = {'MF Dnes':'CZ','Novinky':'CZ','Magyar Nemzet':'HU','Telex':'HU',
+      'wPolityce':'PL','Onet':'PL','Pravda':'SK','Aktuality':'SK'};
+    ['CZ','HU','PL','SK'].forEach(country => {
+      const countryPortals = Object.keys(data.chart5b||{}).filter(p =>
+        pCountryMap[p] === country);
+      if(!countryPortals.length) return;
+      const cats = (data.chart5b[countryPortals[0]]||{}).categories || [];
+      const traces = countryPortals.map(p => ({
+        y: cats.slice().reverse(),
+        x: (data.chart5b[p]||{}).shares.slice().reverse(),
+        type:'bar', orientation:'h', name:p,
+        marker:{color: data.chart5b[p].color},
+        text: (data.chart5b[p]||{}).shares.slice().reverse().map(v => v+'%'),
+        textposition:'outside', textfont:{size:9},
+      }));
+      Plotly.newPlot('chart5b-'+country, traces,
+        {...L, barmode:'group', margin:{...L.margin,l:200},
+         yaxis:{...L.yaxis,type:'category'}, xaxis:{...L.xaxis,title:'Share (%)'}}, C);
+    });
+
+    // Chart 5c: CAP over time per portal by country
+    const portalDash = {'MF Dnes':'solid','Magyar Nemzet':'solid','wPolityce':'solid',
+      'Pravda':'solid','Novinky':'dash','Telex':'dash','Onet':'dash','Aktuality':'dash'};
+    ['CZ','HU','PL','SK'].forEach(country => {
+      const countryData = data.chart5c[country] || {};
+      const traces = [];
+      let ci = 0;
+      Object.entries(countryData).forEach(([portal, series]) => {
+        Object.entries(series).forEach(([cat, d]) => {
+          traces.push({ x:d.months, y:d.values, type:'scatter', mode:'lines',
+            name: portal+': '+cat.charAt(0).toUpperCase()+cat.slice(1),
+            line:{width:1.5, dash: portalDash[portal]||'solid',
+                  color:capColors[ci%capColors.length]},
+            legendgroup:portal+'-'+cat });
+          ci++;
+        });
+      });
+      Plotly.newPlot('chart5c-'+country, traces,
+        {...Ltime, yaxis:{...Ltime.yaxis,title:'Share (%)'},
+         legend:{...L.legend,font:{size:8}}}, C);
+    });
 
     // Chart 8: GFI/HFI bar
     const c8 = data.chart8;
