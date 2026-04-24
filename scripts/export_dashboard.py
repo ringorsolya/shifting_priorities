@@ -345,6 +345,19 @@ def load_and_compute():
             series.append({"cat": "Other", "values": other_vals})
             chart5c[c][p] = {"months": valid_months, "series": series}
 
+    # ── Supplement transition points (where original corpus ends) ──
+    # These mark where scraping methodology changed (all sections → news only)
+    supp_transitions = {
+        "MF Dnes": "2024-04",
+        "Novinky": "2024-03",
+        "Magyar Nemzet": "2023-03",
+        "Telex": "2024-03",
+        "wPolityce": "2023-08",
+        "Onet": None,  # supplement-only portal
+        "Pravda": "2024-04",
+        "Aktuality": "2024-04",
+    }
+
     load_time = round(time.time() - t0, 1)
 
     return {
@@ -360,6 +373,7 @@ def load_and_compute():
         "chart3b": chart3b, "chart4": chart4, "chart5": chart5,
         "chart5b": chart5b, "chart5c": chart5c,
         "chart6": chart6, "chart7": chart7, "chart8": chart8,
+        "supp_transitions": supp_transitions,
     }
 
 

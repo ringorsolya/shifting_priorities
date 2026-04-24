@@ -188,18 +188,38 @@ fetch('data.json')
     // Chart 3b: Total vs Ukraine per portal (individual cards)
     const portalIdMap = {'MF Dnes':'MFDnes','Novinky':'Novinky','Magyar Nemzet':'MagyarNemzet',
       'Telex':'Telex','wPolityce':'wPolityce','Onet':'Onet','Pravda':'Pravda','Aktuality':'Aktuality'};
+    const suppTrans = data.supp_transitions || {};
     ['CZ','HU','PL','SK'].forEach(c => {
       Object.entries(data.chart3b[c]||{}).forEach(([p,d]) => {
         const divId = 'chart3b-'+portalIdMap[p];
         if(!document.getElementById(divId)) return;
-        Plotly.newPlot(divId, [
+        // Ukraine share %
+        const share = d.months.map((_,i) => d.total[i]>0 ? Math.round(1000*d.ukraine[i]/d.total[i])/10 : 0);
+        const traces = [
           { x:d.months, y:d.total, type:'scatter', mode:'lines', fill:'tozeroy',
             name:'Total', line:{color:'#7f8c8d',width:1},
             fillcolor:'rgba(127,140,141,0.15)' },
           { x:d.months, y:d.ukraine, type:'scatter', mode:'lines', fill:'tozeroy',
             name:'Ukraine-war', line:{color:d.color,width:2.5},
             fillcolor: d.color==='#c0675a' ? 'rgba(192,103,90,0.2)' : 'rgba(106,159,189,0.2)' },
-        ], {...Ltime, yaxis:{...Ltime.yaxis,title:'Articles'},showlegend:true}, C);
+          { x:d.months, y:share, type:'scatter', mode:'lines',
+            name:'Ukraine %', line:{color:'#c9a560',dash:'dash',width:1.5}, yaxis:'y2' },
+        ];
+        const layout = {...Ltime, yaxis:{...Ltime.yaxis,title:'Articles'},
+          yaxis2:{overlaying:'y',side:'right',title:'Ukraine %',range:[0,60],
+            titlefont:{color:'#c9a560',size:10},tickfont:{color:'#c9a560',size:9},
+            gridcolor:'rgba(0,0,0,0)'},
+          showlegend:true, legend:{...L.legend,font:{size:9}},
+          shapes:[], annotations:[]};
+        // Add transition line
+        const trans = suppTrans[p];
+        if(trans) {
+          layout.shapes.push({type:'line',x0:trans,x1:trans,y0:0,y1:1,yref:'paper',
+            line:{color:'#475569',width:1,dash:'dot'}});
+          layout.annotations.push({x:trans,y:1,yref:'paper',text:'supplement →',
+            showarrow:false,font:{size:8,color:'#64748b'},xanchor:'left',yanchor:'top'});
+        }
+        Plotly.newPlot(divId, traces, layout, C);
       });
     });
 
