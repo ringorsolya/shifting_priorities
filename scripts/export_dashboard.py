@@ -83,8 +83,11 @@ def load_and_compute():
     monthly_all = Counter()
     monthly_ukr = Counter()
     monthly_portal_ukr = Counter()
+    monthly_portal_total = Counter()          # NEW: total articles per portal-month
     sent_portal = defaultdict(lambda: [0, 0, 0])
     cap_counts = Counter()
+    cap_by_portal = defaultdict(Counter)      # NEW: CAP per portal
+    cap_by_portal_month = defaultdict(Counter) # NEW: CAP per portal-month
     idx_data = defaultdict(lambda: [0, 0, 0])
     portal_set = set()
     n_total = 0
@@ -102,11 +105,16 @@ def load_and_compute():
         seen_ids.add(did)
         if portal not in PORTAL_CONFIG:
             return
+        # Skip empty/NA articles (scraping artifacts)
+        title = (row.get("document_title", "") or "").strip()
+        if not title or title == "NA":
+            return
 
         ym = date_str[:7]
         n_total += 1
         total_by_portal[portal] += 1
         monthly_all[ym] += 1
+        monthly_portal_total[(portal, ym)] += 1  # NEW
         portal_set.add(portal)
 
         nerw = row.get("document_nerw", "") or ""
@@ -123,6 +131,8 @@ def load_and_compute():
 
             if cap and cap != "na":
                 cap_counts[cap] += 1
+                cap_by_portal[portal][cap] += 1          # NEW
+                cap_by_portal_month[(portal, ym)][cap] += 1  # NEW
                 key = (portal, ym)
                 idx_data[key][0] += 1
                 if cap in EFI_CATS:
@@ -195,9 +205,15 @@ def load_and_compute():
         for p in PORTAL_ORDER:
             if PORTAL_CONFIG.get(p, {}).get("country") != c:
                 continue
+            # Share (%) instead of absolute count
+            shares = []
+            for m in months:
+                ukr = monthly_portal_ukr.get((p, m), 0)
+                tot = monthly_portal_total.get((p, m), 0)
+                shares.append(round(100 * ukr / tot, 1) if tot >= 10 else None)
             chart3[c][p] = {
                 "months": months,
-                "values": [monthly_portal_ukr.get((p, m), 0) for m in months],
+                "values": shares,
                 "color": PORTAL_CONFIG[p]["color"],
                 "dash": "solid" if PORTAL_CONFIG[p]["illiberal"] else "dash",
             }
@@ -251,6 +267,83 @@ def load_and_compute():
             chart8["hfi"].append(round(hs / ts2, 4))
             chart8["colors"].append(PORTAL_CONFIG[p]["color"])
 
+    # ── NEW: chart3b — monthly total + Ukraine per portal, grouped by country ──
+    chart3b = {}
+    for c in COUNTRIES:
+        chart3b[c] = {}
+        for p in PORTAL_ORDER:
+            if PORTAL_CONFIG.get(p, {}).get("country") != c:
+                continue
+            chart3b[c][p] = {
+                "months": months,
+                "total": [monthly_portal_total.get((p, m), 0) for m in months],
+                "ukraine": [monthly_portal_ukr.get((p, m), 0) for m in months],
+                "color": PORTAL_CONFIG[p]["color"],
+                "dash": "solid" if PORTAL_CONFIG[p]["illiberal"] else "dash",
+            }
+
+    # ── NEW: chart5b — CAP distribution per portal (no "no policy content") ──
+    # Get top CAP categories across all portals (excl. no policy content)
+    filtered_caps = {k: v for k, v in cap_counts.items()
+                     if k != "no policy content"}
+    top_cap_names = [c[0] for c in sorted(filtered_caps.items(),
+                     key=lambda x: -x[1])[:12]]
+
+    chart5b = {}
+    for p in PORTAL_ORDER:
+        pcap = cap_by_portal.get(p, {})
+        ptotal = sum(v for k, v in pcap.items() if k != "no policy content")
+        if ptotal == 0:
+            continue
+        chart5b[p] = {
+            "categories": [c.title() for c in top_cap_names],
+            "shares": [round(100 * pcap.get(c, 0) / ptotal, 1)
+                       for c in top_cap_names],
+            "counts": [pcap.get(c, 0) for c in top_cap_names],
+            "color": PORTAL_CONFIG[p]["color"],
+        }
+
+    # ── NEW: chart5c — CAP stacked area per portal ──
+    # Top categories + "Other" bucket, aligned months, for 100% stacked area
+    chart5c = {}
+    for c in COUNTRIES:
+        chart5c[c] = {}
+        for p in PORTAL_ORDER:
+            if PORTAL_CONFIG.get(p, {}).get("country") != c:
+                continue
+            pcap = cap_by_portal.get(p, {})
+            ptop = [k for k, v in sorted(pcap.items(), key=lambda x: -x[1])
+                    if k != "no policy content"][:8]
+            if not ptop:
+                continue
+            # Find months with enough data
+            valid_months = []
+            for m in months:
+                mc = cap_by_portal_month.get((p, m), {})
+                mtotal = sum(v2 for k2, v2 in mc.items()
+                             if k2 != "no policy content")
+                if mtotal >= 10:
+                    valid_months.append(m)
+            if not valid_months:
+                continue
+            series = []
+            for cat in ptop:
+                vals = []
+                for m in valid_months:
+                    mc = cap_by_portal_month.get((p, m), {})
+                    mtotal = sum(v2 for k2, v2 in mc.items()
+                                 if k2 != "no policy content")
+                    vals.append(round(100 * mc.get(cat, 0) / mtotal, 1)
+                                if mtotal > 0 else 0)
+                series.append({"cat": cat.title(), "values": vals})
+            # Add "Other" = 100% - sum(top cats)
+            other_vals = []
+            for mi in range(len(valid_months)):
+                top_sum = sum(s["values"][mi] for s in series)
+                other_vals.append(round(max(0, 100 - top_sum), 1))
+            series.append({"cat": "Other", "values": other_vals})
+            chart5c[c][p] = {"months": valid_months, "series": series}
+
     load_time = round(time.time() - t0, 1)
 
     return {
@@ -263,8 +356,9 @@ def load_and_compute():
             "exported_at": time.strftime("%Y-%m-%d %H:%M"),
         },
         "chart1": chart1, "chart2": chart2, "chart3": chart3,
-        "chart4": chart4, "chart5": chart5, "chart6": chart6,
-        "chart7": chart7, "chart8": chart8,
+        "chart3b": chart3b, "chart4": chart4, "chart5": chart5,
+        "chart5b": chart5b, "chart5c": chart5c,
+        "chart6": chart6, "chart7": chart7, "chart8": chart8,
     }
 
 
