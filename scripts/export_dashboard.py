@@ -105,9 +105,10 @@ def load_and_compute():
         seen_ids.add(did)
         if portal not in PORTAL_CONFIG:
             return
-        # Skip empty/NA articles (scraping artifacts)
+        # Skip scraping artifacts: NA-titled articles in MF Dnes (62K empty stubs)
+        # Other portals (e.g. Telex) have NA titles but valid text — keep those
         title = (row.get("document_title", "") or "").strip()
-        if not title or title == "NA":
+        if (not title or title == "NA") and portal == "MF Dnes":
             return
 
         ym = date_str[:7]
