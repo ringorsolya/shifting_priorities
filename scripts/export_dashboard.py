@@ -145,7 +145,22 @@ def load_and_compute():
             if si is not None:
                 sent_portal[portal][si] += 1
 
-    # Load originals
+    # Load supplements FIRST (they have fresher/more complete annotations)
+    for sfile in sorted(DATA_DIR.glob("*_supplement.csv")):
+        stem = sfile.stem.replace("_supplement", "")
+        portal_name = SUPPLEMENT_PORTAL_MAP.get(stem)
+        if not portal_name:
+            continue
+        count = 0
+        with open(sfile, "r", encoding="utf-8") as f:
+            for row in csv.DictReader(f):
+                if not _in_date_range(row.get("date", "")):
+                    continue
+                process_row(row, portal_name)
+                count += 1
+        print(f"  [OK] {sfile.name}: {count:,}")
+
+    # Load originals (dedup skips rows already seen in supplements)
     for fname, portal_name in ORIGINAL_FILES.items():
         path = ROOT_DIR / fname
         if not path.exists():
@@ -160,21 +175,6 @@ def load_and_compute():
                 process_row(row, p)
                 count += 1
         print(f"  [OK] {fname}: {count:,}")
-
-    # Load supplements
-    for sfile in sorted(DATA_DIR.glob("*_supplement.csv")):
-        stem = sfile.stem.replace("_supplement", "")
-        portal_name = SUPPLEMENT_PORTAL_MAP.get(stem)
-        if not portal_name:
-            continue
-        count = 0
-        with open(sfile, "r", encoding="utf-8") as f:
-            for row in csv.DictReader(f):
-                if not _in_date_range(row.get("date", "")):
-                    continue
-                process_row(row, portal_name)
-                count += 1
-        print(f"  [OK] {sfile.name}: {count:,}")
 
     print(f"  Total: {n_total:,} articles, {n_ukraine:,} ukraine")
 

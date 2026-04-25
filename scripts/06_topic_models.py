@@ -130,7 +130,7 @@ PORTAL_CONFIG = {
     "magyarnemzet": {"files": ["HU_M_magyarnemzet_document_level_with_preds.csv"],
                      "suppl": "data/magyarnemzet_supplement.csv",
                      "label": "Magyar Nemzet", "country": "HU"},
-    "telex":        {"files": [],
+    "telex":        {"files": ["HU_M_indextelex_document_level_with_preds.csv"],
                      "suppl": "data/telex_supplement.csv",
                      "label": "Telex", "country": "HU"},
     "wpolityce":    {"files": ["PL_M_wpolityce_document_level_with_preds.csv"],
@@ -156,6 +156,7 @@ def clean_text(text: str) -> str:
 
 def load_portal_articles(portal_key: str) -> list[dict]:
     config = PORTAL_CONFIG[portal_key]
+    label = config["label"]
     rows = []
     for fname in config["files"]:
         fpath = ROOT_DIR / fname
@@ -163,8 +164,12 @@ def load_portal_articles(portal_key: str) -> list[dict]:
             continue
         with open(fpath) as f:
             for row in csv.DictReader(f):
+                # Filter by portal label (e.g. indextelex CSV has both Telex and Index)
+                row_portal = (row.get("portal", "") or "").strip()
+                if row_portal and row_portal != label:
+                    continue
                 rows.append(row)
-        log.info(f"  loaded {fpath.name}: {len(rows)} rows")
+        log.info(f"  loaded {fpath.name}: {len(rows)} rows (portal={label})")
     suppl_path = ROOT_DIR / config["suppl"]
     if suppl_path.exists():
         before = len(rows)
