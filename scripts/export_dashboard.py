@@ -105,11 +105,6 @@ def load_and_compute():
         seen_ids.add(did)
         if portal not in PORTAL_CONFIG:
             return
-        # Skip scraping artifacts: NA-titled articles in MF Dnes (62K empty stubs)
-        # Other portals (e.g. Telex) have NA titles but valid text — keep those
-        title = (row.get("document_title", "") or "").strip()
-        if (not title or title == "NA") and portal == "MF Dnes":
-            return
 
         ym = date_str[:7]
         n_total += 1
@@ -145,7 +140,20 @@ def load_and_compute():
             if si is not None:
                 sent_portal[portal][si] += 1
 
-    # Load supplements FIRST (they have fresher/more complete annotations)
+    # ── Phase 1: Count supplement articles per portal-month ──
+    supp_month_counts = Counter()  # (portal, YYYY-MM) → count
+    for sfile in sorted(DATA_DIR.glob("*_supplement.csv")):
+        stem = sfile.stem.replace("_supplement", "")
+        portal_name = SUPPLEMENT_PORTAL_MAP.get(stem)
+        if not portal_name:
+            continue
+        with open(sfile, "r", encoding="utf-8") as f:
+            for row in csv.DictReader(f):
+                date_str = row.get("date", "")
+                if date_str and len(date_str) >= 7:
+                    supp_month_counts[(portal_name, date_str[:7])] += 1
+
+    # ── Phase 2: Load supplements (primary source) ──
     for sfile in sorted(DATA_DIR.glob("*_supplement.csv")):
         stem = sfile.stem.replace("_supplement", "")
         portal_name = SUPPLEMENT_PORTAL_MAP.get(stem)
@@ -160,7 +168,11 @@ def load_and_compute():
                 count += 1
         print(f"  [OK] {sfile.name}: {count:,}")
 
-    # Load originals (dedup skips rows already seen in supplements)
+    # ── Phase 3: Load originals as FALLBACK for gap months only ──
+    # Only use original corpus rows for months where supplement has < 100 articles
+    MIN_SUPP_THRESHOLD = 100
+    orig_used = 0
+    orig_skipped = 0
     for fname, portal_name in ORIGINAL_FILES.items():
         path = ROOT_DIR / fname
         if not path.exists():
@@ -172,9 +184,25 @@ def load_and_compute():
                 if not _in_date_range(row.get("date", "")):
                     continue
                 p = portal_name or row.get("portal", "")
+                # Skip MF Dnes NA-title artifacts
+                title = (row.get("document_title", "") or "").strip()
+                if (not title or title == "NA") and p == "MF Dnes":
+                    continue
+                # Only use original if supplement is thin for this month
+                date_str = row.get("date", "")
+                ym = date_str[:7] if date_str and len(date_str) >= 7 else ""
+                supp_count = supp_month_counts.get((p, ym), 0)
+                if supp_count >= MIN_SUPP_THRESHOLD:
+                    orig_skipped += 1
+                    continue
                 process_row(row, p)
                 count += 1
-        print(f"  [OK] {fname}: {count:,}")
+        if count > 0:
+            print(f"  [OK] {fname}: {count:,} (gap-fill)")
+        else:
+            print(f"  [OK] {fname}: 0 (supplement covers all months)")
+    print(f"  Original fallback: {orig_used + sum(1 for _ in [])} rows used, "
+          f"{orig_skipped:,} skipped (supplement adequate)")
 
     print(f"  Total: {n_total:,} articles, {n_ukraine:,} ukraine")
 
