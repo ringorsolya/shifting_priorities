@@ -60,6 +60,11 @@ _UKRAINE_RE = re.compile("|".join(UKRAINE_KEYWORDS), re.IGNORECASE)
 
 EFI_CATS = {"macroeconomics", "energy"}
 HFI_CATS = {"civil rights", "immigration", "social welfare"}
+POLICY_RELEVANT_CATS = {
+    "international affairs", "defense", "energy", "macroeconomics",
+    "civil rights", "immigration", "social welfare", "government operations",
+    "law and crime", "foreign trade", "banking, finance, and domestic commerce",
+}
 COUNTRIES = ["CZ", "HU", "PL", "SK"]
 PORTAL_ORDER = [
     "MF Dnes", "Novinky", "Magyar Nemzet", "Telex",
@@ -193,6 +198,12 @@ def load_and_compute():
                 ym = date_str[:7] if date_str and len(date_str) >= 7 else ""
                 supp_count = supp_month_counts.get((p, ym), 0)
                 if supp_count >= MIN_SUPP_THRESHOLD:
+                    orig_skipped += 1
+                    continue
+                # Policy-relevant filter: only keep articles with policy CAP
+                # to normalize fallback months (original has sport/culture etc.)
+                cap = (row.get("document_cap_major_label", "") or "").strip().lower()
+                if cap and cap not in POLICY_RELEVANT_CATS:
                     orig_skipped += 1
                     continue
                 process_row(row, p)

@@ -166,7 +166,14 @@ fetch('data.json')
       yaxis2:{overlaying:'y',side:'right',title:'Ukraine %',
         titlefont:{color:'#c9a560'},tickfont:{color:'#c9a560'},gridcolor:'rgba(0,0,0,0)'}}, C);
 
-    // Chart 3: by country (share %)
+    // Chart 3: by country (share %) — unified y-axis across countries
+    let maxShare3 = 0;
+    ['CZ','HU','PL','SK'].forEach(c => {
+      Object.values(data.chart3[c]||{}).forEach(d => {
+        d.values.forEach(v => { if(v && v>maxShare3) maxShare3=v; });
+      });
+    });
+    maxShare3 = Math.ceil(maxShare3/10)*10;  // round up to nearest 10
     ['CZ','HU','PL','SK'].forEach(c => {
       const traces = [];
       Object.entries(data.chart3[c]||{}).forEach(([p,d]) => {
@@ -174,7 +181,7 @@ fetch('data.json')
           name:p, line:{color:d.color,dash:d.dash,width:2}, connectgaps:false });
       });
       Plotly.newPlot('chart3-'+c, traces,
-        {...Ltime, yaxis:{...Ltime.yaxis,title:'Ukraine share (%)',rangemode:'tozero'}}, C);
+        {...Ltime, yaxis:{...Ltime.yaxis,title:'Ukraine share (%)',range:[0,maxShare3]}}, C);
     });
 
     // Chart 4: Sentiment
@@ -184,6 +191,27 @@ fetch('data.json')
       { x:c4.portals, y:c4.neutral, type:'bar', name:'Neutral', marker:{color:'#a3b1b2'} },
       { x:c4.portals, y:c4.positive, type:'bar', name:'Positive', marker:{color:'#6aae8e'} },
     ], {...L, barmode:'group', yaxis:{...L.yaxis,title:'Share (%)'}}, C);
+
+    // ── Compute unified axis ranges across portals ──
+    let maxTotal3b = 0, maxWar3b = 0;
+    ['CZ','HU','PL','SK'].forEach(c => {
+      Object.values(data.chart3b[c]||{}).forEach(d => {
+        d.total.forEach(v => { if(v>maxTotal3b) maxTotal3b=v; });
+        d.ukraine.forEach(v => { if(v>maxWar3b) maxWar3b=v; });
+      });
+    });
+    maxTotal3b = Math.ceil(maxTotal3b/500)*500;  // round up to nearest 500
+    let maxEFI=0, maxHFI=0;
+    ['CZ','HU','PL','SK'].forEach(c => {
+      Object.values(data.chart6[c]||{}).forEach(d => {
+        d.values.forEach(v => { if(v>maxEFI) maxEFI=v; });
+      });
+      Object.values(data.chart7[c]||{}).forEach(d => {
+        d.values.forEach(v => { if(v>maxHFI) maxHFI=v; });
+      });
+    });
+    maxEFI = Math.ceil(maxEFI*20)/20;  // round up to 0.05 steps
+    maxHFI = Math.ceil(maxHFI*20)/20;
 
     // Chart 3b: Total vs Ukraine per portal (individual cards)
     const portalIdMap = {'MF Dnes':'MFDnes','Novinky':'Novinky','Magyar Nemzet':'MagyarNemzet',
@@ -205,7 +233,7 @@ fetch('data.json')
           { x:d.months, y:share, type:'scatter', mode:'lines',
             name:'Ukraine %', line:{color:'#c9a560',dash:'dash',width:1.5}, yaxis:'y2' },
         ];
-        const layout = {...Ltime, yaxis:{...Ltime.yaxis,title:'Articles'},
+        const layout = {...Ltime, yaxis:{...Ltime.yaxis,title:'Articles',range:[0,maxTotal3b]},
           yaxis2:{overlaying:'y',side:'right',title:'Ukraine %',range:[0,60],
             titlefont:{color:'#c9a560',size:10},tickfont:{color:'#c9a560',size:9},
             gridcolor:'rgba(0,0,0,0)'},
@@ -269,15 +297,15 @@ fetch('data.json')
       { x:c8.portals, y:c8.hfi, type:'bar', name:'HFI (Humanitarian)', marker:{color:'#6a9fbd',opacity:0.8} },
     ], {...L, barmode:'group', yaxis:{...L.yaxis,title:'Index value'}}, C);
 
-    // Charts 6+7: GFI/HFI time
+    // Charts 6+7: GFI/HFI time (unified y-axes across countries)
     ['CZ','HU','PL','SK'].forEach(c => {
-      [['chart6','EFI',data.chart6],['chart7','HFI',data.chart7]].forEach(([id,lbl,src]) => {
+      [['chart6','EFI',data.chart6,maxEFI],['chart7','HFI',data.chart7,maxHFI]].forEach(([id,lbl,src,ymax]) => {
         const traces = [];
         Object.entries(src[c]||{}).forEach(([p,d]) => {
           if(d.months.length) traces.push({ x:d.months, y:d.values, type:'scatter', mode:'lines',
             name:p, line:{color:d.color,dash:d.dash,width:2} });
         });
-        Plotly.newPlot(id+'-'+c, traces, {...Ltime, yaxis:{...Ltime.yaxis,title:lbl}}, C);
+        Plotly.newPlot(id+'-'+c, traces, {...Ltime, yaxis:{...Ltime.yaxis,title:lbl,range:[0,ymax]}}, C);
       });
     });
   })
