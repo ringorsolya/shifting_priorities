@@ -110,6 +110,11 @@ def load_and_compute():
         seen_ids.add(did)
         if portal not in PORTAL_CONFIG:
             return
+        # Policy-relevant filter: skip articles with non-policy CAP labels
+        # (keeps articles without CAP annotation — they may be news)
+        cap_label = (row.get("document_cap_major_label", "") or "").strip().lower()
+        if cap_label and cap_label not in POLICY_RELEVANT_CATS and cap_label != "na":
+            return
 
         ym = date_str[:7]
         n_total += 1
@@ -200,13 +205,7 @@ def load_and_compute():
                 if supp_count >= MIN_SUPP_THRESHOLD:
                     orig_skipped += 1
                     continue
-                # Policy-relevant filter: only keep articles with policy CAP
-                # to normalize fallback months (original has sport/culture etc.)
-                cap = (row.get("document_cap_major_label", "") or "").strip().lower()
-                if cap and cap not in POLICY_RELEVANT_CATS:
-                    orig_skipped += 1
-                    continue
-                process_row(row, p)
+                process_row(row, p)  # policy filter applied inside process_row
                 count += 1
         if count > 0:
             print(f"  [OK] {fname}: {count:,} (gap-fill)")
