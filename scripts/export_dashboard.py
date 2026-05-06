@@ -70,13 +70,9 @@ PORTAL_ORDER = [
     "MF Dnes", "Novinky", "Magyar Nemzet", "Telex",
     "wPolityce", "Onet", "Pravda", "Aktuality",
 ]
-# Normalization ratios: original/supplement from overlapping months
-# Used to scale down fallback month totals for Ukraine share % calculation
-FALLBACK_NORM_RATIO = {
-    "MF Dnes": 7.98,
-    "Novinky": 5.49,
-    "Pravda": 1.44,
-}
+# Per-month source selection: for each (portal, ym) we pick the source
+# (supplement or original) with MORE CAP-labeled Ukraine articles. No more
+# ratio-based normalisation: each (portal, ym) uses one source exclusively.
 
 
 def _in_date_range(date_str):
@@ -152,8 +148,21 @@ def load_and_compute():
             if si is not None:
                 sent_portal[portal][si] += 1
 
-    # ── Phase 1: Count supplement articles per portal-month ──
-    supp_month_counts = Counter()  # (portal, YYYY-MM) → count
+    # ── Phase 1 (pre-pass): count CAP-labelled Ukraine articles per source ──
+    # For each (portal, ym) we count how many Ukraine-war articles WITH a valid
+    # CAP major label exist in each source. The source with more such articles
+    # wins for that (portal, ym).
+    supp_cap_ukr = Counter()
+    orig_cap_ukr = Counter()
+
+    def _is_cap_ukraine(row):
+        nerw = row.get("document_nerw", "") or ""
+        if not nerw or not _UKRAINE_RE.search(nerw):
+            return False
+        cap = (row.get("document_cap_major_label", "") or "").strip().lower()
+        return bool(cap) and cap != "na"
+
+    print("[Phase 1] Counting CAP-labelled Ukraine articles per source...")
     for sfile in sorted(DATA_DIR.glob("*_supplement.csv")):
         stem = sfile.stem.replace("_supplement", "")
         portal_name = SUPPLEMENT_PORTAL_MAP.get(stem)
@@ -162,10 +171,50 @@ def load_and_compute():
         with open(sfile, "r", encoding="utf-8") as f:
             for row in csv.DictReader(f):
                 date_str = row.get("date", "")
-                if date_str and len(date_str) >= 7:
-                    supp_month_counts[(portal_name, date_str[:7])] += 1
+                if not _in_date_range(date_str):
+                    continue
+                if not _is_cap_ukraine(row):
+                    continue
+                supp_cap_ukr[(portal_name, date_str[:7])] += 1
 
-    # ── Phase 2: Load supplements (primary source) ──
+    for fname, portal_name in ORIGINAL_FILES.items():
+        path = ROOT_DIR / fname
+        if not path.exists():
+            continue
+        with open(path, "r", encoding="utf-8") as f:
+            for row in csv.DictReader(f):
+                date_str = row.get("date", "")
+                if not _in_date_range(date_str):
+                    continue
+                p = portal_name or row.get("portal", "")
+                if p not in PORTAL_CONFIG:
+                    continue
+                # Skip MF Dnes NA-title artifacts
+                title = (row.get("document_title", "") or "").strip()
+                if (not title or title == "NA") and p == "MF Dnes":
+                    continue
+                if not _is_cap_ukraine(row):
+                    continue
+                orig_cap_ukr[(p, date_str[:7])] += 1
+
+    # ── Phase 2: decide source winner per (portal, ym) ──
+    # Default: supplement wins (it's the consistent methodology). Original
+    # wins ONLY when it has strictly more CAP-Ukraine articles for that month.
+    use_orig = set()
+    all_keys = set(supp_cap_ukr) | set(orig_cap_ukr)
+    for key in all_keys:
+        if orig_cap_ukr.get(key, 0) > supp_cap_ukr.get(key, 0):
+            use_orig.add(key)
+    # Per-portal summary of how many months each source wins
+    print("[Phase 2] Per-portal source choice:")
+    for p in PORTAL_ORDER:
+        portal_keys = [k for k in all_keys if k[0] == p]
+        n_orig = sum(1 for k in portal_keys if k in use_orig)
+        n_supp = len(portal_keys) - n_orig
+        print(f"  {p:>16}: {n_supp:>3} months supp / {n_orig:>3} months orig")
+
+    # ── Phase 3: Load winning source's rows ──
+    print("[Phase 3] Loading rows from winning source per (portal, ym)...")
     for sfile in sorted(DATA_DIR.glob("*_supplement.csv")):
         stem = sfile.stem.replace("_supplement", "")
         portal_name = SUPPLEMENT_PORTAL_MAP.get(stem)
@@ -174,19 +223,15 @@ def load_and_compute():
         count = 0
         with open(sfile, "r", encoding="utf-8") as f:
             for row in csv.DictReader(f):
-                if not _in_date_range(row.get("date", "")):
+                date_str = row.get("date", "")
+                if not _in_date_range(date_str):
                     continue
+                ym = date_str[:7]
+                if (portal_name, ym) in use_orig:
+                    continue  # original is preferred for this (portal, ym)
                 process_row(row, portal_name)
                 count += 1
-        print(f"  [OK] {sfile.name}: {count:,}")
-
-    # ── Phase 3: Load originals as FALLBACK for gap months only ──
-    # Only use original corpus rows for months where supplement has < 100 articles.
-    # Apply ratio-based normalization: the original corpus has more sections than
-    # the supplement scrapers, so we divide the total count by the portal-specific
-    # orig/supp ratio (computed from overlapping months).
-    MIN_SUPP_THRESHOLD = 100
-    fallback_months_used = defaultdict(list)  # portal → [months]
+        print(f"  [OK] {sfile.name}: {count:,} (supplement)")
 
     for fname, portal_name in ORIGINAL_FILES.items():
         path = ROOT_DIR / fname
@@ -196,35 +241,21 @@ def load_and_compute():
         count = 0
         with open(path, "r", encoding="utf-8") as f:
             for row in csv.DictReader(f):
-                if not _in_date_range(row.get("date", "")):
+                date_str = row.get("date", "")
+                if not _in_date_range(date_str):
                     continue
                 p = portal_name or row.get("portal", "")
-                # Skip MF Dnes NA-title artifacts
+                if p not in PORTAL_CONFIG:
+                    continue
                 title = (row.get("document_title", "") or "").strip()
                 if (not title or title == "NA") and p == "MF Dnes":
                     continue
-                date_str = row.get("date", "")
-                ym = date_str[:7] if date_str and len(date_str) >= 7 else ""
-                supp_count = supp_month_counts.get((p, ym), 0)
-                if supp_count >= MIN_SUPP_THRESHOLD:
-                    continue
+                ym = date_str[:7]
+                if (p, ym) not in use_orig:
+                    continue  # supplement is preferred
                 process_row(row, p)
                 count += 1
-                if ym not in fallback_months_used[p]:
-                    fallback_months_used[p].append(ym)
-        if count > 0:
-            print(f"  [OK] {fname}: {count:,} (gap-fill)")
-        else:
-            print(f"  [OK] {fname}: 0 (supplement covers all months)")
-
-    # Track which months are fallback (for share % normalization in charts)
-    fallback_month_set = set()
-    for portal, months_list in fallback_months_used.items():
-        for ym in months_list:
-            fallback_month_set.add((portal, ym))
-        if months_list:
-            print(f"  Fallback {portal}: {len(months_list)} months "
-                  f"(ratio={FALLBACK_NORM_RATIO.get(portal, 1.0)}x)")
+        print(f"  [OK] {fname}: {count:,} (original)")
 
     print(f"  Total: {n_total:,} articles, {n_ukraine:,} ukraine")
 
@@ -318,29 +349,19 @@ def load_and_compute():
             chart8["hfi"].append(round(hs / ts2, 4))
             chart8["colors"].append(PORTAL_CONFIG[p]["color"])
 
-    # ── NEW: chart3b — monthly total + Ukraine per portal, grouped by country ──
-    # For fallback months, normalize both total and ukraine by the portal ratio
+    # ── chart3b — monthly total + Ukraine per portal, grouped by country ──
+    # No normalisation: each (portal, ym) sources from a single chosen source,
+    # so totals are directly comparable across months for that portal.
     chart3b = {}
     for c in COUNTRIES:
         chart3b[c] = {}
         for p in PORTAL_ORDER:
             if PORTAL_CONFIG.get(p, {}).get("country") != c:
                 continue
-            ratio = FALLBACK_NORM_RATIO.get(p, 1.0)
-            totals_norm = []
-            ukraine_norm = []
-            for m in months:
-                t = monthly_portal_total.get((p, m), 0)
-                u = monthly_portal_ukr.get((p, m), 0)
-                if (p, m) in fallback_month_set and ratio > 1.0:
-                    t = int(round(t / ratio))
-                    u = int(round(u / ratio))
-                totals_norm.append(t)
-                ukraine_norm.append(u)
             chart3b[c][p] = {
                 "months": months,
-                "total": totals_norm,
-                "ukraine": ukraine_norm,
+                "total": [monthly_portal_total.get((p, m), 0) for m in months],
+                "ukraine": [monthly_portal_ukr.get((p, m), 0) for m in months],
                 "color": PORTAL_CONFIG[p]["color"],
                 "dash": "solid" if PORTAL_CONFIG[p]["illiberal"] else "dash",
             }

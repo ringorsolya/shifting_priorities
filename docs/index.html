@@ -139,21 +139,8 @@ const Ltime = {
 };
 const C = { responsive: true, displayModeBar: false };
 
-// MF Dnes-specific data-quality gap mask (and ONLY MF Dnes — no other portal touched).
-// 2023-12, 2024-01, 2024-03 are the documented supplement-corpus gap months;
-// 2024-02 only had 168 articles (vs ~1400 normal). For these months the
-// asymmetric original-corpus normalisation (sport+culture included) produces a
-// misleading bevágás in the share % line; we mask them so the gap is visible.
-const MFD_GAPS = new Set(['2023-12','2024-01','2024-02','2024-03']);
-const isMfdGap = (portal, month) => portal === 'MF Dnes' && MFD_GAPS.has(month);
-
-// Chart 5c-specific MF Dnes extension: 2023-10 has 100% IA (non-IA = 0%, undefined
-// renormalisation) and 2023-11 has 94.2% IA / 5.8% non-IA (1-2 articles per category
-// after IA exclusion → 50/50 stacks visible as narrow vertical towers). Only applied
-// in chart5c where IA exclusion + groupnorm:'percent' magnifies these instabilities;
-// chart3 / 3b / 6 / 7 still use the 4-month MFD_GAPS (their data for 2023-10/11 is fine).
-const MFD_GAPS_5C = new Set([...MFD_GAPS, '2023-10','2023-11']);
-const isMfdGap5c = (portal, month) => portal === 'MF Dnes' && MFD_GAPS_5C.has(month);
+// Per-month source selection in export_dashboard.py picks the source with
+// more CAP-Ukraine articles per (portal, ym), so no JS-level masking is needed.
 
 fetch('data.json')
   .then(r => r.json())
@@ -190,22 +177,17 @@ fetch('data.json')
         titlefont:{color:'#c9a560'},tickfont:{color:'#c9a560'},gridcolor:'rgba(0,0,0,0)'}}, C);
 
     // Chart 3: by country (share %) — unified y-axis across countries
-    // (compute max ignoring MFD gap months so they don't inflate the range)
     let maxShare3 = 0;
     ['CZ','HU','PL','SK'].forEach(c => {
-      Object.entries(data.chart3[c]||{}).forEach(([p, d]) => {
-        d.values.forEach((v, i) => {
-          if (v && !isMfdGap(p, d.months[i]) && v > maxShare3) maxShare3 = v;
-        });
+      Object.values(data.chart3[c]||{}).forEach(d => {
+        d.values.forEach(v => { if (v && v > maxShare3) maxShare3 = v; });
       });
     });
-    maxShare3 = Math.ceil(maxShare3/10)*10;  // round up to nearest 10
+    maxShare3 = Math.ceil(maxShare3/10)*10;
     ['CZ','HU','PL','SK'].forEach(c => {
       const traces = [];
       Object.entries(data.chart3[c]||{}).forEach(([p,d]) => {
-        // Mask ONLY MF Dnes gap months; all other portals untouched
-        const masked = d.values.map((v, i) => isMfdGap(p, d.months[i]) ? null : v);
-        traces.push({ x:d.months, y:masked, type:'scatter', mode:'lines',
+        traces.push({ x:d.months, y:d.values, type:'scatter', mode:'lines',
           name:p, line:{color:d.color,dash:d.dash,width:2}, connectgaps:false });
       });
       Plotly.newPlot('chart3-'+c, traces,
@@ -237,13 +219,11 @@ fetch('data.json')
     const portalIdMap = {'MF Dnes':'MFDnes','Novinky':'Novinky','Magyar Nemzet':'MagyarNemzet',
       'Telex':'Telex','wPolityce':'wPolityce','Onet':'Onet','Pravda':'Pravda','Aktuality':'Aktuality'};
     // Compute unified max for Ukraine-war article count AND for share % (right axis)
-    // — skip MFD gap months in the max calc so they don't inflate the unified range
     let maxWar3b = 0;
     let maxShare3b = 0;
     ['CZ','HU','PL','SK'].forEach(c => {
-      Object.entries(data.chart3b[c]||{}).forEach(([p, d]) => {
+      Object.values(data.chart3b[c]||{}).forEach(d => {
         d.months.forEach((m, i) => {
-          if (isMfdGap(p, m)) return;
           if (d.ukraine[i] > maxWar3b) maxWar3b = d.ukraine[i];
           const sh = d.total[i] > 0 ? 100 * d.ukraine[i] / d.total[i] : 0;
           if (sh > maxShare3b) maxShare3b = sh;
@@ -251,18 +231,16 @@ fetch('data.json')
       });
     });
     maxWar3b = Math.ceil(maxWar3b/100)*100;
-    maxShare3b = Math.ceil(maxShare3b/10)*10;  // unified across portals (e.g. 80)
+    maxShare3b = Math.ceil(maxShare3b/10)*10;
 
     ['CZ','HU','PL','SK'].forEach(c => {
       Object.entries(data.chart3b[c]||{}).forEach(([p,d]) => {
         const divId = 'chart3b-'+portalIdMap[p];
         if(!document.getElementById(divId)) return;
-        // Mask ONLY MF Dnes gap months; all other portals untouched
-        const ukrMasked = d.ukraine.map((v, i) => isMfdGap(p, d.months[i]) ? null : v);
         const share = d.months.map((m, i) =>
-          (!isMfdGap(p, m) && d.total[i] > 0) ? Math.round(1000*d.ukraine[i]/d.total[i])/10 : null);
+          d.total[i] > 0 ? Math.round(1000*d.ukraine[i]/d.total[i])/10 : null);
         const traces = [
-          { x:d.months, y:ukrMasked, type:'scatter', mode:'lines', fill:'tozeroy',
+          { x:d.months, y:d.ukraine, type:'scatter', mode:'lines', fill:'tozeroy',
             name:'Ukraine-war', line:{color:d.color,width:2.5}, connectgaps:false,
             fillcolor: d.color==='#c0675a' ? 'rgba(192,103,90,0.2)' : 'rgba(106,159,189,0.2)' },
           { x:d.months, y:share, type:'scatter', mode:'lines', connectgaps:false,
@@ -383,10 +361,7 @@ fetch('data.json')
           return (ai < 0 ? 99 : ai) - (bi < 0 ? 99 : bi);
         });
         const traces = filteredSeries.map(s => ({
-          x: pd.months,
-          // Mask ONLY MF Dnes gap months (extended set for chart5c — see MFD_GAPS_5C);
-          // all other portals untouched
-          y: s.values.map((v, i) => isMfdGap5c(portal, pd.months[i]) ? null : v),
+          x: pd.months, y: s.values,
           type:'scatter', mode:'lines',
           name: s.cat,
           stackgroup:'one', groupnorm:'percent',
@@ -408,14 +383,12 @@ fetch('data.json')
     ], {...L, barmode:'group', yaxis:{...L.yaxis,title:'Index value'}}, C);
 
     // Charts 6+7: EFI/HFI time (unified y-axes across countries)
-    // Mask ONLY MF Dnes gap months; all other portals untouched.
     ['CZ','HU','PL','SK'].forEach(c => {
       [['chart6','EFI',data.chart6,maxEFI],['chart7','HFI',data.chart7,maxHFI]].forEach(([id,lbl,src,ymax]) => {
         const traces = [];
         Object.entries(src[c]||{}).forEach(([p,d]) => {
           if (!d.months.length) return;
-          const masked = d.values.map((v, i) => isMfdGap(p, d.months[i]) ? null : v);
-          traces.push({ x:d.months, y:masked, type:'scatter', mode:'lines',
+          traces.push({ x:d.months, y:d.values, type:'scatter', mode:'lines',
             name:p, line:{color:d.color,dash:d.dash,width:2}, connectgaps:false });
         });
         Plotly.newPlot(id+'-'+c, traces,
