@@ -173,18 +173,47 @@ fetch('data.json')
       yaxis2:{overlaying:'y',side:'right',title:'Ukraine %',
         titlefont:{color:'#c9a560'},tickfont:{color:'#c9a560'},gridcolor:'rgba(0,0,0,0)'}}, C);
 
+    // ── Compute per-portal data-gap mask ──
+    // 3 sources: hard-coded known gaps (from data quality docs),
+    // <30% of portal median total (catches normalisation artefacts),
+    // and absolute <50 articles (catches sparse trailing months).
+    const HARDCODED_GAPS = {
+      // MF Dnes 3 supplement gaps (2023-12, 2024-01, 2024-03) plus the
+      // partial-month 2024-02 (only 168 articles, vs ~1400 normal)
+      'MF Dnes': ['2023-12','2024-01','2024-02','2024-03'],
+    };
+    const MIN_ARTICLES_ABS = 50;
+    const portalGaps = {};
+    ['CZ','HU','PL','SK'].forEach(c => {
+      Object.entries(data.chart3b[c]||{}).forEach(([p, d]) => {
+        const positives = d.total.filter(t => t > 0).slice().sort((a,b) => a-b);
+        const median = positives.length ? positives[Math.floor(positives.length/2)] : 0;
+        const relThr = median * 0.3;
+        const gaps = new Set(HARDCODED_GAPS[p] || []);
+        d.months.forEach((m, i) => {
+          if (d.total[i] > 0 && (d.total[i] < MIN_ARTICLES_ABS || d.total[i] < relThr)) gaps.add(m);
+        });
+        portalGaps[p] = gaps;
+      });
+    });
+
     // Chart 3: by country (share %) — unified y-axis across countries
     let maxShare3 = 0;
     ['CZ','HU','PL','SK'].forEach(c => {
-      Object.values(data.chart3[c]||{}).forEach(d => {
-        d.values.forEach(v => { if(v && v>maxShare3) maxShare3=v; });
+      Object.entries(data.chart3[c]||{}).forEach(([p, d]) => {
+        const gaps = portalGaps[p] || new Set();
+        d.values.forEach((v, i) => {
+          if (v && !gaps.has(d.months[i]) && v > maxShare3) maxShare3 = v;
+        });
       });
     });
     maxShare3 = Math.ceil(maxShare3/10)*10;  // round up to nearest 10
     ['CZ','HU','PL','SK'].forEach(c => {
       const traces = [];
       Object.entries(data.chart3[c]||{}).forEach(([p,d]) => {
-        traces.push({ x:d.months, y:d.values, type:'scatter', mode:'lines',
+        const gaps = portalGaps[p] || new Set();
+        const masked = d.values.map((v, i) => gaps.has(d.months[i]) ? null : v);
+        traces.push({ x:d.months, y:masked, type:'scatter', mode:'lines',
           name:p, line:{color:d.color,dash:d.dash,width:2}, connectgaps:false });
       });
       Plotly.newPlot('chart3-'+c, traces,
@@ -216,14 +245,14 @@ fetch('data.json')
     const portalIdMap = {'MF Dnes':'MFDnes','Novinky':'Novinky','Magyar Nemzet':'MagyarNemzet',
       'Telex':'Telex','wPolityce':'wPolityce','Onet':'Onet','Pravda':'Pravda','Aktuality':'Aktuality'};
     // Compute unified max for war article count AND for share % (right axis)
-    // Mask out months with too few articles (sparse coverage at scrape boundaries)
-    const MIN_ARTICLES = 50;
+    // Skip masked gap months (already identified in portalGaps)
     let maxWar3b = 0;
     let maxShare3b = 0;
     ['CZ','HU','PL','SK'].forEach(c => {
-      Object.values(data.chart3b[c]||{}).forEach(d => {
-        d.months.forEach((_, i) => {
-          if (d.total[i] < MIN_ARTICLES) return;  // skip sparse months
+      Object.entries(data.chart3b[c]||{}).forEach(([p, d]) => {
+        const gaps = portalGaps[p] || new Set();
+        d.months.forEach((m, i) => {
+          if (gaps.has(m)) return;
           if (d.ukraine[i] > maxWar3b) maxWar3b = d.ukraine[i];
           const sh = d.total[i]>0 ? 100*d.ukraine[i]/d.total[i] : 0;
           if (sh > maxShare3b) maxShare3b = sh;
@@ -237,10 +266,11 @@ fetch('data.json')
       Object.entries(data.chart3b[c]||{}).forEach(([p,d]) => {
         const divId = 'chart3b-'+portalIdMap[p];
         if(!document.getElementById(divId)) return;
-        // Mask sparse months (< MIN_ARTICLES total) — produces visible gaps via connectgaps:false
-        const ukrMasked = d.ukraine.map((v, i) => d.total[i] >= MIN_ARTICLES ? v : null);
-        const share = d.months.map((_,i) =>
-          (d.total[i] >= MIN_ARTICLES) ? Math.round(1000*d.ukraine[i]/d.total[i])/10 : null);
+        // Mask gap/sparse months (per portalGaps set) — produces visible gaps via connectgaps:false
+        const gaps = portalGaps[p] || new Set();
+        const ukrMasked = d.ukraine.map((v, i) => gaps.has(d.months[i]) ? null : v);
+        const share = d.months.map((m, i) =>
+          (!gaps.has(m) && d.total[i] > 0) ? Math.round(1000*d.ukraine[i]/d.total[i])/10 : null);
         const traces = [
           { x:d.months, y:ukrMasked, type:'scatter', mode:'lines', fill:'tozeroy',
             name:'Ukraine-war', line:{color:d.color,width:2.5}, connectgaps:false,
