@@ -147,6 +147,14 @@ const C = { responsive: true, displayModeBar: false };
 const MFD_GAPS = new Set(['2023-12','2024-01','2024-02','2024-03']);
 const isMfdGap = (portal, month) => portal === 'MF Dnes' && MFD_GAPS.has(month);
 
+// Chart 5c-specific MF Dnes extension: 2023-10 has 100% IA (non-IA = 0%, undefined
+// renormalisation) and 2023-11 has 94.2% IA / 5.8% non-IA (1-2 articles per category
+// after IA exclusion → 50/50 stacks visible as narrow vertical towers). Only applied
+// in chart5c where IA exclusion + groupnorm:'percent' magnifies these instabilities;
+// chart3 / 3b / 6 / 7 still use the 4-month MFD_GAPS (their data for 2023-10/11 is fine).
+const MFD_GAPS_5C = new Set([...MFD_GAPS, '2023-10','2023-11']);
+const isMfdGap5c = (portal, month) => portal === 'MF Dnes' && MFD_GAPS_5C.has(month);
+
 fetch('data.json')
   .then(r => r.json())
   .then(data => {
@@ -376,8 +384,9 @@ fetch('data.json')
         });
         const traces = filteredSeries.map(s => ({
           x: pd.months,
-          // Mask ONLY MF Dnes gap months; all other portals untouched
-          y: s.values.map((v, i) => isMfdGap(portal, pd.months[i]) ? null : v),
+          // Mask ONLY MF Dnes gap months (extended set for chart5c — see MFD_GAPS_5C);
+          // all other portals untouched
+          y: s.values.map((v, i) => isMfdGap5c(portal, pd.months[i]) ? null : v),
           type:'scatter', mode:'lines',
           name: s.cat,
           stackgroup:'one', groupnorm:'percent',
