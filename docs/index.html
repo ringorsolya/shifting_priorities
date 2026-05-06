@@ -193,14 +193,6 @@ fetch('data.json')
     ], {...L, barmode:'group', yaxis:{...L.yaxis,title:'Share (%)'}}, C);
 
     // ── Compute unified axis ranges across portals ──
-    let maxTotal3b = 0, maxWar3b = 0;
-    ['CZ','HU','PL','SK'].forEach(c => {
-      Object.values(data.chart3b[c]||{}).forEach(d => {
-        d.total.forEach(v => { if(v>maxTotal3b) maxTotal3b=v; });
-        d.ukraine.forEach(v => { if(v>maxWar3b) maxWar3b=v; });
-      });
-    });
-    maxTotal3b = Math.ceil(maxTotal3b/500)*500;  // round up to nearest 500
     let maxEFI=0, maxHFI=0;
     ['CZ','HU','PL','SK'].forEach(c => {
       Object.values(data.chart6[c]||{}).forEach(d => {
