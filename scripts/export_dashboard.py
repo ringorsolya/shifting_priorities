@@ -70,6 +70,13 @@ PORTAL_ORDER = [
     "MF Dnes", "Novinky", "Magyar Nemzet", "Telex",
     "wPolityce", "Onet", "Pravda", "Aktuality",
 ]
+# Normalization ratios: original/supplement from overlapping months
+# Used to scale down fallback month totals for Ukraine share % calculation
+FALLBACK_NORM_RATIO = {
+    "MF Dnes": 7.98,
+    "Novinky": 5.49,
+    "Pravda": 1.44,
+}
 
 
 def _in_date_range(date_str):
@@ -109,11 +116,6 @@ def load_and_compute():
             return
         seen_ids.add(did)
         if portal not in PORTAL_CONFIG:
-            return
-        # Policy-relevant filter: skip articles with non-policy CAP labels
-        # (keeps articles without CAP annotation — they may be news)
-        cap_label = (row.get("document_cap_major_label", "") or "").strip().lower()
-        if cap_label and cap_label not in POLICY_RELEVANT_CATS and cap_label != "na":
             return
 
         ym = date_str[:7]
@@ -179,10 +181,13 @@ def load_and_compute():
         print(f"  [OK] {sfile.name}: {count:,}")
 
     # ── Phase 3: Load originals as FALLBACK for gap months only ──
-    # Only use original corpus rows for months where supplement has < 100 articles
+    # Only use original corpus rows for months where supplement has < 100 articles.
+    # Apply ratio-based normalization: the original corpus has more sections than
+    # the supplement scrapers, so we divide the total count by the portal-specific
+    # orig/supp ratio (computed from overlapping months).
     MIN_SUPP_THRESHOLD = 100
-    orig_used = 0
-    orig_skipped = 0
+    fallback_months_used = defaultdict(list)  # portal → [months]
+
     for fname, portal_name in ORIGINAL_FILES.items():
         path = ROOT_DIR / fname
         if not path.exists():
@@ -198,21 +203,28 @@ def load_and_compute():
                 title = (row.get("document_title", "") or "").strip()
                 if (not title or title == "NA") and p == "MF Dnes":
                     continue
-                # Only use original if supplement is thin for this month
                 date_str = row.get("date", "")
                 ym = date_str[:7] if date_str and len(date_str) >= 7 else ""
                 supp_count = supp_month_counts.get((p, ym), 0)
                 if supp_count >= MIN_SUPP_THRESHOLD:
-                    orig_skipped += 1
                     continue
-                process_row(row, p)  # policy filter applied inside process_row
+                process_row(row, p)
                 count += 1
+                if ym not in fallback_months_used[p]:
+                    fallback_months_used[p].append(ym)
         if count > 0:
             print(f"  [OK] {fname}: {count:,} (gap-fill)")
         else:
             print(f"  [OK] {fname}: 0 (supplement covers all months)")
-    print(f"  Original fallback: {orig_used + sum(1 for _ in [])} rows used, "
-          f"{orig_skipped:,} skipped (supplement adequate)")
+
+    # Track which months are fallback (for share % normalization in charts)
+    fallback_month_set = set()
+    for portal, months_list in fallback_months_used.items():
+        for ym in months_list:
+            fallback_month_set.add((portal, ym))
+        if months_list:
+            print(f"  Fallback {portal}: {len(months_list)} months "
+                  f"(ratio={FALLBACK_NORM_RATIO.get(portal, 1.0)}x)")
 
     print(f"  Total: {n_total:,} articles, {n_ukraine:,} ukraine")
 
@@ -307,16 +319,28 @@ def load_and_compute():
             chart8["colors"].append(PORTAL_CONFIG[p]["color"])
 
     # ── NEW: chart3b — monthly total + Ukraine per portal, grouped by country ──
+    # For fallback months, normalize both total and ukraine by the portal ratio
     chart3b = {}
     for c in COUNTRIES:
         chart3b[c] = {}
         for p in PORTAL_ORDER:
             if PORTAL_CONFIG.get(p, {}).get("country") != c:
                 continue
+            ratio = FALLBACK_NORM_RATIO.get(p, 1.0)
+            totals_norm = []
+            ukraine_norm = []
+            for m in months:
+                t = monthly_portal_total.get((p, m), 0)
+                u = monthly_portal_ukr.get((p, m), 0)
+                if (p, m) in fallback_month_set and ratio > 1.0:
+                    t = int(round(t / ratio))
+                    u = int(round(u / ratio))
+                totals_norm.append(t)
+                ukraine_norm.append(u)
             chart3b[c][p] = {
                 "months": months,
-                "total": [monthly_portal_total.get((p, m), 0) for m in months],
-                "ukraine": [monthly_portal_ukr.get((p, m), 0) for m in months],
+                "total": totals_norm,
+                "ukraine": ukraine_norm,
                 "color": PORTAL_CONFIG[p]["color"],
                 "dash": "solid" if PORTAL_CONFIG[p]["illiberal"] else "dash",
             }
@@ -411,7 +435,6 @@ def load_and_compute():
         "chart3b": chart3b, "chart4": chart4, "chart5": chart5,
         "chart5b": chart5b, "chart5c": chart5c,
         "chart6": chart6, "chart7": chart7, "chart8": chart8,
-        "supp_transitions": supp_transitions,
     }
 
 
