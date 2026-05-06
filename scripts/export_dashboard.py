@@ -336,6 +336,31 @@ def load_and_compute():
             chart6[c][p] = {"months": vm, "values": gv, **style}
             chart7[c][p] = {"months": vm, "values": hv, **style}
 
+    # ── chart9 — country-level EFI/HFI over time (4 countries on one plot) ──
+    # Aggregate across both portals per country: (energy+macro) / total CAP for EFI,
+    # (civil_rights+immigration+social_welfare) / total CAP for HFI
+    COUNTRY_COLORS = {"CZ": "#7db8d4", "HU": "#c0675a", "PL": "#6aae8e", "SK": "#c9a560"}
+    chart9_efi, chart9_hfi = {}, {}
+    for c in COUNTRIES:
+        portals_in_country = [p for p in PORTAL_ORDER
+                              if PORTAL_CONFIG.get(p, {}).get("country") == c]
+        ev, hv, vm = [], [], []
+        for m in months:
+            tot = sum(idx_data.get((p, m), [0, 0, 0])[0] for p in portals_in_country)
+            if tot < 5:  # require enough articles to compute meaningful index
+                continue
+            efi_n = sum(idx_data.get((p, m), [0, 0, 0])[1] for p in portals_in_country)
+            hfi_n = sum(idx_data.get((p, m), [0, 0, 0])[2] for p in portals_in_country)
+            vm.append(m)
+            ev.append(round(efi_n / tot, 4))
+            hv.append(round(hfi_n / tot, 4))
+        country_label = {"CZ": "Czech Republic", "HU": "Hungary",
+                         "PL": "Poland", "SK": "Slovakia"}[c]
+        chart9_efi[c] = {"months": vm, "values": ev,
+                         "color": COUNTRY_COLORS[c], "label": country_label}
+        chart9_hfi[c] = {"months": vm, "values": hv,
+                         "color": COUNTRY_COLORS[c], "label": country_label}
+
     chart8 = {"portals": [], "gfi": [], "hfi": [], "colors": []}
     for p in PORTAL_ORDER:
         gs, hs, ts2 = 0, 0, 0
@@ -456,6 +481,7 @@ def load_and_compute():
         "chart3b": chart3b, "chart4": chart4, "chart5": chart5,
         "chart5b": chart5b, "chart5c": chart5c,
         "chart6": chart6, "chart7": chart7, "chart8": chart8,
+        "chart9_efi": chart9_efi, "chart9_hfi": chart9_hfi,
     }
 
 
