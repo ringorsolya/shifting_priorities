@@ -174,24 +174,25 @@ fetch('data.json')
         titlefont:{color:'#c9a560'},tickfont:{color:'#c9a560'},gridcolor:'rgba(0,0,0,0)'}}, C);
 
     // ── Compute per-portal data-gap mask ──
-    // 3 sources: hard-coded known gaps (from data quality docs),
-    // <30% of portal median total (catches normalisation artefacts),
-    // and absolute <50 articles (catches sparse trailing months).
+    // Only mask months that are KNOWN data-quality artefacts. Real low-volume
+    // months (e.g. Magyar Nemzet sitemap drop 2025-03+, Pravda supplement ramp-up
+    // 2024-03+) are real data and must remain visible.
     const HARDCODED_GAPS = {
-      // MF Dnes 3 supplement gaps (2023-12, 2024-01, 2024-03) plus the
-      // partial-month 2024-02 (only 168 articles, vs ~1400 normal)
+      // MF Dnes 3 supplement gap months (2023-12, 2024-01, 2024-03) + the
+      // partial 2024-02 (only 168 articles vs ~1400 normal). These create a
+      // visible bevágás because of asymmetric original-corpus normalisation
+      // (original includes sport+culture, supplement is news-only).
       'MF Dnes': ['2023-12','2024-01','2024-02','2024-03'],
     };
+    // Absolute floor: months with fewer than this many total articles produce
+    // statistically meaningless ratios (e.g. Onet 2025-12+ had 7-38 articles).
     const MIN_ARTICLES_ABS = 50;
     const portalGaps = {};
     ['CZ','HU','PL','SK'].forEach(c => {
       Object.entries(data.chart3b[c]||{}).forEach(([p, d]) => {
-        const positives = d.total.filter(t => t > 0).slice().sort((a,b) => a-b);
-        const median = positives.length ? positives[Math.floor(positives.length/2)] : 0;
-        const relThr = median * 0.3;
         const gaps = new Set(HARDCODED_GAPS[p] || []);
         d.months.forEach((m, i) => {
-          if (d.total[i] > 0 && (d.total[i] < MIN_ARTICLES_ABS || d.total[i] < relThr)) gaps.add(m);
+          if (d.total[i] > 0 && d.total[i] < MIN_ARTICLES_ABS) gaps.add(m);
         });
         portalGaps[p] = gaps;
       });
@@ -401,8 +402,19 @@ fetch('data.json')
           const bi = unifiedCatOrder.indexOf(b.cat);
           return (ai < 0 ? 99 : ai) - (bi < 0 ? 99 : bi);
         });
+        // Build extended gap set: add months where non-IA share is essentially zero
+        // (0–1%) — Plotly's groupnorm:'percent' produces 0/0 = NaN for these and renders
+        // unstable bars. Months with 1–5% non-IA still represent real (if sparse) data
+        // and are kept as-is.
+        const gaps = new Set(portalGaps[portal] || []);
+        pd.months.forEach((m, i) => {
+          const nonIaTotal = filteredSeries.reduce((sum, s) => sum + (s.values[i] || 0), 0);
+          if (nonIaTotal < 1) gaps.add(m);
+        });
         const traces = filteredSeries.map(s => ({
-          x: pd.months, y: s.values,
+          x: pd.months,
+          // Mask gap months — null values create visible vertical breaks in the stacked area
+          y: s.values.map((v, i) => gaps.has(pd.months[i]) ? null : v),
           type:'scatter', mode:'lines',
           name: s.cat,
           stackgroup:'one', groupnorm:'percent',
@@ -423,13 +435,16 @@ fetch('data.json')
       { x:c8.portals, y:c8.hfi, type:'bar', name:'HFI (Humanitarian)', marker:{color:'#6a9fbd',opacity:0.8} },
     ], {...L, barmode:'group', yaxis:{...L.yaxis,title:'Index value'}}, C);
 
-    // Charts 6+7: GFI/HFI time (unified y-axes across countries)
+    // Charts 6+7: GFI/HFI time (unified y-axes across countries) — apply portalGaps mask
     ['CZ','HU','PL','SK'].forEach(c => {
       [['chart6','EFI',data.chart6,maxEFI],['chart7','HFI',data.chart7,maxHFI]].forEach(([id,lbl,src,ymax]) => {
         const traces = [];
         Object.entries(src[c]||{}).forEach(([p,d]) => {
-          if(d.months.length) traces.push({ x:d.months, y:d.values, type:'scatter', mode:'lines',
-            name:p, line:{color:d.color,dash:d.dash,width:2} });
+          if(!d.months.length) return;
+          const gaps = portalGaps[p] || new Set();
+          const masked = d.values.map((v, i) => gaps.has(d.months[i]) ? null : v);
+          traces.push({ x:d.months, y:masked, type:'scatter', mode:'lines',
+            name:p, line:{color:d.color,dash:d.dash,width:2}, connectgaps:false });
         });
         Plotly.newPlot(id+'-'+c, traces, {...Ltime, yaxis:{...Ltime.yaxis,title:lbl,range:[0,ymax],autorange:false}}, C);
       });
