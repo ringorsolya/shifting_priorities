@@ -68,14 +68,14 @@
   <div class="chart-card"><h3>3b. Ukraine-War Share (%) — Hungary</h3><div id="chart3-HU" style="height:300px"></div></div>
   <div class="chart-card"><h3>3c. Ukraine-War Share (%) — Poland</h3><div id="chart3-PL" style="height:300px"></div></div>
   <div class="chart-card"><h3>3d. Ukraine-War Share (%) — Slovakia</h3><div id="chart3-SK" style="height:300px"></div></div>
-  <div class="chart-card"><h3>3e. Total vs War — MF Dnes</h3><div id="chart3b-MFDnes" style="height:280px"></div></div>
-  <div class="chart-card"><h3>3f. Total vs War — Novinky</h3><div id="chart3b-Novinky" style="height:280px"></div></div>
-  <div class="chart-card"><h3>3g. Total vs War — Magyar Nemzet</h3><div id="chart3b-MagyarNemzet" style="height:280px"></div></div>
-  <div class="chart-card"><h3>3h. Total vs War — Telex</h3><div id="chart3b-Telex" style="height:280px"></div></div>
-  <div class="chart-card"><h3>3i. Total vs War — wPolityce</h3><div id="chart3b-wPolityce" style="height:280px"></div></div>
-  <div class="chart-card"><h3>3j. Total vs War — Onet</h3><div id="chart3b-Onet" style="height:280px"></div></div>
-  <div class="chart-card"><h3>3k. Total vs War — Pravda</h3><div id="chart3b-Pravda" style="height:280px"></div></div>
-  <div class="chart-card"><h3>3l. Total vs War — Aktuality</h3><div id="chart3b-Aktuality" style="height:280px"></div></div>
+  <div class="chart-card"><h3>3e. Ukraine-war Volume — MF Dnes</h3><div id="chart3b-MFDnes" style="height:280px"></div></div>
+  <div class="chart-card"><h3>3f. Ukraine-war Volume — Novinky</h3><div id="chart3b-Novinky" style="height:280px"></div></div>
+  <div class="chart-card"><h3>3g. Ukraine-war Volume — Magyar Nemzet</h3><div id="chart3b-MagyarNemzet" style="height:280px"></div></div>
+  <div class="chart-card"><h3>3h. Ukraine-war Volume — Telex</h3><div id="chart3b-Telex" style="height:280px"></div></div>
+  <div class="chart-card"><h3>3i. Ukraine-war Volume — wPolityce</h3><div id="chart3b-wPolityce" style="height:280px"></div></div>
+  <div class="chart-card"><h3>3j. Ukraine-war Volume — Onet</h3><div id="chart3b-Onet" style="height:280px"></div></div>
+  <div class="chart-card"><h3>3k. Ukraine-war Volume — Pravda</h3><div id="chart3b-Pravda" style="height:280px"></div></div>
+  <div class="chart-card"><h3>3l. Ukraine-war Volume — Aktuality</h3><div id="chart3b-Aktuality" style="height:280px"></div></div>
   <div class="chart-card full">
     <h3>4. Sentiment Distribution — Ukraine-War Articles by Portal</h3>
     <div class="chart-desc">Grouped bar: Negative / Neutral / Positive share per portal</div>
@@ -216,15 +216,21 @@ fetch('data.json')
     // Chart 3b: Total vs Ukraine per portal (individual cards)
     const portalIdMap = {'MF Dnes':'MFDnes','Novinky':'Novinky','Magyar Nemzet':'MagyarNemzet',
       'Telex':'Telex','wPolityce':'wPolityce','Onet':'Onet','Pravda':'Pravda','Aktuality':'Aktuality'};
+    // Compute unified max for war article count
+    let maxWar3b = 0;
+    ['CZ','HU','PL','SK'].forEach(c => {
+      Object.values(data.chart3b[c]||{}).forEach(d => {
+        d.ukraine.forEach(v => { if(v>maxWar3b) maxWar3b=v; });
+      });
+    });
+    maxWar3b = Math.ceil(maxWar3b/100)*100;
+
     ['CZ','HU','PL','SK'].forEach(c => {
       Object.entries(data.chart3b[c]||{}).forEach(([p,d]) => {
         const divId = 'chart3b-'+portalIdMap[p];
         if(!document.getElementById(divId)) return;
         const share = d.months.map((_,i) => d.total[i]>0 ? Math.round(1000*d.ukraine[i]/d.total[i])/10 : 0);
         const traces = [
-          { x:d.months, y:d.total, type:'scatter', mode:'lines', fill:'tozeroy',
-            name:'Total', line:{color:'#7f8c8d',width:1},
-            fillcolor:'rgba(127,140,141,0.15)' },
           { x:d.months, y:d.ukraine, type:'scatter', mode:'lines', fill:'tozeroy',
             name:'Ukraine-war', line:{color:d.color,width:2.5},
             fillcolor: d.color==='#c0675a' ? 'rgba(192,103,90,0.2)' : 'rgba(106,159,189,0.2)' },
@@ -232,8 +238,8 @@ fetch('data.json')
             name:'Ukraine %', line:{color:'#c9a560',dash:'dash',width:1.5}, yaxis:'y2' },
         ];
         Plotly.newPlot(divId, traces, {...Ltime,
-          yaxis:{...Ltime.yaxis,title:'Articles',range:[0,maxTotal3b]},
-          yaxis2:{overlaying:'y',side:'right',title:'Ukraine %',range:[0,60],
+          yaxis:{...Ltime.yaxis,title:'Ukraine-war articles',range:[0,maxWar3b]},
+          yaxis2:{overlaying:'y',side:'right',title:'Ukraine share %',range:[0,60],
             titlefont:{color:'#c9a560',size:10},tickfont:{color:'#c9a560',size:9},
             gridcolor:'rgba(0,0,0,0)'},
           showlegend:true, legend:{...L.legend,font:{size:9}}}, C);
