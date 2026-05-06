@@ -58,6 +58,16 @@ UKRAINE_KEYWORDS = [
 ]
 _UKRAINE_RE = re.compile("|".join(UKRAINE_KEYWORDS), re.IGNORECASE)
 
+# Aggressive filter for Ukraine-related tokens (catches morphological forms like
+# Ukrajinu, Ukrajinou, Putinem, Moszkva, etc.) — used to clean entity word clouds
+# so the topical signal isn't drowned out by the omnipresent war keywords.
+_UKRAINE_TOKEN_RE = re.compile(
+    r'^(rus|russ|russi|putin|putyin|mosk|mosz|ukraj|ukrai|ukrain|zelen|'
+    r'kyjev|kijev|kijow|kijów|krem|vladim|volod|orosz)',
+    re.IGNORECASE)
+# Generic noise to filter from NER output (numerals, single letters, punctuation)
+_NOISE_TOKEN_RE = re.compile(r'^[\d\W]*$|^.{1,2}$')
+
 EFI_CATS = {"macroeconomics", "energy"}
 HFI_CATS = {"civil rights", "immigration", "social welfare"}
 POLICY_RELEVANT_CATS = {
@@ -97,6 +107,8 @@ def load_and_compute():
     cap_by_portal = defaultdict(Counter)      # NEW: CAP per portal
     cap_by_portal_month = defaultdict(Counter) # NEW: CAP per portal-month
     idx_data = defaultdict(lambda: [0, 0, 0])
+    # Entity counter for word clouds: (portal, cap_label) → Counter of entities
+    entity_by_portal_cap = defaultdict(Counter)
     portal_set = set()
     n_total = 0
     n_ukraine = 0
@@ -143,6 +155,34 @@ def load_and_compute():
                     idx_data[key][1] += 1
                 if cap in HFI_CATS:
                     idx_data[key][2] += 1
+
+                # Collect named entities for non-IA categories (for chart11 word clouds)
+                if cap not in ("international affairs", "no policy content"):
+                    ner = row.get("document_ner", "") or ""
+                    if ner:
+                        # Format: "LOC: a, b, c; MISC: d, e; ORG: f; PER: g"
+                        # Keep only LOC/ORG/PER (skip MISC — too noisy)
+                        for group in ner.split(";"):
+                            group = group.strip()
+                            if not group:
+                                continue
+                            # Strip type prefix (e.g. "LOC:")
+                            if ":" in group:
+                                gtype, _, content = group.partition(":")
+                                gtype = gtype.strip().upper()
+                                if gtype not in ("LOC", "ORG", "PER"):
+                                    continue
+                            else:
+                                content = group
+                            for ent in content.split(","):
+                                ent = ent.strip()
+                                if not ent or len(ent) < 3:
+                                    continue
+                                if _UKRAINE_TOKEN_RE.match(ent):
+                                    continue
+                                if _NOISE_TOKEN_RE.match(ent):
+                                    continue
+                                entity_by_portal_cap[(portal, cap)][ent] += 1
 
             si = sent_map.get(sent)
             if si is not None:
@@ -336,6 +376,25 @@ def load_and_compute():
             chart6[c][p] = {"months": vm, "values": gv, **style}
             chart7[c][p] = {"months": vm, "values": hv, **style}
 
+    # ── chart11 — top NER entities per (portal × non-IA CAP category) for word clouds ──
+    # Pick the 4 most-frequent non-IA CAP categories across all portals as columns.
+    non_ia_caps = [
+        (k, v) for k, v in cap_counts.most_common()
+        if k not in ("international affairs", "no policy content")
+    ]
+    top_non_ia_cats = [k for k, _ in non_ia_caps[:4]]
+    chart11 = {
+        "categories": [c.title() for c in top_non_ia_cats],
+        "portals": {},
+    }
+    for p in PORTAL_ORDER:
+        chart11["portals"][p] = {}
+        for cat in top_non_ia_cats:
+            cnt = entity_by_portal_cap.get((p, cat), Counter())
+            # Top 40 entities per cell — wordcloud2 handles up to ~100 well
+            top = cnt.most_common(40)
+            chart11["portals"][p][cat.title()] = [[w, n] for w, n in top]
+
     # ── chart9 — country-level EFI/HFI over time (4 countries on one plot) ──
     # Aggregate across both portals per country: (energy+macro) / total CAP for EFI,
     # (civil_rights+immigration+social_welfare) / total CAP for HFI
@@ -482,6 +541,7 @@ def load_and_compute():
         "chart5b": chart5b, "chart5c": chart5c,
         "chart6": chart6, "chart7": chart7, "chart8": chart8,
         "chart9_efi": chart9_efi, "chart9_hfi": chart9_hfi,
+        "chart11": chart11,
     }
 
 

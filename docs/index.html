@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>V4 Ukraine-War Media Analysis Dashboard</title>
 <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/wordcloud@1.2.2/src/wordcloud2.min.js"></script>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -125,6 +126,16 @@
     <div class="chart-desc">Country-level Humanitarian Focus Index — both portals aggregated per country (civil rights + immigration + social welfare share of CAP-classified Ukraine-war articles).</div>
     <div id="chart9-hfi" style="height:380px"></div>
   </div>
+</div>
+
+<div id="topics-section" style="padding: 0 40px 24px;">
+  <h2 style="margin-top:40px; font-size:18px; font-weight:600; color:#e7e9ea;">11. Top non-IA Topics — Named entities by portal × category</h2>
+  <p style="color:#8b949e; margin:8px 0 16px; font-size:13px;">
+    Frequent named entities (LOC / ORG / PER) extracted from Ukraine-war articles outside International Affairs.
+    Word size is proportional to mention count. Common Ukraine keywords (Russia, Putin, Moscow, Ukraine,
+    Zelensky, Kyiv) are filtered out so the topical signal isn't drowned out.
+  </p>
+  <div id="wordclouds-grid"></div>
 </div>
 
 <div id="topic-section" style="display:none; padding: 0 40px 40px;">
@@ -422,6 +433,69 @@ fetch('data.json')
          showlegend:true, legend:{...L.legend,font:{size:11},
                                   bgcolor:'rgba(22,27,34,0.6)'}}, C);
     });
+
+    // ── Chart 11: word clouds for top non-IA topics (8 portals × 4 categories) ──
+    const wcGrid = document.getElementById('wordclouds-grid');
+    if (wcGrid && data.chart11 && typeof WordCloud !== 'function') {
+      wcGrid.innerHTML = '<div style="color:#c9a560;font-size:13px;padding:8px;">' +
+        'WordCloud library failed to load (CDN may be blocked). The data is still ' +
+        'in <code>data.chart11</code> — entities per portal × top-4 non-IA categories.</div>';
+    }
+    if (wcGrid && data.chart11 && typeof WordCloud === 'function') {
+      const ch11 = data.chart11;
+      const wcPortalOrder = ['MF Dnes','Novinky','Magyar Nemzet','Telex',
+                             'wPolityce','Onet','Pravda','Aktuality'];
+      const wcPortalCountry = {'MF Dnes':'CZ','Novinky':'CZ','Magyar Nemzet':'HU','Telex':'HU',
+                               'wPolityce':'PL','Onet':'PL','Pravda':'SK','Aktuality':'SK'};
+      ch11.categories.forEach(cat => {
+        // Section header per category
+        const hdr = document.createElement('h3');
+        hdr.textContent = cat;
+        hdr.style.cssText = 'margin:24px 0 10px; font-size:16px; color:#7db8d4; ' +
+                            'border-bottom:1px solid #30363d; padding-bottom:6px;';
+        wcGrid.appendChild(hdr);
+
+        // Grid of 8 portal cards in 4 columns × 2 rows
+        const grid = document.createElement('div');
+        grid.style.cssText = 'display:grid; grid-template-columns:repeat(4,1fr); ' +
+                              'gap:12px; margin-bottom:16px;';
+        wcPortalOrder.forEach(portal => {
+          const wordList = (ch11.portals[portal] || {})[cat] || [];
+          const cell = document.createElement('div');
+          const isIll = ['MF Dnes','Magyar Nemzet','wPolityce','Pravda'].includes(portal);
+          const accent = isIll ? '#c0675a' : '#6a9fbd';
+          cell.style.cssText = 'background:#161b22; border:1px solid #30363d; ' +
+                                'border-radius:6px; padding:8px; min-height:170px;';
+          cell.innerHTML =
+            `<div style="font-size:11px;font-weight:600;color:${accent};` +
+            `margin-bottom:4px;display:flex;justify-content:space-between;align-items:center;">` +
+            `<span>${portal}</span><span style="color:#8b949e;font-weight:400;">` +
+            `n=${wordList.length}</span></div>` +
+            `<canvas width="280" height="140" style="width:100%;height:140px;display:block;"></canvas>`;
+          grid.appendChild(cell);
+          if (wordList.length === 0) return;
+          const canvas = cell.querySelector('canvas');
+          const maxCount = Math.max(...wordList.map(w => w[1]));
+          // Cap at top 30 entities per cloud for legibility
+          const list = wordList.slice(0, 30);
+          // Weight factor: largest word ~24px tall, smallest ~9px
+          const weightFactor = Math.max(2, Math.min(8, 240 / maxCount));
+          try {
+            WordCloud(canvas, {
+              list: list,
+              weightFactor: weightFactor,
+              fontFamily: '-apple-system, sans-serif',
+              color: () => accent + ['', 'cc', '99', 'bb'][Math.floor(Math.random()*4)],
+              rotateRatio: 0.25, rotationSteps: 2,
+              backgroundColor: '#161b22',
+              shrinkToFit: true,
+              gridSize: 6, drawOutOfBound: false,
+            });
+          } catch (e) { console.log('wc error', portal, cat, e); }
+        });
+        wcGrid.appendChild(grid);
+      });
+    }
   })
   .catch(e => { document.getElementById('status').textContent = 'Error: ' + e.message; });
 
