@@ -188,7 +188,7 @@ fetch('data.json')
           name:p, line:{color:d.color,dash:d.dash,width:2}, connectgaps:false });
       });
       Plotly.newPlot('chart3-'+c, traces,
-        {...Ltime, yaxis:{...Ltime.yaxis,title:'Ukraine share (%)',range:[0,maxShare3]}}, C);
+        {...Ltime, yaxis:{...Ltime.yaxis,title:'Ukraine share (%)',range:[0,maxShare3],autorange:false}}, C);
     });
 
     // Chart 4: Sentiment
@@ -216,14 +216,17 @@ fetch('data.json')
     const portalIdMap = {'MF Dnes':'MFDnes','Novinky':'Novinky','Magyar Nemzet':'MagyarNemzet',
       'Telex':'Telex','wPolityce':'wPolityce','Onet':'Onet','Pravda':'Pravda','Aktuality':'Aktuality'};
     // Compute unified max for war article count AND for share % (right axis)
+    // Mask out months with too few articles (sparse coverage at scrape boundaries)
+    const MIN_ARTICLES = 50;
     let maxWar3b = 0;
     let maxShare3b = 0;
     ['CZ','HU','PL','SK'].forEach(c => {
       Object.values(data.chart3b[c]||{}).forEach(d => {
-        d.ukraine.forEach(v => { if(v>maxWar3b) maxWar3b=v; });
         d.months.forEach((_, i) => {
+          if (d.total[i] < MIN_ARTICLES) return;  // skip sparse months
+          if (d.ukraine[i] > maxWar3b) maxWar3b = d.ukraine[i];
           const sh = d.total[i]>0 ? 100*d.ukraine[i]/d.total[i] : 0;
-          if(sh > maxShare3b) maxShare3b = sh;
+          if (sh > maxShare3b) maxShare3b = sh;
         });
       });
     });
@@ -234,17 +237,20 @@ fetch('data.json')
       Object.entries(data.chart3b[c]||{}).forEach(([p,d]) => {
         const divId = 'chart3b-'+portalIdMap[p];
         if(!document.getElementById(divId)) return;
-        const share = d.months.map((_,i) => d.total[i]>0 ? Math.round(1000*d.ukraine[i]/d.total[i])/10 : 0);
+        // Mask sparse months (< MIN_ARTICLES total) — produces visible gaps via connectgaps:false
+        const ukrMasked = d.ukraine.map((v, i) => d.total[i] >= MIN_ARTICLES ? v : null);
+        const share = d.months.map((_,i) =>
+          (d.total[i] >= MIN_ARTICLES) ? Math.round(1000*d.ukraine[i]/d.total[i])/10 : null);
         const traces = [
-          { x:d.months, y:d.ukraine, type:'scatter', mode:'lines', fill:'tozeroy',
-            name:'Ukraine-war', line:{color:d.color,width:2.5},
+          { x:d.months, y:ukrMasked, type:'scatter', mode:'lines', fill:'tozeroy',
+            name:'Ukraine-war', line:{color:d.color,width:2.5}, connectgaps:false,
             fillcolor: d.color==='#c0675a' ? 'rgba(192,103,90,0.2)' : 'rgba(106,159,189,0.2)' },
-          { x:d.months, y:share, type:'scatter', mode:'lines',
+          { x:d.months, y:share, type:'scatter', mode:'lines', connectgaps:false,
             name:'Ukraine %', line:{color:'#c9a560',dash:'dash',width:1.5}, yaxis:'y2' },
         ];
         Plotly.newPlot(divId, traces, {...Ltime,
-          yaxis:{...Ltime.yaxis,title:'Ukraine-war articles',range:[0,maxWar3b]},
-          yaxis2:{overlaying:'y',side:'right',title:'Ukraine share %',range:[0,maxShare3b],
+          yaxis:{...Ltime.yaxis,title:'Ukraine-war articles',range:[0,maxWar3b],autorange:false},
+          yaxis2:{overlaying:'y',side:'right',title:'Ukraine share %',range:[0,maxShare3b],autorange:false,
             titlefont:{color:'#c9a560',size:10},tickfont:{color:'#c9a560',size:9},
             gridcolor:'rgba(0,0,0,0)'},
           showlegend:true, legend:{...L.legend,font:{size:9}}}, C);
@@ -282,8 +288,8 @@ fetch('data.json')
         hovertemplate: '<b>%{x}</b><br>Int\'l Affairs share: %{y:.1f}%<extra></extra>',
       }], {...L,
         showlegend: false,
-        yaxis: {...L.yaxis, title:'International Affairs share (%)', range:[0,100]},
-        xaxis: {...L.xaxis, tickangle: -25},
+        yaxis: {...L.yaxis, title:'International Affairs share (%)', range:[0,100], autorange:false},
+        xaxis: {...L.xaxis, tickangle: -25, type:'category'},
         margin: {...L.margin, t: 30, b: 80}}, C);
     }
 
@@ -338,7 +344,9 @@ fetch('data.json')
         hovertemplate: '<b>%{y}</b><br>%{x:.1f}% (of non-IA)<extra></extra>',
       }], {...L, margin:{...L.margin,l:220}, showlegend:false,
            yaxis:{...L.yaxis,type:'category'},
-           xaxis:{...L.xaxis,title:'Share of non-IA articles (%)',range:[0,xMaxNonIa]}}, C);
+           xaxis:{...L.xaxis,title:'Share of non-IA articles (%)',type:'linear',
+                  range:[0,xMaxNonIa], autorange:false,
+                  tickmode:'linear', dtick:10, tickformat:'d', ticksuffix:'%'}}, C);
     });
 
     // Chart 5c: CAP over time per portal (100% stacked area, excluding International Affairs)
@@ -373,7 +381,7 @@ fetch('data.json')
         }));
         Plotly.newPlot(divId, traces,
           {...Ltime,
-           yaxis:{...Ltime.yaxis, title:'Share of non-IA (%)', range:[0,100]},
+           yaxis:{...Ltime.yaxis, title:'Share of non-IA (%)', range:[0,100], autorange:false},
            legend:{...L.legend, font:{size:9}}}, C);
       });
     });
@@ -393,7 +401,7 @@ fetch('data.json')
           if(d.months.length) traces.push({ x:d.months, y:d.values, type:'scatter', mode:'lines',
             name:p, line:{color:d.color,dash:d.dash,width:2} });
         });
-        Plotly.newPlot(id+'-'+c, traces, {...Ltime, yaxis:{...Ltime.yaxis,title:lbl,range:[0,ymax]}}, C);
+        Plotly.newPlot(id+'-'+c, traces, {...Ltime, yaxis:{...Ltime.yaxis,title:lbl,range:[0,ymax],autorange:false}}, C);
       });
     });
   })
