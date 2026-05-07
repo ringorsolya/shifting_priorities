@@ -445,53 +445,87 @@ fetch('data.json')
       const ch11 = data.chart11;
       const wcPortalOrder = ['MF Dnes','Novinky','Magyar Nemzet','Telex',
                              'wPolityce','Onet','Pravda','Aktuality'];
-      const wcPortalCountry = {'MF Dnes':'CZ','Novinky':'CZ','Magyar Nemzet':'HU','Telex':'HU',
-                               'wPolityce':'PL','Onet':'PL','Pravda':'SK','Aktuality':'SK'};
+
+      // Modal overlay for click-to-zoom (created once, reused for every cloud)
+      const modal = document.createElement('div');
+      modal.style.cssText = 'display:none;position:fixed;inset:0;z-index:9999;' +
+        'background:rgba(0,0,0,0.85);align-items:center;justify-content:center;cursor:pointer;';
+      modal.innerHTML =
+        '<div style="background:#161b22;border:1px solid #30363d;border-radius:8px;' +
+        'padding:20px;max-width:90vw;max-height:90vh;cursor:default;" onclick="event.stopPropagation()">' +
+        '<div id="wc-modal-title" style="font-size:16px;font-weight:600;margin-bottom:12px;display:flex;' +
+        'justify-content:space-between;align-items:center;"></div>' +
+        '<canvas id="wc-modal-canvas" width="900" height="540" style="display:block;background:#161b22;"></canvas>' +
+        '</div>';
+      modal.addEventListener('click', () => { modal.style.display = 'none'; });
+      document.body.appendChild(modal);
+
+      const openModal = (portal, cat, list, accent) => {
+        modal.style.display = 'flex';
+        const titleEl = document.getElementById('wc-modal-title');
+        titleEl.innerHTML = `<span style="color:${accent};">${portal}</span>` +
+          `<span style="font-weight:400;font-size:13px;color:#8b949e;">${cat} — top ${list.length} entities — click outside to close</span>`;
+        const canvas = document.getElementById('wc-modal-canvas');
+        const maxCount = Math.max(...list.map(w => w[1]));
+        const weightFactor = Math.max(8, Math.min(40, 1400 / maxCount));
+        try {
+          WordCloud(canvas, {
+            list: list, weightFactor: weightFactor,
+            fontFamily: '-apple-system, sans-serif',
+            color: () => accent + ['', 'cc', '99', 'bb'][Math.floor(Math.random()*4)],
+            rotateRatio: 0.25, rotationSteps: 2,
+            backgroundColor: '#161b22', shrinkToFit: true, gridSize: 10,
+            drawOutOfBound: false,
+          });
+        } catch (e) { console.log('modal wc error', e); }
+      };
+
       ch11.categories.forEach(cat => {
-        // Section header per category
         const hdr = document.createElement('h3');
         hdr.textContent = cat;
         hdr.style.cssText = 'margin:24px 0 10px; font-size:16px; color:#7db8d4; ' +
                             'border-bottom:1px solid #30363d; padding-bottom:6px;';
         wcGrid.appendChild(hdr);
 
-        // Grid of 8 portal cards in 4 columns × 2 rows
+        // 3 clouds per row → 8 portals = 3+3+2 (uneven last row is intentional)
         const grid = document.createElement('div');
-        grid.style.cssText = 'display:grid; grid-template-columns:repeat(4,1fr); ' +
-                              'gap:12px; margin-bottom:16px;';
+        grid.style.cssText = 'display:grid; grid-template-columns:repeat(3,1fr); ' +
+                              'gap:14px; margin-bottom:16px;';
         wcPortalOrder.forEach(portal => {
           const wordList = (ch11.portals[portal] || {})[cat] || [];
           const cell = document.createElement('div');
           const isIll = ['MF Dnes','Magyar Nemzet','wPolityce','Pravda'].includes(portal);
           const accent = isIll ? '#c0675a' : '#6a9fbd';
           cell.style.cssText = 'background:#161b22; border:1px solid #30363d; ' +
-                                'border-radius:6px; padding:8px; min-height:170px;';
+                                'border-radius:6px; padding:10px; cursor:pointer; ' +
+                                'transition:border-color 0.15s;';
+          cell.title = 'Click to zoom';
           cell.innerHTML =
-            `<div style="font-size:11px;font-weight:600;color:${accent};` +
-            `margin-bottom:4px;display:flex;justify-content:space-between;align-items:center;">` +
-            `<span>${portal}</span><span style="color:#8b949e;font-weight:400;">` +
+            `<div style="font-size:12px;font-weight:600;color:${accent};` +
+            `margin-bottom:6px;display:flex;justify-content:space-between;align-items:center;">` +
+            `<span>${portal}</span><span style="color:#8b949e;font-weight:400;font-size:11px;">` +
             `n=${wordList.length}</span></div>` +
-            `<canvas width="280" height="140" style="width:100%;height:140px;display:block;"></canvas>`;
+            `<canvas width="380" height="220" style="width:100%;height:220px;display:block;"></canvas>`;
           grid.appendChild(cell);
           if (wordList.length === 0) return;
           const canvas = cell.querySelector('canvas');
           const maxCount = Math.max(...wordList.map(w => w[1]));
-          // Cap at top 30 entities per cloud for legibility
-          const list = wordList.slice(0, 30);
-          // Weight factor: largest word ~24px tall, smallest ~9px
-          const weightFactor = Math.max(2, Math.min(8, 240 / maxCount));
+          const list = wordList.slice(0, 35);
+          // Weight factor scaled for larger 380×220 canvas
+          const weightFactor = Math.max(3, Math.min(14, 380 / maxCount));
           try {
             WordCloud(canvas, {
-              list: list,
-              weightFactor: weightFactor,
+              list: list, weightFactor: weightFactor,
               fontFamily: '-apple-system, sans-serif',
               color: () => accent + ['', 'cc', '99', 'bb'][Math.floor(Math.random()*4)],
               rotateRatio: 0.25, rotationSteps: 2,
-              backgroundColor: '#161b22',
-              shrinkToFit: true,
-              gridSize: 6, drawOutOfBound: false,
+              backgroundColor: '#161b22', shrinkToFit: true,
+              gridSize: 7, drawOutOfBound: false,
             });
           } catch (e) { console.log('wc error', portal, cat, e); }
+          cell.addEventListener('click', () => openModal(portal, cat, wordList, accent));
+          cell.addEventListener('mouseenter', () => { cell.style.borderColor = accent; });
+          cell.addEventListener('mouseleave', () => { cell.style.borderColor = '#30363d'; });
         });
         wcGrid.appendChild(grid);
       });
