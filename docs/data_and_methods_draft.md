@@ -17,13 +17,13 @@ The pairing follows established categorisations of post-2010 media-political ali
 
 The corpus was assembled from two complementary scraping efforts that we treat as a unified dataset after a per-(portal, month) coverage adjudication described below.
 
-The **original corpus** was collected through a series of full-archive scrapers run between 2022 and early 2024 that retrieved articles from all sections of each portal (news, sport, culture, lifestyle, etc.). The original scrapers thus capture the full publishing volume of each outlet during their active period, but section composition differs between portals and the scrapers exhausted before the end of our observation window.
+The **Mediatext corpus** was collected through a social listening application (Sentione) run between 2022 and early 2024 that retrieved articles from all sections of each portal (news, sport, culture, lifestyle, etc.). The original scrapers thus capture the full publishing volume of each outlet during their active period, but section composition differs between portals and the scrapers exhausted before the end of our observation window.
 
 The **supplement corpus** was collected later (2024–2026) using a second generation of scrapers that target only the news section of each portal (e.g. `/zpravy/`, `/aktualne/`, `/krajina/`). These supplement scrapers are run with consistent parameters across all eight portals and use either the Common Crawl/Wayback CDX index or the portal's sitemap. Their coverage spans the full observation period (2022-01 to 2026-02) but for some portals the sitemap or CDX index is patchy in the mid-period.
 
 For each portal-month pair we select the source — original or supplement — that contains the larger number of CAP-classified Ukraine-war articles (see §3.4). When the two sources are tied or the supplement is at least equal, we use the supplement (the methodologically consistent choice). The selection is applied at the (portal, month) level, never within a month, so totals and Ukraine-war counts for any given month always refer to a single source. No ratio-based normalisation is applied. The resulting source split is summarised below.
 
-| Portal | Supplement-month | Original-month | Total months covered |
+| Portal | Supplement-month | Mediatext-month | Total months covered |
 |---|---|---|---|
 | MF Dnes | 23 | 27 | 50 |
 | Novinky | 23 | 27 | 50 |
@@ -34,8 +34,7 @@ For each portal-month pair we select the source — original or supplement — t
 | Pravda | 23 | 27 | 50 |
 | Aktuality | 27 | 23 | 50 |
 
-For all eight portals the harmonised source covers the complete 50-month period (2022-01 to 2026-02). Onet is supplement-only because no original-corpus scraper was deployed for it; its 2022-01 has zero Ukraine-flagged articles because the war had not started yet, and 2026-02 contains only 7 articles in total because CDX/Wayback indexing of very recent content is incomplete — but both months are nonetheless present in the harmonised file.
-
+For all eight portals the harmonised source covers the complete 50-month period (2022-01 to 2026-02). Onet is supplement-only because no original-corpus scraper was deployed for it.
 ## 3. Annotation pipeline
 
 Articles are stored as document-level rows with fields including `document_id`, `date`, `document_title`, `document_text`, English translations, and a battery of NLP-derived fields. The enrichment was performed in five stages.
