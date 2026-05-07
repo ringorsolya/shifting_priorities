@@ -66,19 +66,26 @@ The `(portal, year-month)` decision is the unit of granularity — within any
 single month, the data come from one source only; sources are never mixed within
 the same month. The `source` column records which source each row came from.
 
-Source split per portal (50 months total each, except Onet which has no original
-corpus and has 48 months covered by the supplement):
+Source split per portal — months whose CAP-Ukraine count was higher in the
+supplement vs. in the original. All 50 months (2022-01 to 2026-02) are covered
+in the harmonised file for every portal; Onet has no original-corpus scraper
+so its months are all supplement-sourced.
 
-| Portal | Supplement-month | Original-month |
-|---|---:|---:|
-| MF Dnes | 23 | 27 |
-| Novinky | 23 | 27 |
-| Magyar Nemzet | 36 | 14 |
-| Telex | 25 | 25 |
-| wPolityce | 37 | 13 |
-| Onet | 48 | 0 |
-| Pravda | 23 | 27 |
-| Aktuality | 27 | 23 |
+| Portal | Supplement-month | Original-month | Total months |
+|---|---:|---:|---:|
+| MF Dnes | 23 | 27 | 50 |
+| Novinky | 23 | 27 | 50 |
+| Magyar Nemzet | 36 | 14 | 50 |
+| Telex | 25 | 25 | 50 |
+| wPolityce | 37 | 13 | 50 |
+| Onet | 50 | 0 | 50 |
+| Pravda | 23 | 27 | 50 |
+| Aktuality | 27 | 23 | 50 |
+
+(Note: for Onet, 2022-01 has data but 0 Ukraine-flagged articles — the war
+hadn't started — and 2026-02 has only 7 articles in total because CDX/Wayback
+indexing of recent content is patchy. Both months are present in the harmonised
+file with their actual non-Ukraine articles.)
 
 ## How the files are produced
 
@@ -107,9 +114,12 @@ df = pd.read_csv("aktuality_harmonized.csv").sort_values(["date","document_id"])
 ## Caveats and known limitations
 
 - **Onet** is supplement-only because no original-corpus scraper was deployed
-  for it. Two months (2022-01 and 2026-02) have no data in the supplement
-  either, so 48 of 50 months are covered. The portal's overall volume is an
-  under-estimate.
+  for it. All 50 months are present in the supplement; 2022-01 has 0
+  Ukraine-flagged articles because the war hadn't started, and 2026-02 has
+  only 7 articles in total because CDX/Wayback indexing of very recent
+  content is incomplete. The portal's overall volume is the lowest of the
+  eight (~36.5K rows) because the supplement scrape captured a relatively
+  small share of its full output.
 - **Magyar Nemzet** sitemap coverage drops from ~3,800 to ~700 articles per
   month from 2025-03 onwards. This is a real reduction in the available
   scrape, not a methodology change. The `total` per month is honest.

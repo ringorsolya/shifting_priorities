@@ -23,18 +23,18 @@ The **supplement corpus** was collected later (2024–2026) using a second gener
 
 For each portal-month pair we select the source — original or supplement — that contains the larger number of CAP-classified Ukraine-war articles (see §3.4). When the two sources are tied or the supplement is at least equal, we use the supplement (the methodologically consistent choice). The selection is applied at the (portal, month) level, never within a month, so totals and Ukraine-war counts for any given month always refer to a single source. No ratio-based normalisation is applied. The resulting source split is summarised below.
 
-| Portal | Supplement-month | Original-month | Covered months |
+| Portal | Supplement-month | Original-month | Total months covered |
 |---|---|---|---|
 | MF Dnes | 23 | 27 | 50 |
 | Novinky | 23 | 27 | 50 |
 | Magyar Nemzet | 36 | 14 | 50 |
 | Telex | 25 | 25 | 50 |
 | wPolityce | 37 | 13 | 50 |
-| Onet | 48 | 0 | 48 |
+| Onet | 50 | 0 | 50 |
 | Pravda | 23 | 27 | 50 |
 | Aktuality | 27 | 23 | 50 |
 
-Onet is supplement-only because no original-corpus scraper was run for it; for two months (2022-01, 2026-02) the supplement also has no data, hence 48 of 50 months covered. For all other portals the harmonised source covers the complete 50-month period.
+For all eight portals the harmonised source covers the complete 50-month period (2022-01 to 2026-02). Onet is supplement-only because no original-corpus scraper was deployed for it; its 2022-01 has zero Ukraine-flagged articles because the war had not started yet, and 2026-02 contains only 7 articles in total because CDX/Wayback indexing of very recent content is incomplete — but both months are nonetheless present in the harmonised file.
 
 ## 3. Annotation pipeline
 
