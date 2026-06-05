@@ -116,15 +116,33 @@
   <div class="chart-card"><h3>8b. HFI Over Time — HU</h3><div id="chart7-HU" style="height:280px"></div></div>
   <div class="chart-card"><h3>8c. HFI Over Time — PL</h3><div id="chart7-PL" style="height:280px"></div></div>
   <div class="chart-card"><h3>8d. HFI Over Time — SK</h3><div id="chart7-SK" style="height:280px"></div></div>
+  <div class="chart-card"><h3>9a. BFI Over Time — CZ</h3><div id="chart6b-CZ" style="height:280px"></div></div>
+  <div class="chart-card"><h3>9b. BFI Over Time — HU</h3><div id="chart6b-HU" style="height:280px"></div></div>
+  <div class="chart-card"><h3>9c. BFI Over Time — PL</h3><div id="chart6b-PL" style="height:280px"></div></div>
+  <div class="chart-card"><h3>9d. BFI Over Time — SK</h3><div id="chart6b-SK" style="height:280px"></div></div>
+  <div class="chart-card"><h3>10a. DFI Over Time — CZ</h3><div id="chart7b-CZ" style="height:280px"></div></div>
+  <div class="chart-card"><h3>10b. DFI Over Time — HU</h3><div id="chart7b-HU" style="height:280px"></div></div>
+  <div class="chart-card"><h3>10c. DFI Over Time — PL</h3><div id="chart7b-PL" style="height:280px"></div></div>
+  <div class="chart-card"><h3>10d. DFI Over Time — SK</h3><div id="chart7b-SK" style="height:280px"></div></div>
   <div class="chart-card full">
-    <h3>9. EFI Over Time — Country comparison</h3>
+    <h3>11. EFI Over Time — Country comparison</h3>
     <div class="chart-desc">Country-level Economic Focus Index — both portals aggregated per country (energy + macroeconomics share of CAP-classified Ukraine-war articles).</div>
     <div id="chart9-efi" style="height:380px"></div>
   </div>
   <div class="chart-card full">
-    <h3>10. HFI Over Time — Country comparison</h3>
+    <h3>12. HFI Over Time — Country comparison</h3>
     <div class="chart-desc">Country-level Humanitarian Focus Index — both portals aggregated per country (civil rights + immigration + social welfare share of CAP-classified Ukraine-war articles).</div>
     <div id="chart9-hfi" style="height:380px"></div>
+  </div>
+  <div class="chart-card full">
+    <h3>13. BFI Over Time — Country comparison</h3>
+    <div class="chart-desc">Country-level Bureaucracy Focus Index — both portals aggregated per country (government operations + law &amp; crime share).</div>
+    <div id="chart9-bfi" style="height:380px"></div>
+  </div>
+  <div class="chart-card full">
+    <h3>14. DFI Over Time — Country comparison</h3>
+    <div class="chart-desc">Country-level Defence Focus Index — both portals aggregated per country (defence share).</div>
+    <div id="chart9-dfi" style="height:380px"></div>
   </div>
 </div>
 
@@ -396,11 +414,13 @@ fetch('data.json')
       });
     });
 
-    // Chart 8: GFI/HFI bar
+    // Chart 8: Focus indices bar
     const c8 = data.chart8;
     Plotly.newPlot('chart8', [
-      { x:c8.portals, y:c8.gfi, type:'bar', name:'EFI (Economic)', marker:{color:'#c0675a',opacity:0.8} },
+      { x:c8.portals, y:c8.efi, type:'bar', name:'EFI (Economic)', marker:{color:'#c0675a',opacity:0.8} },
       { x:c8.portals, y:c8.hfi, type:'bar', name:'HFI (Humanitarian)', marker:{color:'#6a9fbd',opacity:0.8} },
+      { x:c8.portals, y:c8.bfi, type:'bar', name:'BFI (Bureaucracy)', marker:{color:'#b07d3f',opacity:0.8} },
+      { x:c8.portals, y:c8.dfi, type:'bar', name:'DFI (Defence)', marker:{color:'#5a8c6e',opacity:0.8} },
     ], {...L, barmode:'group', yaxis:{...L.yaxis,title:'Index value'}}, C);
 
     // Charts 6+7: EFI/HFI time (unified y-axes across countries)
@@ -417,9 +437,30 @@ fetch('data.json')
       });
     });
 
+    // Charts 6b+7b: BFI/DFI time series per portal
+    const maxBFI = Math.ceil(Math.max(...['CZ','HU','PL','SK'].flatMap(c =>
+      Object.values(data.chart6b[c]||{}).flatMap(d => d.values)))*20)/20;
+    const maxDFI = Math.ceil(Math.max(...['CZ','HU','PL','SK'].flatMap(c =>
+      Object.values(data.chart7b[c]||{}).flatMap(d => d.values)))*20)/20;
+    ['CZ','HU','PL','SK'].forEach(c => {
+      [['chart6b','BFI',data.chart6b,maxBFI],['chart7b','DFI',data.chart7b,maxDFI]].forEach(([id,lbl,src,ymax]) => {
+        if (!src) return;
+        const traces = [];
+        Object.entries(src[c]||{}).forEach(([p,d]) => {
+          if (!d.months.length) return;
+          traces.push({ x:d.months, y:d.values, type:'scatter', mode:'lines',
+            name:p, line:{color:d.color,dash:d.dash,width:2}, connectgaps:false });
+        });
+        Plotly.newPlot(id+'-'+c, traces,
+          {...Ltime, yaxis:{...Ltime.yaxis,title:lbl,range:[0,ymax],autorange:false}}, C);
+      });
+    });
+
     // Charts 9: country-level EFI/HFI on one plot (both indices in their own card)
     [['chart9-efi','EFI',data.chart9_efi,maxEFI],
-     ['chart9-hfi','HFI',data.chart9_hfi,maxHFI]].forEach(([id,lbl,src,ymax]) => {
+     ['chart9-hfi','HFI',data.chart9_hfi,maxHFI],
+     ['chart9-bfi','BFI',data.chart9_bfi,maxBFI],
+     ['chart9-dfi','DFI',data.chart9_dfi,maxDFI]].forEach(([id,lbl,src,ymax]) => {
       if (!document.getElementById(id) || !src) return;
       const traces = [];
       ['CZ','HU','PL','SK'].forEach(c => {
